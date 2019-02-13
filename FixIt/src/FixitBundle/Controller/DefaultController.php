@@ -15,6 +15,10 @@ class DefaultController extends Controller
         {
             $user = $this->container->get('security.token_storage')->getToken()->getUser();
         }
+        if(in_array('ROLE_ADMIN',$user->getRoles()))
+        {
+            return $this->redirectToRoute('admin');
+        }
         return $this->render('@Fixit/Default/index.html.twig',array('user'=>$user));
     }
 
