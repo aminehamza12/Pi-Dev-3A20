@@ -17,7 +17,7 @@ class DefaultController extends Controller
         }
         if(in_array('ROLE_ADMIN',$user->getRoles()))
         {
-            return $this->redirectToRoute('admin');
+            return $this->redirectToRoute('admin_homepage');
         }
         return $this->render('@Fixit/Default/index.html.twig',array('user'=>$user));
     }

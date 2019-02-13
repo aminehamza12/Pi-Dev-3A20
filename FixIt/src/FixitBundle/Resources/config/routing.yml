@@ -4,4 +4,10 @@ fixit_homepage:
 fixit_404:
     path:     /404
     defaults: { _controller: FixitBundle:Default:wrong }
+fixit_workshops:
+    resource: "@FixitBundle/Resources/config/workshopsrouting.yml"
+    prefix:   /Workshops
+admin:
+    resource: "@FixitBundle/Resources/config/adminrouting.yml"
+    prefix:   /admin
 

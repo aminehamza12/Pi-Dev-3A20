@@ -36,10 +36,10 @@ class Workshops
     private $description;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="categorie", type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="categorieEvent")
+     * @ORM\JoinColumn(name="categorie", referencedColumnName="type")
      */
+
     private $categorie;
 
     /**
@@ -151,28 +151,22 @@ class Workshops
     }
 
     /**
-     * Set categorie
-     *
-     * @param string $categorie
-     *
-     * @return Workshops
-     */
-    public function setCategorie($categorie)
-    {
-        $this->categorie = $categorie;
-
-        return $this;
-    }
-
-    /**
-     * Get categorie
-     *
-     * @return string
+     * @return mixed
      */
     public function getCategorie()
     {
         return $this->categorie;
     }
+
+    /**
+     * @param mixed $categorie
+     */
+    public function setCategorie($categorie)
+    {
+        $this->categorie = $categorie;
+    }
+
+
 
     /**
      * Set dateDebut

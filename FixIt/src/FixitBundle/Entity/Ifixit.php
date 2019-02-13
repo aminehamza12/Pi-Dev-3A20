@@ -22,19 +22,27 @@ class Ifixit
     private $id;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="categorie", type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="categorieEvent")
+     * @ORM\JoinColumn(name="categorie", referencedColumnName="type")
      */
+
     private $categorie;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="souscategorie", type="string", length=255)
+     * @return mixed
      */
-    private $souscategorie;
+    public function getCategorie()
+    {
+        return $this->categorie;
+    }
 
+    /**
+     * @param mixed $categorie
+     */
+    public function setCategorie($categorie)
+    {
+        $this->categorie = $categorie;
+    }
 
     /**
      * Get id
@@ -46,52 +54,6 @@ class Ifixit
         return $this->id;
     }
 
-    /**
-     * Set categorie
-     *
-     * @param string $categorie
-     *
-     * @return Ifixit
-     */
-    public function setCategorie($categorie)
-    {
-        $this->categorie = $categorie;
 
-        return $this;
-    }
-
-    /**
-     * Get categorie
-     *
-     * @return string
-     */
-    public function getCategorie()
-    {
-        return $this->categorie;
-    }
-
-    /**
-     * Set souscategorie
-     *
-     * @param string $souscategorie
-     *
-     * @return Ifixit
-     */
-    public function setSouscategorie($souscategorie)
-    {
-        $this->souscategorie = $souscategorie;
-
-        return $this;
-    }
-
-    /**
-     * Get souscategorie
-     *
-     * @return string
-     */
-    public function getSouscategorie()
-    {
-        return $this->souscategorie;
-    }
 }
 
