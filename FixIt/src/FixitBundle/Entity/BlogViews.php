@@ -13,6 +13,12 @@ use Doctrine\ORM\Mapping as ORM;
 class BlogViews
 {
     /**
+     * @ORM\ManyToOne(targetEntity="Blog", inversedBy="views")
+     * @ORM\JoinColumn(name="blogViews_id", referencedColumnName="id")
+     */
+    private $blog;
+
+    /**
      * @var int
      *
      * @ORM\Column(name="id", type="integer")

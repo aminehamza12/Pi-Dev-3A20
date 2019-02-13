@@ -2,6 +2,7 @@
 
 namespace FixitBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -12,6 +13,30 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Blog
 {
+    /**
+     * @ORM\OneToMany(targetEntity="Comment", mappedBy="blog")
+     */
+    private $comments;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Reaction", mappedBy="blog")
+     */
+    private $reactions;
+
+
+
+    /**
+     * @ORM\OneToMany(targetEntity="BlogViews", mappedBy="blog")
+     */
+    private $views;
+
+
+    /**
+     * @ORM\ManyToOne(targetEntity="BlogCategorie", inversedBy="blogs")
+     * @ORM\JoinColumn(name="blogCategorie_id", referencedColumnName="id")
+     */
+    private $blogCategorie;
+
     /**
      * @var int
      *
@@ -278,6 +303,13 @@ class Blog
     public function getCommentEnable()
     {
         return $this->commentEnable;
+    }
+
+    public function __construct()
+    {
+        $this->views = new ArrayCollection();
+        $this->reactions = new ArrayCollection();
+        $this->comments = new ArrayCollection();
     }
 }
 
