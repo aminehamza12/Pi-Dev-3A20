@@ -13,6 +13,12 @@ use Doctrine\ORM\Mapping as ORM;
 class NewsLetterTemplate
 {
     /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="newsLetterTemplates")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    private $user;
+
+    /**
      * @var int
      *
      * @ORM\Column(name="id", type="integer")

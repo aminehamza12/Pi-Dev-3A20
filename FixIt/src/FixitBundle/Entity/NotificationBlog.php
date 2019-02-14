@@ -13,6 +13,12 @@ use Doctrine\ORM\Mapping as ORM;
 class NotificationBlog
 {
     /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="notificationBlogs")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    private $user;
+
+    /**
      * @var int
      *
      * @ORM\Column(name="id", type="integer")

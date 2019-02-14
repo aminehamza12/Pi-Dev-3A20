@@ -2,6 +2,7 @@
 
 namespace FixitBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -12,6 +13,16 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Tag
 {
+    /**
+     * @ORM\OneToMany(targetEntity="BlogTag", mappedBy="tag")
+     */
+    private $blogTags;
+
+    public function __construct()
+    {
+        $this->blogTags = new ArrayCollection();
+    }
+
     /**
      * @var int
      *

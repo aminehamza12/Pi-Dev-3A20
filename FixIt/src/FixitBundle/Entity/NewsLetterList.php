@@ -2,6 +2,7 @@
 
 namespace FixitBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -12,6 +13,15 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class NewsLetterList
 {
+    /**
+     * @ORM\OneToMany(targetEntity="NewsLetterListUser", mappedBy="newsLetterList")
+     */
+    private $newsLetterListUsers;
+
+    public function __construct()
+    {
+        $this->newsLetterListUsers = new ArrayCollection();
+    }
     /**
      * @var int
      *

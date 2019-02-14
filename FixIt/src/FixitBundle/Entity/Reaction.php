@@ -13,6 +13,12 @@ use Doctrine\ORM\Mapping as ORM;
 class Reaction
 {
     /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="reactions")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    private $user;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Blog", inversedBy="reactions")
      * @ORM\JoinColumn(name="blog_id", referencedColumnName="id")
      */

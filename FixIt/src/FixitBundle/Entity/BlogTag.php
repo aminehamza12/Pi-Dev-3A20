@@ -13,6 +13,18 @@ use Doctrine\ORM\Mapping as ORM;
 class BlogTag
 {
     /**
+     * @ORM\ManyToOne(targetEntity="Tag", inversedBy="blogTags")
+     * @ORM\JoinColumn(name="tag_id", referencedColumnName="id")
+     */
+    private $tag;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Blog", inversedBy="blogTags")
+     * @ORM\JoinColumn(name="blog_id", referencedColumnName="id")
+     */
+    private $blog;
+
+    /**
      * @var int
      *
      * @ORM\Column(name="id", type="integer")

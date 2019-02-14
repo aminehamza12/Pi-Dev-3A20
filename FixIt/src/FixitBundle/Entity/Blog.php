@@ -14,6 +14,11 @@ use Doctrine\ORM\Mapping as ORM;
 class Blog
 {
     /**
+     * @ORM\OneToMany(targetEntity="BlogTag", mappedBy="blog")
+     */
+    private $blogTags;
+
+    /**
      * @ORM\OneToMany(targetEntity="Comment", mappedBy="blog")
      */
     private $comments;
@@ -310,6 +315,7 @@ class Blog
         $this->views = new ArrayCollection();
         $this->reactions = new ArrayCollection();
         $this->comments = new ArrayCollection();
+        $this->blogTags = new ArrayCollection();
     }
 }
 

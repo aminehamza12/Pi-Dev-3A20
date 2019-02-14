@@ -14,7 +14,7 @@ class BlogViews
 {
     /**
      * @ORM\ManyToOne(targetEntity="Blog", inversedBy="views")
-     * @ORM\JoinColumn(name="blogViews_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="blog_id", referencedColumnName="id")
      */
     private $blog;
 

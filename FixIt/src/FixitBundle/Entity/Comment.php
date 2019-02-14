@@ -13,6 +13,12 @@ use Doctrine\ORM\Mapping as ORM;
 class Comment
 {
     /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="comments")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    private $user;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Blog", inversedBy="comments")
      * @ORM\JoinColumn(name="blog_id", referencedColumnName="id")
      */
