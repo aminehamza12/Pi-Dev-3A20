@@ -1,0 +1,3 @@
+gestion_cv_homepage:
+    path:     /
+    defaults: { _controller: GestionCvBundle:Default:index }
