@@ -30,7 +30,7 @@
     <link rel="stylesheet" href="{{ asset('css/responsive.css') }}">
     <script src="{{ asset('js/vendor/modernizr-2.8.3-respond-1.4.2.min.js') }}"></script>
 </head>
-{% if user ==null %}
+{% if app.user ==null %}
 <body class="tg-home">
 {% else %}
 <body class="tg-login">
@@ -106,8 +106,8 @@
                                 <div class="tg-themedropdown tg-userdropdown">
                                     <a href="dashboard.html" id="tg-usermenu" class="tg-btndropdown">
                                         <em><img src="{{ asset('images/thumbnails/img-01.jpg') }}" alt="image description"></em>
-                                        {% if user != null %}
-                                        <span>{{ user.nom }}</span>
+                                        {% if app.user != null %}
+                                        <span>{{ app.user.nom }}</span>
                                         {% endif %}
                                         <i class="fa fa-angle-down"></i>
                                     </a>
