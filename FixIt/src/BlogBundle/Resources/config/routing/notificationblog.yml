@@ -1,0 +1,24 @@
+notificationblog_index:
+    path:     /
+    defaults: { _controller: "BlogBundle:NotificationBlog:index" }
+    methods:  GET
+
+notificationblog_show:
+    path:     /{id}/show
+    defaults: { _controller: "BlogBundle:NotificationBlog:show" }
+    methods:  GET
+
+notificationblog_new:
+    path:     /new
+    defaults: { _controller: "BlogBundle:NotificationBlog:new" }
+    methods:  [GET, POST]
+
+notificationblog_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "BlogBundle:NotificationBlog:edit" }
+    methods:  [GET, POST]
+
+notificationblog_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "BlogBundle:NotificationBlog:delete" }
+    methods:  DELETE

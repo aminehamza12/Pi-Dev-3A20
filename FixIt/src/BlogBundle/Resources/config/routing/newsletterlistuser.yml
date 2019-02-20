@@ -1,0 +1,24 @@
+newsletterlistuser_index:
+    path:     /
+    defaults: { _controller: "BlogBundle:NewsLetterListUser:index" }
+    methods:  GET
+
+newsletterlistuser_show:
+    path:     /{id}/show
+    defaults: { _controller: "BlogBundle:NewsLetterListUser:show" }
+    methods:  GET
+
+newsletterlistuser_new:
+    path:     /new
+    defaults: { _controller: "BlogBundle:NewsLetterListUser:new" }
+    methods:  [GET, POST]
+
+newsletterlistuser_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "BlogBundle:NewsLetterListUser:edit" }
+    methods:  [GET, POST]
+
+newsletterlistuser_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "BlogBundle:NewsLetterListUser:delete" }
+    methods:  DELETE

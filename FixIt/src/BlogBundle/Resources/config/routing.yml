@@ -1,0 +1,55 @@
+blog_blogcategorie:
+    resource: "@BlogBundle/Resources/config/routing/blogcategorie.yml"
+    prefix:   /blogcategorie
+
+blog_blog:
+    resource: "@BlogBundle/Resources/config/routing/blog.yml"
+    prefix:   /blog
+
+blog_blogviews:
+    resource: "@BlogBundle/Resources/config/routing/blogviews.yml"
+    prefix:   /blogviews
+
+blog_homepage:
+    path:     /
+    defaults: { _controller: BlogBundle:Default:index }
+
+admin_homepage:
+    path:     /admin
+    defaults: { _controller: BlogBundle:Default:adminIndex }
+
+blog_blogtag:
+    resource: "@BlogBundle/Resources/config/routing/blogtag.yml"
+    prefix:   /blogtag
+
+blog_tag:
+    resource: "@BlogBundle/Resources/config/routing/tag.yml"
+    prefix:   /tag
+
+blog_notificationblog:
+    resource: "@BlogBundle/Resources/config/routing/notificationblog.yml"
+    prefix:   /notificationblog
+
+blog_comment:
+    resource: "@BlogBundle/Resources/config/routing/comment.yml"
+    prefix:   /comment
+
+blog_partner:
+    resource: "@BlogBundle/Resources/config/routing/partner.yml"
+    prefix:   /partner
+
+blog_reaction:
+    resource: "@BlogBundle/Resources/config/routing/reaction.yml"
+    prefix:   /reaction
+
+blog_newsletterlist:
+    resource: "@BlogBundle/Resources/config/routing/newsletterlist.yml"
+    prefix:   /newsletterlist
+
+blog_newsletterlistuser:
+    resource: "@BlogBundle/Resources/config/routing/newsletterlistuser.yml"
+    prefix:   /newsletterlistuser
+
+blog_newslettertemplate:
+    resource: "@BlogBundle/Resources/config/routing/newslettertemplate.yml"
+    prefix:   /newslettertemplate
