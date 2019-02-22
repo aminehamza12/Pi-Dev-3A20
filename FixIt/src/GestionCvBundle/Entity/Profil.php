@@ -3,12 +3,15 @@
 namespace GestionCvBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * Profil
  *
  * @ORM\Table(name="profil")
  * @ORM\Entity(repositoryClass="GestionCvBundle\Repository\ProfilRepository")
+ * @Vich\Uploadable
  */
 class Profil
 {
@@ -66,6 +69,71 @@ class Profil
      * @ORM\Column(name="Banner", type="string", length=255)
      */
     private $banner;
+
+    /**
+     * @Vich\UploadableField(mapping="profilLogo_images", fileNameProperty="logo")
+     * @var File
+     */
+    private $logoFile;
+
+    /**
+     * @Vich\UploadableField(mapping="profilBanner_images", fileNameProperty="banner")
+     * @var File
+     */
+    private $bannerFile;
+
+
+    /**
+     * @ORM\Column(type="datetime")
+     * @var \DateTime
+     */
+    private $updatedAt;
+
+    /**
+     * @ORM\Column(type="datetime")
+     * @var \DateTime
+     */
+    private $updatedBannerAt;
+
+
+    public function setLogoFile(File $image = null)
+    {
+        $this->logoFile = $image;
+
+        // VERY IMPORTANT:
+        // It is required that at least one field changes if you are using Doctrine,
+        // otherwise the event listeners won't be called and the file is lost
+        if ($image) {
+            // if 'updatedAt' is not defined in your entity, use another property
+            $this->updatedAt = new \DateTime('now');
+        }
+    }
+
+    public function setBannerFile(File $image = null)
+    {
+        $this->bannerFile = $image;
+
+        // VERY IMPORTANT:
+        // It is required that at least one field changes if you are using Doctrine,
+        // otherwise the event listeners won't be called and the file is lost
+        if ($image) {
+            // if 'updatedAt' is not defined in your entity, use another property
+            $this->updatedBannerAt = new \DateTime('now');
+        }
+    }
+
+
+
+    public function getLogoFile()
+    {
+        return $this->logoFile;
+    }
+
+    public function getBannerFile()
+    {
+        return $this->bannerFile;
+    }
+
 
     /**
      * @return mixed

@@ -95,3 +95,13 @@ fos_user:
         sender_name: Demo Registration
     service:
         mailer: fos_user.mailer.twig_swift
+
+vich_uploader:
+    db_driver: orm
+    mappings:
+        profilLogo_images:
+            uri_prefix:         '%app.path.profilLogo_images%'
+            upload_destination: "%kernel.project_dir%/web/uploads/images/profil/logo"
+        profilBanner_images:
+            uri_prefix:         '%app.path.profilBanner_images%'
+            upload_destination: "%kernel.project_dir%/web/uploads/images/profil/banner"

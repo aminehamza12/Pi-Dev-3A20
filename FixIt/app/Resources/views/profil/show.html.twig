@@ -1,6 +1,6 @@
-{% extends 'base.html.twig' %}
+{% extends 'profil/sidebar.html.twig' %}
 
-{% block body %}
+{% block content %}
     <h1>Profil</h1>
 
     <table>
@@ -15,7 +15,9 @@
             </tr>
             <tr>
                 <th>Logo</th>
-                <td>{{ profil.logo }}</td>
+                <td><figure>
+                        <img src="{{ vich_uploader_asset(profil, 'logoFile') }}" alt="image description">
+                    </figure></td>
             </tr>
             <tr>
                 <th>Type</th>

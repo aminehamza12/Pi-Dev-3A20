@@ -1,6 +1,8 @@
 # Learn more about services, parameters and containers at
 # https://symfony.com/doc/current/service_container.html
 parameters:
+    app.path.profilLogo_images: /uploads/images/profil/logo
+    app.path.profilBanner_images: /uploads/images/profil/banner
     #parameter_name: value
 
 services:

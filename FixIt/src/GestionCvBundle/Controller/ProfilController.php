@@ -65,6 +65,14 @@ class ProfilController extends Controller
         ));
     }
 
+    public function testAction(Profil $profil)
+    {
+
+        return $this->render('profil/test.html.twig', array(
+            'profil' => $profil,
+        ));
+    }
+
     /**
      * Displays a form to edit an existing profil entity.
      *

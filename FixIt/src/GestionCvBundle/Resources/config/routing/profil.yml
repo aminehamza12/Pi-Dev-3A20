@@ -22,3 +22,7 @@ profil_delete:
     path:     /{id}/delete
     defaults: { _controller: "GestionCvBundle:Profil:delete" }
     methods:  DELETE
+profil_test:
+    path:     /{id}/test
+    defaults: { _controller: "GestionCvBundle:Profil:test" }
+    methods:  GET

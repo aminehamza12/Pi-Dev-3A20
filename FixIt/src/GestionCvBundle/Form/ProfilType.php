@@ -5,6 +5,8 @@ namespace GestionCvBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Vich\UploaderBundle\Form\Type\VichFileType;
+
 
 class ProfilType extends AbstractType
 {
@@ -13,7 +15,22 @@ class ProfilType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('phone')->add('logo')->add('type')->add('banner')->add('mobile')->add('fax')->add('user');
+        $builder->add('phone')
+            ->add('logoFile', VichFileType::class, [
+            'label'         => false,
+            'required'      => false,
+            'allow_delete'  => false,
+            'download_link' => true,
+        ])
+            ->add('bannerFile', VichFileType::class, [
+                'label'         => false,
+                'required'      => false,
+                'allow_delete'  => false,
+                'download_link' => true,
+            ])
+            ->add('type')
+            ->add('mobile')->add('fax')
+            ->add('user');
     }/**
      * {@inheritdoc}
      */
