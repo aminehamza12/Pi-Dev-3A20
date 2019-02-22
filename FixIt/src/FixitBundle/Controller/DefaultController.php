@@ -10,40 +10,33 @@ class DefaultController extends Controller
 
     public function indexAction()
     {
-        $user=null;
-        if( $this->container->get( 'security.authorization_checker' )->isGranted( 'IS_AUTHENTICATED_FULLY' ) )
-        {
-            $user = $this->container->get('security.token_storage')->getToken()->getUser();
-        }
-        if(in_array('ROLE_ADMIN',$user->getRoles()))
-        {
+
+        if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')){
             return $this->redirectToRoute('admin_homepage');
         }
-        return $this->render('@Fixit/Default/index.html.twig',array('user'=>$user));
+
+        return $this->render('@Fixit/Default/index.html.twig');
     }
 
     public function indexAdminAction()
     {
-        $user=null;
-        if( $this->container->get( 'security.authorization_checker' )->isGranted( 'IS_AUTHENTICATED_FULLY' ) )
-        {
-            $user = $this->container->get('security.token_storage')->getToken()->getUser();
+
+        if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')){
+
+            return $this->render('@Fixit/back/index.html.twig');
+        }else{
+
+            return $this->redirectToRoute('fixit_404');
         }
-        if(in_array('ROLE_ADMIN',$user->getRoles()))
-        {
-            return $this->render('@Fixit/back/index.html.twig',array('user'=>$user));
-        }
-        return $this->redirectToRoute('fixit_404');
+
     }
 
     public function wrongAction()
     {
-        $user=null;
-        if( $this->container->get( 'security.authorization_checker' )->isGranted( 'IS_AUTHENTICATED_FULLY' ) )
-        {
-            $user = $this->container->get('security.token_storage')->getToken()->getUser();
+        if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')){
+            return $this->redirectToRoute('admin_homepage');
         }
 
-        return $this->render('@Fixit/Default/404.html.twig',array('user'=>$user));
+        return $this->render('@Fixit/Default/404.html.twig');
     }
 }
