@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Competences
  *
  * @ORM\Table(name="competences")
- * @ORM\Entity(repositoryClass="FixitBundle\Repository\CompetencesRepository")
+ * @ORM\Entity(repositoryClass="GestionCvBundle\Repository\CompetencesRepository")
  */
 class Competences
 {

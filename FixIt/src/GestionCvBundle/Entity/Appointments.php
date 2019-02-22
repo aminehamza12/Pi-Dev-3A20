@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Appointments
  *
  * @ORM\Table(name="appointments")
- * @ORM\Entity(repositoryClass="FixitBundle\Repository\AppointmentsRepository")
+ * @ORM\Entity(repositoryClass="GestionCvBundle\Repository\AppointmentsRepository")
  */
 class Appointments
 {
@@ -22,11 +22,61 @@ class Appointments
     private $id;
 
     /**
+     * @return \DateTime
+     */
+    public function getStartdate()
+    {
+        return $this->startdate;
+    }
+
+    /**
+     * @param \DateTime $startdate
+     */
+    public function setStartdate($startdate)
+    {
+        $this->startdate = $startdate;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getEnddate()
+    {
+        return $this->enddate;
+    }
+
+    /**
+     * @param \DateTime $enddate
+     */
+    public function setEnddate($enddate)
+    {
+        $this->enddate = $enddate;
+    }
+
+    /**
      * @var \DateTime
      *
-     * @ORM\Column(name="calendar", type="date")
+     * @ORM\Column(name="start_date", type="datetime")
      */
-    private $calendar;
+    private $startdate;
+
+    /**
+     * @var string
+     * @ORM\Column(name="title", type="string")
+     */
+    private $title;
+
+    /**
+     * @var text
+     * @ORM\Column(name="description", type="text")
+     */
+    private $description;
+
+    /**
+     * @var \DateTime
+     * @ORM\Column(name="end_date", type="datetime")
+     */
+    private $enddate;
 
 
     /**
@@ -60,28 +110,42 @@ class Appointments
         $this->user = $user;
     }
 
-    /**
-     * Set calendar
-     *
-     * @param \DateTime $calendar
-     *
-     * @return Appointments
-     */
-    public function setCalendar($calendar)
-    {
-        $this->calendar = $calendar;
 
-        return $this;
+
+    /**
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
     }
 
     /**
-     * Get calendar
-     *
-     * @return \DateTime
+     * @param string $title
      */
-    public function getCalendar()
+    public function setTitle($title)
     {
-        return $this->calendar;
+        $this->title = $title;
     }
+
+    /**
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param string $description
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    }
+
+
+
+
 }
 

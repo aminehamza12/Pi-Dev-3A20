@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Profil</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ profil.id }}</td>
+            </tr>
+            <tr>
+                <th>Phone</th>
+                <td>{{ profil.phone }}</td>
+            </tr>
+            <tr>
+                <th>Logo</th>
+                <td>{{ profil.logo }}</td>
+            </tr>
+            <tr>
+                <th>Type</th>
+                <td>{{ profil.type }}</td>
+            </tr>
+            <tr>
+                <th>Banner</th>
+                <td>{{ profil.banner }}</td>
+            </tr>
+            <tr>
+                <th>Mobile</th>
+                <td>{{ profil.mobile }}</td>
+            </tr>
+            <tr>
+                <th>Fax</th>
+                <td>{{ profil.fax }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('profil_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('profil_edit', { 'id': profil.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

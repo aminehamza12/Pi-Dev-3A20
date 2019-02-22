@@ -1,3 +1,15 @@
+gestion_cv_competences:
+    resource: "@GestionCvBundle/Resources/config/routing/competences.yml"
+    prefix:   /competences
+
+gestion_cv_appointments:
+    resource: "@GestionCvBundle/Resources/config/routing/appointments.yml"
+    prefix:   /appointments
+
+gestion_cv_profil:
+    resource: "@GestionCvBundle/Resources/config/routing/profil.yml"
+    prefix:   /profil
+
 gestion_cv_homepage:
     path:     /
     defaults: { _controller: GestionCvBundle:Default:index }

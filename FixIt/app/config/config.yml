@@ -2,6 +2,8 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
+    - { resource: "@FixitBundle/Resources/config/services.yml" }
+    - { resource: "@GestionCvBundle/Resources/config/services.yml" }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
@@ -10,7 +12,7 @@ parameters:
 
 framework:
     #esi: ~
-    #translator: { fallbacks: ['%locale%'] }
+    translator: ~
     secret: '%secret%'
     router:
         resource: '%kernel.project_dir%/app/config/routing.yml'
@@ -60,6 +62,7 @@ doctrine:
 
 # Swiftmailer Configuration
 swiftmailer:
+    encryption: '%mailer_encryption%'
     transport: '%mailer_transport%'
     host: '%mailer_host%'
     username: '%mailer_user%'
@@ -69,3 +72,26 @@ swiftmailer:
 sensio_framework_extra:
    router:
         annotations: false
+fos_user:
+    db_driver: orm # other valid values are 'mongodb' and 'couchdb'
+    firewall_name: main
+    user_class: AppBundle\Entity\User
+    resetting:
+        email:
+            template:  Resetting/email.txt.twig
+            from_email:
+                address: resetting@example.com
+                sender_name: Demo Resetting
+    registration:
+        form:
+            type: AppBundle\Form\RegistrationType
+        confirmation:
+            from_email:
+                address:        no-reply@fixit.com
+                sender_name:    Fixit
+            enabled: true
+    from_email:
+        address: registration@example.com
+        sender_name: Demo Registration
+    service:
+        mailer: fos_user.mailer.twig_swift
