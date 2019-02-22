@@ -134,10 +134,17 @@ class PartnerController extends Controller
      */
     public function deleteAction(Request $request, Partner $partner)
     {
+        /*
         $form = $this->createDeleteForm($partner);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($partner);
+            $em->flush();
+        }
+        */
+        if($partner){
             $em = $this->getDoctrine()->getManager();
             $em->remove($partner);
             $em->flush();

@@ -30,7 +30,11 @@
     <link rel="stylesheet" href="{{ asset('css/responsive.css') }}">
     <script src="{{ asset('js/vendor/modernizr-2.8.3-respond-1.4.2.min.js') }}"></script>
 </head>
-<body class="tg-home tg-login">
+{% if app.user ==null %}
+<body class="tg-home">
+{% else %}
+<body class="tg-login">
+{% endif %}
 <!--[if lt IE 8]>
 <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 <![endif]-->
@@ -68,26 +72,26 @@
                         </ul>
                         <div class="tg-themedropdown tg-languagesdropdown">
                             <a href="javascript:void(0);" id="tg-languages" class="tg-btndropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <em><img src="images/flags/img-01.jpg" alt="image description"></em>
+                                <em><img src="{{ asset('') }}images/flags/img-01.jpg" alt="image description"></em>
                                 <span>eng</span>
                                 <i class="fa fa-angle-down"></i>
                             </a>
                             <ul class="tg-dropdownmenu" aria-labelledby="tg-languages">
                                 <li>
                                     <a href="#">
-                                        <em><img src="images/flags/img-02.jpg" alt="image description"></em>
+                                        <em><img src="{{ asset('images/flags/img-02.jpg') }}" alt="image description"></em>
                                         <span>chi</span>
                                     </a>
                                 </li>
                                 <li class="tg-active">
                                     <a href="#">
-                                        <em><img src="images/flags/img-03.jpg" alt="image description"></em>
+                                        <em><img src="{{ asset('images/flags/img-03.jpg') }}" alt="image description"></em>
                                         <span>eng</span>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#">
-                                        <em><img src="images/flags/img-04.jpg" alt="image description"></em>
+                                        <em><img src="{{ asset('images/flags/img-04.jpg') }}" alt="image description"></em>
                                         <span>rus</span>
                                     </a>
                                 </li>
@@ -95,14 +99,16 @@
                         </div>
                         <div class="tg-adminbox">
                             <div class="tg-loginregister">
-                                <a class="tg-btnlogin" href="javascript:void(0);">Login</a>
-                                <a class="tg-btnregister" href="javascript:void(0);">Register</a>
+                                <a class="tg-btnlogin" href="{{ path('fos_user_security_login') }}">Login</a>
+                                <a class="tg-btnregister" href="{{ path('fos_user_registration_register') }}">Register</a>
                             </div>
                             <div class="tg-useradminbox">
                                 <div class="tg-themedropdown tg-userdropdown">
                                     <a href="dashboard.html" id="tg-usermenu" class="tg-btndropdown">
-                                        <em><img src="images/thumbnails/img-01.jpg" alt="image description"></em>
-                                        <span>Hi! Kena Maresca</span>
+                                        <em><img src="{{ asset('images/thumbnails/img-01.jpg') }}" alt="image description"></em>
+                                        {% if app.user != null %}
+                                        <span>{{ app.user.nom }}</span>
+                                        {% endif %}
                                         <i class="fa fa-angle-down"></i>
                                     </a>
                                     <div class="tg-dropdownmenu tg-usermenu" aria-labelledby="tg-usermenu">
@@ -234,6 +240,7 @@
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -242,8 +249,8 @@
         <div class="tg-navigationarea">
             <div class="container">
                 <div class="row">
-                    <div class="col-sm-12 col-xs-12">
-                        <strong class="tg-logo"><a href="index.html"><img src="images/logo.png" alt="image description"></a></strong>
+                    <div class="col-sm-12 col-xs-4">
+                        <strong class="tg-logo"><a href="{{ path('homepage') }}"><img src="{{ asset('images/logo.png') }}" alt="image description"></a></strong>
                         <div class="tg-rightarea">
                             <nav id="tg-nav" class="tg-nav">
                                 <div class="navbar-header">
@@ -256,181 +263,37 @@
                                 </div>
                                 <div id="tg-navigation" class="collapse navbar-collapse tg-navigation">
                                     <ul>
-                                        <li class="menu-item-has-children current-menu-item">
+                                        <li>
                                             <a href="#">Home</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">About us</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Service Seeking</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Service Providing</a>
+                                        </li>
+                                        <li class="menu-item-has-children">
+                                            <a href="#">Events</a>
                                             <ul class="sub-menu">
-                                                <li class="current-menu-item">
-                                                    <a href="index.html">Home-1</a>
+                                                <li>
+                                                    <a href="#">IFixIt</a>
                                                 </li>
                                                 <li>
-                                                    <a href="index-1.html">Home-2</a>
+                                                    <a href="#">Workshops</a>
                                                 </li>
                                             </ul>
                                         </li>
-                                        <li><a href="aboutus.html">About</a></li>
-                                        <li class="menu-item-has-children">
-                                            <a href="#">Listings</a>
-                                            <ul class="sub-menu">
-                                                <li>
-                                                    <a href="listinggrid-v1.html">Listing Grid</a>
-                                                </li>
-                                                <li>
-                                                    <a href="listinggrid-v2.html">Listing Grid 2</a>
-                                                </li>
-                                                <li>
-                                                    <a href="listinglist-v1.html">Listing List</a>
-                                                </li>
-                                                <li>
-                                                    <a href="listinglist-v2.html">Listing List 2</a>
-                                                </li>
-                                            </ul>
+                                        <li>
+                                            <a href="#">Forum</a>
                                         </li>
-                                        <li class="menu-item-has-children">
-                                            <a href="javascript:void(0);">Categories</a>
-                                            <ul class="sub-menu">
-                                                <li class="menu-item-has-children">
-                                                    <a href="#">Automotive</a>
-                                                    <ul class="sub-menu">
-                                                        <li><a href="categories3col.html">Catagories</a></li>
-                                                        <li><a href="categories4col.html">Catagories 2</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li class="menu-item-has-children">
-                                                    <a href="#">Beauty &amp; Personal Care</a>
-                                                    <ul class="sub-menu">
-                                                        <li><a href="categories3col.html">Catagories</a></li>
-                                                        <li><a href="categories4col.html">Catagories 2</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li class="menu-item-has-children">
-                                                    <a href="#">Business</a>
-                                                    <ul class="sub-menu">
-                                                        <li><a href="categories3col.html">Catagories</a></li>
-                                                        <li><a href="categories4col.html">Catagories 2</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li class="menu-item-has-children">
-                                                    <a href="#">Child Care</a>
-                                                    <ul class="sub-menu">
-                                                        <li><a href="categories3col.html">Catagories</a></li>
-                                                        <li><a href="categories4col.html">Catagories 2</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li class="menu-item-has-children">
-                                                    <a href="#">Cleaning</a>
-                                                    <ul class="sub-menu">
-                                                        <li><a href="categories3col.html">Catagories</a></li>
-                                                        <li><a href="categories4col.html">Catagories 2</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li class="menu-item-has-children">
-                                                    <a href="#">Computer &amp; Mobile Service</a>
-                                                    <ul class="sub-menu">
-                                                        <li><a href="categories3col.html">Catagories</a></li>
-                                                        <li><a href="categories4col.html">Catagories 2</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li class="menu-item-has-children">
-                                                    <a href="#">Food &amp; Drinks</a>
-                                                    <ul class="sub-menu">
-                                                        <li><a href="categories3col.html">Catagories</a></li>
-                                                        <li><a href="categories4col.html">Catagories 2</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li class="menu-item-has-children">
-                                                    <a href="#">General Labor</a>
-                                                    <ul class="sub-menu">
-                                                        <li><a href="categories3col.html">Catagories</a></li>
-                                                        <li><a href="categories4col.html">Catagories 2</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li class="menu-item-has-children">
-                                                    <a href="#">Construction &amp; Renovation</a>
-                                                    <ul class="sub-menu">
-                                                        <li><a href="categories3col.html">Catagories</a></li>
-                                                        <li><a href="categories4col.html">Catagories 2</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li class="menu-item-has-children">
-                                                    <a href="#">Health &amp; Fitness</a>
-                                                    <ul class="sub-menu">
-                                                        <li><a href="categories3col.html">Catagories</a></li>
-                                                        <li><a href="categories4col.html">Catagories 2</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li class="menu-item-has-children">
-                                                    <a href="#">Pet Care</a>
-                                                    <ul class="sub-menu">
-                                                        <li><a href="categories3col.html">Catagories</a></li>
-                                                        <li><a href="categories4col.html">Catagories 2</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li class="menu-item-has-children">
-                                                    <a href="#">Traning &amp; Education</a>
-                                                    <ul class="sub-menu">
-                                                        <li><a href="categories3col.html">Catagories</a></li>
-                                                        <li><a href="categories4col.html">Catagories 2</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li class="menu-item-has-children">
-                                                    <a href="#">Transportation &amp; Travel</a>
-                                                    <ul class="sub-menu">
-                                                        <li><a href="categories3col.html">Catagories</a></li>
-                                                        <li><a href="categories4col.html">Catagories 2</a></li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
+                                        <li>
+                                            <a href="{{ path('blog_index') }}">Blog</a>
                                         </li>
-                                        <li class="menu-item-has-children">
-                                            <a href="#">Provider Pages</a>
-                                            <ul class="sub-menu">
-                                                <li>
-                                                    <a href="listing-list-detail.html">Single Detail</a>
-                                                </li>
-                                                <li>
-                                                    <a href="listingdetail.html">Provider Detail</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li class="menu-item-has-children">
-                                            <a href="#">Jobs</a>
-                                            <ul class="sub-menu">
-                                                <li>
-                                                    <a href="joblisting.html">Job Listing</a>
-                                                </li>
-                                                <li>
-                                                    <a href="jobdetail.html">Job Detail</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li class="menu-item-has-children">
-                                            <a href="#">pages</a>
-                                            <ul class="sub-menu">
-                                                <li>
-                                                    <a href="bloglist.html">Blog List</a>
-                                                </li>
-                                                <li>
-                                                    <a href="bloggrid.html">Blog Grid</a>
-                                                </li>
-                                                <li>
-                                                    <a href="blogdetail.html">Blog Detail</a>
-                                                </li>
-                                                <li>
-                                                    <a href="contactus.html">Contact Us</a>
-                                                </li>
-                                                <li>
-                                                    <a href="loginregister.html">Login/Register</a>
-                                                </li>
-                                                <li>
-                                                    <a href="appointment.html">Appointment</a>
-                                                </li>
-                                                <li>
-                                                    <a href="404error.html">404 Error</a>
-                                                </li>
-                                                <li>
-                                                    <a href="commingsoon.html">Comming Soon</a>
-                                                </li>
-                                            </ul>
+                                        <li>
+                                            <a href="#">Shop</a>
                                         </li>
                                     </ul>
                                 </div>

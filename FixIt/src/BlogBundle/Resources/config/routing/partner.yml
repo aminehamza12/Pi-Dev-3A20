@@ -21,4 +21,4 @@ partner_edit:
 partner_delete:
     path:     /{id}/delete
     defaults: { _controller: "BlogBundle:Partner:delete" }
-    methods:  DELETE
+    methods:  GET

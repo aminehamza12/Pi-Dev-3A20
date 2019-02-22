@@ -4,6 +4,7 @@ namespace BlogBundle\Controller;
 
 use BlogBundle\Entity\Blog;
 use BlogBundle\Entity\Comment;
+use BlogBundle\Form\BlogType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -156,10 +157,17 @@ class BlogController extends Controller
      */
     public function deleteAction(Request $request, Blog $blog)
     {
+        /*
         $form = $this->createDeleteForm($blog);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($blog);
+            $em->flush();
+        }
+        */
+        if($blog){
             $em = $this->getDoctrine()->getManager();
             $em->remove($blog);
             $em->flush();

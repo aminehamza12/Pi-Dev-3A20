@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Notificationblogs list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Datenotification</th>
+                <th>Type</th>
+                <th>Isread</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for notificationBlog in notificationBlogs %}
+            <tr>
+                <td><a href="{{ path('notificationblog_show', { 'id': notificationBlog.id }) }}">{{ notificationBlog.id }}</a></td>
+                <td>{% if notificationBlog.dateNotification %}{{ notificationBlog.dateNotification|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ notificationBlog.type }}</td>
+                <td>{% if notificationBlog.isRead %}Yes{% else %}No{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('notificationblog_show', { 'id': notificationBlog.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('notificationblog_edit', { 'id': notificationBlog.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('notificationblog_new') }}">Create a new notificationBlog</a>
+        </li>
+    </ul>
+{% endblock %}

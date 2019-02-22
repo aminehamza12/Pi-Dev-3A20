@@ -1,0 +1,96 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block body %}
+    <h1>Blog</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ blog.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ blog.title }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ blog.description }}</td>
+            </tr>
+            <tr>
+                <th>Content</th>
+                <td>{{ blog.content }}</td>
+            </tr>
+            <tr>
+                <th>Createdat</th>
+                <td>{% if blog.createdAt %}{{ blog.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Editedat</th>
+                <td>{% if blog.editedAt %}{{ blog.editedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Notificationenable</th>
+                <td>{{ blog.notificationEnable }}</td>
+            </tr>
+            <tr>
+                <th>Commentenable</th>
+                <td>{{ blog.commentEnable }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('blog_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('blog_edit', { 'id': blog.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+
+    <h1>Comments list</h1>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Text</th>
+            <th>Createdat</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for c in comments %}
+            <tr>
+                <td><a href="{{ path('comment_show', { 'id': c.id }) }}">{{ c.id }}</a></td>
+                <td>{{ c.text }}</td>
+                <td>{% if c.createdAt %}{{ comment.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('comment_show', { 'id': c.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('comment_edit', { 'id': c.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <h1>Comment creation</h1>
+
+    {{ form_start(form_comment) }}
+    {{ form_widget(form_comment) }}
+    <input type="submit" value="Create" />
+    {{ form_end(form_comment) }}
+
+{% endblock %}

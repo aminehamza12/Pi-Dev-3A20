@@ -7,6 +7,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Vich\UploaderBundle\Form\Type\VichFileType;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 
 class PartnerType extends AbstractType
 {
@@ -15,7 +16,7 @@ class PartnerType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name')->add('link')->add('description')
+        $builder->add('name')->add('link')->add('description',CKEditorType::class)
             ->add('type',ChoiceType::class,[
                 'choices'=>[
                     'Partenariats académiques'=>'Partenariats académiques',

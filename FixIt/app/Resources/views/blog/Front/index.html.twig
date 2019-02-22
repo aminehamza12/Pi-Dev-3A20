@@ -1,0 +1,106 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <!--************************************
+				Inner Page Banner Start
+		*************************************-->
+    <div class="tg-innerpagebanner">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="tg-pagetitle">
+                        <h1>Blog grid</h1>
+                    </div>
+                    <ol class="tg-breadcrumb">
+                        <li><a href="#">Home</a></li>
+                        <li class="tg-active">Blog grid</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--************************************
+            Inner Page Banner End
+    *************************************-->
+    <!--************************************
+            Main Start
+    *************************************-->
+    <main id="tg-main" class="tg-main tg-paddingzero tg-haslayout">
+        <!--************************************
+                Blog Grid Start
+        *************************************-->
+        <div class="tg-main-section tg-haslayout">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-10 col-md-push-1 col-lg-8 col-lg-push-2">
+                        <div class="tg-sectionhead">
+                            <div class="tg-sectiontitle">
+                                <h2>News Articles &amp; Tips</h2>
+                            </div>
+                            <div class="tg-description">
+                                <p>Consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua enim adia minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip extea commodo consequat.</p>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="tg-bloggird">
+                        {% for blog in blogs %}
+                        <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
+                            <article class="tg-post">
+                                <figure class="tg-featuredimg">
+                                    <a href="javascript:void(0);"><img src="{{ vich_uploader_asset(blog, 'imageFile') }}" alt="image description"></a>
+                                </figure>
+                                <div class="tg-postcontent">
+                                    <div class="tg-title">
+                                        <h3><a href="{{ path('blog_show', { 'id': blog.id }) }}">{{ blog.title }}</a></h3>
+                                    </div>
+                                    <div class="dummy">
+                                        <p>{{ blog.description }}</p>
+                                    </div>
+                                    <ul class="tg-postmatadata">
+                                        <li>
+                                            <a href="#">
+                                                <i class="lnr lnr-user"></i>
+                                                <span>BY: Tamika Darbonne</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="lnr lnr-calendar-full"></i>
+                                                <span>{{ blog.editedAt|date("m/d/Y") }}</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ path('blogcategorie_show', { 'id': blog.blogCategorie.id }) }}">
+                                                <i class="glyphicon glyphicon-folder-open"></i>
+                                                <span > {{ blog.blogCategorie.name }} </span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </article>
+                        </div>
+
+                        {% endfor %}
+                    </div>
+
+
+
+                </div>
+
+            </div>
+        </div>
+        <!--************************************
+                Blog Grid End
+        *************************************-->
+    </main>
+    <!--************************************
+            Main End
+    *************************************-->
+
+
+
+
+{% endblock %}

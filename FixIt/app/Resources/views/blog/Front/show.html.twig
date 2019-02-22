@@ -1,0 +1,238 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <!--************************************
+        Inner Page Banner Start
+*************************************-->
+    <div class="tg-innerpagebanner">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="tg-pagetitle">
+                        <h1>Blog detail</h1>
+                    </div>
+                    <ol class="tg-breadcrumb">
+                        <li><a href="#">Home</a></li>
+                        <li class="tg-active">Blog detail</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--************************************
+            Inner Page Banner End
+    *************************************-->
+    <!--************************************
+            Main Start
+    *************************************-->
+    <main id="tg-main" class="tg-main tg-paddingzero tg-haslayout">
+        <!--************************************
+                Blog Grid Start
+        *************************************-->
+        <div class="tg-main-section tg-haslayout">
+            <div class="container">
+                <div class="row">
+                    <div id="tg-twocolumns" class="tg-twocolumns">
+                        <div class="col-xs-12 col-sm-7 col-md-8 col-lg-8">
+                            <div id="tg-content" class="tg-content">
+                                <article class="tg-post tg-detailpage tg-postdetail">
+                                    <figure>
+                                        <img src="{{ vich_uploader_asset(blog, 'imageFile') }}" alt="image description">
+                                    </figure>
+                                    <div class="tg-postcontent">
+                                        <div class="tg-title">
+                                            <h3>{{ blog.title }}</h3>
+                                        </div>
+                                        <ul class="tg-postmatadata">
+                                            <li>
+                                                <a href="#">
+                                                    <span>BY: Eldridge Hemenway</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span>{{ blog.editedAt|date("m/d/Y") }}</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="tg-description">
+                                        <p>{{ blog.content|raw }}</p>
+                                        </div>
+                                </article>
+
+                                <div class="tg-tagsshare">
+                                        <span>Share:</span>
+                                        <ul class="tg-socialicons">
+                                            {{ socialButtons() }}
+                                        </ul>
+                                </div>
+
+                                <div class="tg-companyfeaturebox tg-reviews">
+                                    <div class="tg-companyfeaturetitle">
+                                        <h3>03 Feedback</h3>
+                                    </div>
+                                    <div class="tg-feedbacks">
+                                        {% for c in comments %}
+                                        <div class="tg-feedback">
+                                            <figure><a href="javascript:void(0);"><img src="images/thumbnails/img-09.jpg" alt="image description"></a></figure>
+                                            <div class="tg-feedbackcontent">
+                                                <div class="tg-feedbackbox">
+                                                    <div class="tg-contenthead">
+                                                        <div class="tg-leftbox">
+                                                            <div class="tg-name">
+                                                                <h4><a href="#">They Are Awsome</a></h4>
+                                                            </div>
+                                                            <ul class="tg-matadata">
+                                                                <li><a href="#">{{ c.user.username }}</a></li>
+                                                                <li><a href="#">{{ c.createdAt|date('Y-m-d H:i:s') }} 10 Min Ago</a></li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="tg-rightbox">
+                                                            <a class="tg-btnreply" href="#"><i class="fa fa-mail-reply"></i></a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="tg-description">
+                                                        <p>{{ c.text }}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+
+                                    <div class="tg-companyfeaturebox tg-reviewformrating">
+                                        {{ form_start(form_comment) }}
+                                        <form class="tg-themeform tg-formleavreview" method="post">
+                                            <fieldset>
+                                                <div class="tg-companyfeaturetitle">
+                                                    <h3>Leave Your Feedback</h3>
+                                                </div>
+                                                <div class="row">
+
+                                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                                        <div class="form-group">
+                                                            {{ form_widget(form_comment) }}
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <button type="submit" class="tg-btn">Submit</button>
+                                            </fieldset>
+                                        </form>
+                                        {{ form_end(form_comment) }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-5 col-md-4 col-lg-4">
+                            <aside id="tg-sidebar" class="tg-sidebar">
+                                <div class="tg-widget tg-widgetsearch">
+                                    <div class="tg-widgettitle">
+                                        <h3>Search</h3>
+                                    </div>
+                                    <div class="tg-widgetcontent">
+                                        <form class="tg-themeform">
+                                            <div class="form-group">
+                                                <input type="search" name="search" class="form-control" placeholder="Search Here">
+                                            </div>
+                                            <button type="submit" class="tg-btn tg-btn-lg">Search Now</button>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="tg-widget tg-widgetcatagories">
+                                    <div class="tg-widgettitle">
+                                        <h3>Categories</h3>
+                                    </div>
+                                    <div class="tg-widgetcontent">
+                                        <ul>
+                                            <li><a href="#">Finance<em>2145</em></a></li>
+                                            <li><a href="#">Audit<em>4235</em></a></li>
+                                            <li><a href="#">Lifestyle<em>421</em></a></li>
+                                            <li><a href="#">Business<em>556</em></a></li>
+                                            <li><a href="#">Debit<em>85</em></a></li>
+                                        </ul>
+                                        <a class="tg-btnviewall" href="javascript:void(0);" >View All</a>
+                                    </div>
+                                </div>
+                                <div class="tg-widget tg-widgetrelatedposts">
+                                    <div class="tg-widgettitle">
+                                        <h3>Related blogs</h3>
+                                    </div>
+                                    <div class="tg-widgetcontent">
+                                        <ul>
+                                            <li>
+                                                <div class="tg-serviceprovidercontent">
+                                                    <div class="tg-companylogo"><a href="#"><img src="images/blog/img-01.jpg" alt="image description"></a></div>
+                                                    <div class="tg-companycontent">
+                                                        <div class="tg-title">
+                                                            <h3><a href="#">Make A Quick Decision No...</a></h3>
+                                                        </div>
+                                                        <div class="tg-adminname">
+                                                            <i class="lnr lnr-user"></i>
+                                                            <span>BY: Tamika Darbonne</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="tg-serviceprovidercontent">
+                                                    <div class="tg-companylogo"><a href="#"><img src="images/blog/img-02.jpg" alt="image description"></a></div>
+                                                    <div class="tg-companycontent">
+                                                        <div class="tg-title">
+                                                            <h3><a href="#">Tips To Get Bonus Featu...</a></h3>
+                                                        </div>
+                                                        <div class="tg-adminname">
+                                                            <i class="lnr lnr-user"></i>
+                                                            <span>BY: Louetta Remo</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="tg-serviceprovidercontent">
+                                                    <div class="tg-companylogo"><a href="#"><img src="images/blog/img-03.jpg" alt="image description"></a></div>
+                                                    <div class="tg-companycontent">
+                                                        <div class="tg-title">
+                                                            <h3><a href="#">Ask Admin If You Dont Kn...</a></h3>
+                                                        </div>
+                                                        <div class="tg-adminname">
+                                                            <i class="lnr lnr-user"></i>
+                                                            <span>BY: Rigoberto Hogans</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                        <a class="tg-btnviewall" href="javascript:void(0);">View All</a>
+                                    </div>
+                                </div>
+                                <div class="tg-advertisement">
+                                    <a href="javascript:void(0);"><img src="images/advertisement/img-02.png" alt="image description"></a>
+                                </div>
+                            </aside>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--************************************
+                Blog Grid End
+        *************************************-->
+    </main>
+    <!--************************************
+            Main End
+    *************************************-->
+
+
+    <ul>
+        <li>
+            <a href="{{ path('blog_index') }}">Back to the list</a>
+        </li>
+
+    </ul>
+
+
+
+{% endblock %}

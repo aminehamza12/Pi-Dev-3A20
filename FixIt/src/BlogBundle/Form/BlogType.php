@@ -8,6 +8,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Vich\UploaderBundle\Form\Type\VichFileType;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 
 class BlogType extends AbstractType
 {
@@ -16,7 +17,7 @@ class BlogType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('title')->add('description')->add('content')
+        $builder->add('title')->add('description')->add('content',CKEditorType::class)
             ->add('notificationEnable',ChoiceType::class,[
                 'choices'=>[
                     'Yes'=> 'true',

@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Newsletterlistusers list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for newsLetterListUser in newsLetterListUsers %}
+            <tr>
+                <td><a href="{{ path('newsletterlistuser_show', { 'id': newsLetterListUser.id }) }}">{{ newsLetterListUser.id }}</a></td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('newsletterlistuser_show', { 'id': newsLetterListUser.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('newsletterlistuser_edit', { 'id': newsLetterListUser.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('newsletterlistuser_new') }}">Create a new newsLetterListUser</a>
+        </li>
+    </ul>
+{% endblock %}

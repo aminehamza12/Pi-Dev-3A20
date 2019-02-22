@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Newslettertemplates list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Template</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for newsLetterTemplate in newsLetterTemplates %}
+            <tr>
+                <td><a href="{{ path('newslettertemplate_show', { 'id': newsLetterTemplate.id }) }}">{{ newsLetterTemplate.id }}</a></td>
+                <td>{{ newsLetterTemplate.template }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('newslettertemplate_show', { 'id': newsLetterTemplate.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('newslettertemplate_edit', { 'id': newsLetterTemplate.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('newslettertemplate_new') }}">Create a new newsLetterTemplate</a>
+        </li>
+    </ul>
+{% endblock %}

@@ -21,4 +21,4 @@ blog_edit:
 blog_delete:
     path:     /{id}/delete
     defaults: { _controller: "BlogBundle:Blog:delete" }
-    methods:  DELETE
+    methods:  GET

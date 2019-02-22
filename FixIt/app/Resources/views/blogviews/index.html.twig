@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Blogviews list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Visites</th>
+                <th>Datevisite</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for blogView in blogViews %}
+            <tr>
+                <td><a href="{{ path('blogviews_show', { 'id': blogView.id }) }}">{{ blogView.id }}</a></td>
+                <td>{{ blogView.visites }}</td>
+                <td>{% if blogView.dateVisite %}{{ blogView.dateVisite|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('blogviews_show', { 'id': blogView.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('blogviews_edit', { 'id': blogView.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('blogviews_new') }}">Create a new blogView</a>
+        </li>
+    </ul>
+{% endblock %}
