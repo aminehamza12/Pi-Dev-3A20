@@ -10,4 +10,8 @@ namespace BlogBundle\Repository;
  */
 class BlogRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getBlogForViews(){
+        $q = $this->getEntityManager()->createQuery('SELECT CAST(dateVisite AS date) FROM BlogBundle:BlogViews WHERE blog_id = 1');
+
+    }
 }

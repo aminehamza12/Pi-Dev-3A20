@@ -71,7 +71,6 @@ class BlogCategorieController extends Controller
      */
     public function editAction(Request $request, BlogCategorie $blogCategorie)
     {
-        $deleteForm = $this->createDeleteForm($blogCategorie);
         $editForm = $this->createForm('BlogBundle\Form\BlogCategorieType', $blogCategorie);
         $editForm->handleRequest($request);
 
@@ -84,7 +83,6 @@ class BlogCategorieController extends Controller
         return $this->render('blogcategorie/edit.html.twig', array(
             'blogCategorie' => $blogCategorie,
             'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
         ));
     }
 
@@ -94,10 +92,17 @@ class BlogCategorieController extends Controller
      */
     public function deleteAction(Request $request, BlogCategorie $blogCategorie)
     {
+        /*
         $form = $this->createDeleteForm($blogCategorie);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($blogCategorie);
+            $em->flush();
+        }
+        */
+        if($blogCategorie){
             $em = $this->getDoctrine()->getManager();
             $em->remove($blogCategorie);
             $em->flush();
@@ -120,5 +125,28 @@ class BlogCategorieController extends Controller
             ->setMethod('DELETE')
             ->getForm()
         ;
+    }
+
+    /**
+     * Displays blogs of a specific categorie.
+     *
+     */
+    public function showBlogsWithBlogCategorieAction(BlogCategorie $blogCategorie)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $blogs = $em->getRepository('BlogBundle:Blog')->findByBlogCategorie($blogCategorie);
+
+        if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')){
+            return $this->render('blogcategorie/showBlogsWithBlogCategorie.html.twig', array(
+                'blogs' => $blogs,
+            ));
+        }else{
+            return $this->render('blogcategorie/Front/showBlogsWithBlogCategorie.html.twig', array(
+                'blogs' => $blogs,
+            ));
+        }
+
+
     }
 }

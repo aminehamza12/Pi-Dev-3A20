@@ -115,5 +115,9 @@ class BlogViews
     {
         return $this->dateVisite;
     }
+
+    public function  incrementVisites(){
+        $this->visites = $this->visites + 1 ;
+    }
 }
 

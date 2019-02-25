@@ -22,3 +22,25 @@ blog_delete:
     path:     /{id}/delete
     defaults: { _controller: "BlogBundle:Blog:delete" }
     methods:  GET
+
+blog_blogStatistics:
+    path:     /{id}/blogStatistics
+    defaults: { _controller: "BlogBundle:Blog:blogStatistics" }
+    methods:  GET
+
+blog_blogStatisticsComponent:
+    path:     /{id}/blogStatisticsComponent
+    defaults: { _controller: "BlogBundle:Blog:blogStatisticsComponent" }
+    methods:  GET
+
+blog_search:
+    path:     /search/{textToSearch}
+    defaults: { _controller: "BlogBundle:Blog:search" }
+    methods:  GET
+
+ajax:
+    path:     /ajax/
+    defaults: { _controller: "BlogBundle:Blog:ajax" }
+    options:
+        expose: trues
+

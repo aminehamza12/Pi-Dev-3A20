@@ -21,4 +21,9 @@ blogcategorie_edit:
 blogcategorie_delete:
     path:     /{id}/delete
     defaults: { _controller: "BlogBundle:BlogCategorie:delete" }
-    methods:  DELETE
+    methods:  GET
+
+blogcategorie_showBlogsWithBlogCategorie:
+    path:     /{id}/showBlogsWithBlogCategorie
+    defaults: { _controller: "BlogBundle:BlogCategorie:showBlogsWithBlogCategorie" }
+    methods:  GET

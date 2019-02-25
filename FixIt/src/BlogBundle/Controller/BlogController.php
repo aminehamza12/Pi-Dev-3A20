@@ -3,10 +3,15 @@
 namespace BlogBundle\Controller;
 
 use BlogBundle\Entity\Blog;
+use BlogBundle\Entity\BlogViews;
 use BlogBundle\Entity\Comment;
 use BlogBundle\Form\BlogType;
+use BlogBundle\Form\SearchBlogType;
+use Doctrine\ORM\Query\ResultSetMapping;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Ob\HighchartsBundle\Highcharts\Highchart;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Blog controller.
@@ -23,6 +28,8 @@ class BlogController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $blogs = $em->getRepository('BlogBundle:Blog')->findAll();
+
+
         if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
         return $this->render('blog/index.html.twig', array(
             'blogs' => $blogs,
@@ -98,6 +105,78 @@ class BlogController extends Controller
             ));
         }else{
 
+            $searchForm = $this->createForm(SearchBlogType::class,$blog);
+            $searchForm->handleRequest($request);
+            if($searchForm->isSubmitted() && $searchForm->isValid()){
+                $searchQuery = $this->getDoctrine()->getRepository('BlogBundle:Blog')->createQueryBuilder('b')
+                    ->where('b.title LIKE :word')->setParameter('word', '%'.$blog->getTitle().'%')->getQuery();
+                $blogs = $searchQuery->getResult();
+                return $this->render('blog/searchBlog.html.twig',array('searchForm'=>$searchForm->createView(),'blogs'=>$blogs));
+            }
+
+
+
+            //$searchForm->handleRequest($request);
+
+
+
+
+            /* Views System */
+
+            $date = new \DateTime();
+            $today = $date->format('Y-m-d');
+            //$today = \DateTime::createFromFormat("m/d/Y",$dateformat);
+            $em = $this->getDoctrine()->getManager();
+            $rsm = new ResultSetMapping();
+            $rsm->addScalarResult('CAST(dateVisite AS date)','dateVisite');
+            $rsm->addScalarResult('blog_id','blogId');
+            $rsm->addScalarResult('id','blogViewId');
+            //$sql = "SELECT CAST(dateVisite AS date) FROM blog_views WHERE blog_id = 1 AND CAST(dateVisite AS date) = \"2019-02-23\" LIMIT 1";
+
+            $query = $em->createNativeQuery
+            ('SELECT CAST(dateVisite AS date),blog_id,id FROM blog_views WHERE blog_id = :blogId AND CAST(dateVisite AS date) = :today LIMIT 1',
+                $rsm);
+
+            /* //Test Query
+            $query = $em->createNativeQuery
+            ('SELECT CAST(dateVisite AS date) FROM blog_views WHERE blog_id = :blogId AND CAST(dateVisite AS date) = "2019-02-25" LIMIT 1',
+                $rsm);
+            */
+            $query->setParameter("blogId",$blog->getId());
+            $query->setParameter("today",$today);
+            $blogViewQuery = $query->getResult();
+            //echo $blogView[0]['dateVisite'];die;
+            //dump($query);die; //show query
+
+
+            //dump($today);die;
+            //dump($blogViewQuery);die;
+
+
+
+
+            if($blogViewQuery == null){
+                $blogView = new BlogViews();
+                $blogView->setBlog($blog);
+                $blogView->setDateVisite(new \DateTime());
+                $blogView->setVisites(1);
+                $em->persist($blogView);
+                $em->flush();
+
+            }else{
+                $blogView = $this->getDoctrine()->getRepository('BlogBundle:BlogViews')->findOneById($blogViewQuery[0]['blogViewId']);
+                $blogView->incrementVisites();
+                $em->flush();
+            }
+            /* // to show total blog views
+            $rsm1 = new ResultSetMapping();
+            $rsm1->addScalarResult('SUM(visites)','visites');
+            $query1 = $em->createNativeQuery
+            ('SELECT SUM(visites) FROM blog_views WHERE blog_id = :blogId',
+                $rsm1);
+            $query1->setParameter("blogId",$blog->getId());
+            $blogSumVisitesQuery = $query1->getResult();
+            */
             /* Testing Show Comments */
             $comments = $this->getDoctrine()->getRepository('BlogBundle:Comment')->findByBlog($blog);
 
@@ -111,7 +190,6 @@ class BlogController extends Controller
                 $comment->setUser($user);
                 $comment->setBlog($blog);
                 $comment->setCreatedAt(new \DateTime());
-                $em = $this->getDoctrine()->getManager();
                 $em->persist($comment);
                 $em->flush();
                 return $this->redirectToRoute('blog_show', array('id' => $blog->getId()));
@@ -123,6 +201,7 @@ class BlogController extends Controller
                 'comment' => $comment,
                 'form_comment' => $form->createView(),
                 'comments' => $comments,
+                'searchForm'=>$searchForm->createView()
             ));
         }
 
@@ -190,5 +269,134 @@ class BlogController extends Controller
             ->setMethod('DELETE')
             ->getForm()
         ;
+    }
+
+    public function numberVisitesAction($blog){
+        $em = $this->getDoctrine()->getManager();
+        $rsm1 = new ResultSetMapping();
+        $rsm1->addScalarResult('SUM(visites)','visites');
+        $query1 = $em->createNativeQuery
+        ('SELECT SUM(visites) FROM blog_views WHERE blog_id = :blogId',
+            $rsm1);
+        $query1->setParameter("blogId",$blog->getId());
+        $blogSumVisitesQuery = $query1->getResult();
+        $numberVisites = $blogSumVisitesQuery[0]['visites'];
+        return $this->render('blog/numberVisites.html.twig', array(
+            'numberVisites' => $numberVisites,
+        ));
+    }
+
+    public function blogStatisticsAction(Blog $blog){
+        $em = $this->getDoctrine()->getManager();
+        $rsm = new ResultSetMapping();
+        $rsm->addScalarResult('visites','visites');
+        $rsm->addScalarResult('EXTRACT(DAY FROM dateVisite)','day');
+        $query = $em->createNativeQuery
+        ('SELECT visites,EXTRACT(DAY FROM dateVisite) FROM blog_views WHERE blog_id = :blogId AND EXTRACT(MONTH FROM dateVisite)=2',
+            $rsm);
+        $query->setParameter("blogId",$blog->getId());
+        $blogMonthVisitesQuery = $query->getResult();
+        $visites = array_fill(0, 28, 0);
+
+        for($i = 0 ; $i < sizeof($blogMonthVisitesQuery) ; $i++){
+            $visites[$blogMonthVisitesQuery[$i]['day']] = (int)$blogMonthVisitesQuery[$i]['visites'];
+        }
+
+        $year = 2019;
+        $range = array();
+        $start = strtotime($year.'-02-01');
+        $end = strtotime($year.'-02-28');
+
+        do {
+            $range[] = date('Y-m-d',$start);
+            $start = strtotime("+ 1 day",$start);
+        } while ( $start <= $end );
+
+        // Chart
+        $categories = array_fill(0, 30, "2019-02-01");
+        $days = [5,4,2,1];
+        //var_dump($visites);die;
+
+        $series = array(
+            array("name" => "Data Serie Name",    "data" => $visites)
+        );
+
+        $ob = new Highchart();
+        $ob->chart->renderTo('linechart');  // The #id of the div where to render the chart
+        $ob->title->text('Chart Title');
+        $ob->xAxis->title(array('text'  => "Horizontal axis title"));
+        $ob->xAxis->categories($range);
+        $ob->yAxis->title(array('text'  => "Vertical axis title"));
+        $ob->series($series);
+
+        return $this->render('blog/blogStatistics.html.twig', array(
+            'chart' => $ob,'blog'=>$blog,
+        ));
+
+    }
+
+    public function blogStatisticsComponentAction(Blog $blog){
+        $em = $this->getDoctrine()->getManager();
+        $rsm = new ResultSetMapping();
+        $rsm->addScalarResult('visites','visites');
+        $rsm->addScalarResult('EXTRACT(DAY FROM dateVisite)','day');
+        $query = $em->createNativeQuery
+        ('SELECT visites,EXTRACT(DAY FROM dateVisite) FROM blog_views WHERE blog_id = :blogId AND EXTRACT(MONTH FROM dateVisite)=2',
+            $rsm);
+        $query->setParameter("blogId",$blog->getId());
+        $blogMonthVisitesQuery = $query->getResult();
+        $visites = array_fill(0, 28, 0);
+
+        for($i = 0 ; $i < sizeof($blogMonthVisitesQuery) ; $i++){
+            $visites[$blogMonthVisitesQuery[$i]['day']] = (int)$blogMonthVisitesQuery[$i]['visites'];
+        }
+
+        $year = 2019;
+        $range = array();
+        $start = strtotime($year.'-02-01');
+        $end = strtotime($year.'-02-28');
+
+        do {
+            $range[] = date('Y-m-d',$start);
+            $start = strtotime("+ 1 day",$start);
+        } while ( $start <= $end );
+
+        // Chart
+
+        $series = array(
+            array("name" => "Data Serie Name",    "data" => $visites)
+        );
+
+        $ob = new Highchart();
+        $ob->chart->renderTo('linechart');  // The #id of the div where to render the chart
+        $ob->title->text('Chart Title');
+        $ob->xAxis->title(array('text'  => "Horizontal axis title"));
+        $ob->xAxis->categories($range);
+        $ob->yAxis->title(array('text'  => "Vertical axis title"));
+        $ob->series($series);
+
+        return $this->render('blog/blogStatisticsComponent.html.twig', array(
+            'chart' => $ob
+        ));
+
+    }
+
+    public function ajaxAction(){
+
+        //$response['message'] = $this->render('BlogBundle:Blog:blogStatisticsComponent.html.twig', array('id' => $blog->getId()))->getContent();
+
+
+
+
+        $blog = $this->getDoctrine()->getRepository('BlogBundle:Blog')->findOneById(2);
+        $template = $this->forward('BlogBundle:Blog:blogStatisticsComponent',array('id' => $blog->getId()))->getContent();
+
+        //dump($template);die;
+        $json = json_encode($template);
+        $response = new Response($json, 200);
+        $response->headers->set('Content-Type', 'application/json');
+        return $response;
+
+
     }
 }

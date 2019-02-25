@@ -10,13 +10,9 @@ blog_blogviews:
     resource: "@BlogBundle/Resources/config/routing/blogviews.yml"
     prefix:   /blogviews
 
-blog_homepage:
-    path:     /
-    defaults: { _controller: BlogBundle:Default:index }
-
-admin_homepage:
-    path:     /admin
-    defaults: { _controller: BlogBundle:Default:adminIndex }
+#blog_homepage:
+#    path:     /
+#    defaults: { _controller: BlogBundle:Default:index }
 
 blog_blogtag:
     resource: "@BlogBundle/Resources/config/routing/blogtag.yml"
