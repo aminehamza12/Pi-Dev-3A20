@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Commande</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Reference:</th>
+                <td>com{{ commande.id }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{% if commande.date %}{{ commande.date|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Delivery</th>
+                <td>{% if commande.delivery %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Product</th>
+                <td> {{ commande.product.name }}</td>
+            </tr>
+            <tr>
+                <th>N° du propriétaire</th>
+                <td>{{ commande.product.tel }} </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+
+            <a href="{{ path('commande_index') }}" class="btn btn-info">Back to the list</a>
+<br>
+            <a href="{{ path('commande_pdf', { 'id': commande.id }) }}" class="btn btn-warning">Génerer pdf</a>
+<br>
+         {# {{ form_start(delete_form) }}
+                <input type="submit" value="Delete" class="btn btn-danger">
+            {{ form_end(delete_form) }}#}
+    </ul>
+{% endblock %}

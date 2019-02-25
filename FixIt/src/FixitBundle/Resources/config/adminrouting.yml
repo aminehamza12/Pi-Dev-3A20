@@ -1,0 +1,93 @@
+admin_homepage:
+     path:     /
+     defaults: { _controller: FixitBundle:Default:indexAdmin }
+productadmin_index:
+     path:     /p
+     defaults: { _controller: "FixitBundle:product:listadmin" }
+     methods:  GET
+productadmin_list:
+     path:     /list
+     defaults: { _controller: "FixitBundle:product:listadmin" }
+     methods:  GET
+productadmin_mesproduits:
+     path:     /mesproduits
+     defaults: { _controller: "FixitBundle:product:mesproduits" }
+     methods:  GET
+
+productadmin_show:
+     path:     /{id}/show
+     defaults: { _controller: "FixitBundle:product:showadmin" }
+     methods:  GET
+
+productadmin_new:
+     path:     /new
+     defaults: { _controller: "FixitBundle:product:newadmin" }
+     methods:  [GET, POST]
+productadmin_cat:
+     path:     /cat
+     defaults: { _controller: "FixitBundle:product:cat" }
+     methods:  [GET, POST]
+productadmin_filter:
+     path:     /filter
+     defaults: { _controller: "FixitBundle:product:filter" }
+     methods:  [GET, POST]
+
+productadmin_edit:
+     path:     /{id}/edit
+     defaults: { _controller: "FixitBundle:product:edit" }
+     methods:  [GET, POST]
+
+productadmin_delete:
+     path:     /{id}/delete
+     defaults: { _controller: "FixitBundle:product:deleteadmin" }
+mediaadmin_index:
+     path:     /
+     defaults: { _controller: "FixitBundle:Media:index" }
+     methods:  GET
+
+mediaadmin_show:
+     path:     /{id}/show
+     defaults: { _controller: "FixitBundle:Media:show" }
+     methods:  GET
+
+mediaadmin_new:
+     path:     /{id}/new
+     defaults: { _controller: "FixitBundle:Media:new" }
+     methods:  [GET, POST]
+
+mediaadmin_edit:
+     path:     /{id}/edit
+     defaults: { _controller: "FixitBundle:Media:edit" }
+     methods:  [GET, POST]
+
+mediaadmin_delete:
+     path:     /{id}/delete
+     defaults: { _controller: "FixitBundle:Media:delete" }
+     methods:  DELETE
+commandeadmin_new:
+     path:     /{id}/newC
+     defaults: { _controller: "FixitBundle:commande:new" }
+     methods:  [GET, POST]
+commandeadmin_index:
+     path:     /C
+     defaults: { _controller: "FixitBundle:commande:index" }
+     methods:  GET
+
+commandeadmin_show:
+     path:     /{id}/showC
+     defaults: { _controller: "FixitBundle:commande:show" }
+     methods:  GET
+
+commandeadmin_edit:
+     path:     /{id}/editC
+     defaults: { _controller: "FixitBundle:commande:edit" }
+     methods:  [GET, POST]
+
+commandeadmin_delete:
+     path:     /{id}/deleteC
+     defaults: { _controller: "FixitBundle:commande:delete" }
+     methods:  DELETE
+commandeadmin_pdf:
+     path:     /{id}/pdf
+     defaults: { _controller: "FixitBundle:commande:pdf" }
+     methods:  [GET, POST]

@@ -1,0 +1,76 @@
+<style type="text/css">
+    table{width: 100% ; border-collapse: collapse}
+    .header td{width: 50%; vertical-align: top}
+    .text-left{text-align: left}
+    .text-right{text-align: right}
+    .text-center{text-align: center}
+    .separator{height: 150px; width: 100%}
+    .content td{border: solid 1px #CFD1D2; padding: 5px;}
+    .content th{border: solid 1px #000000; padding: 5px; background-color: #000000 ; color: #ffffff }
+</style>
+<h1>
+           Devis fournis par: Fixit
+</h1>
+<h5>
+    Reference: {{ user.5|last }}
+</h5>
+<table class="header">
+    <tr>
+
+            <td class="text-left">
+                <b>A monsieur : </b>
+                <b>{{ user.0|last }}</b>
+                <br> Email : {{ user.1|last }}
+                <br>Code postale
+                <br>Pays
+                <br>
+                <br>
+                <br> le : {{ user.4|last|date('Y-m-d') }}
+            </td>
+        <td class="text-right">
+            <b>propriétaire du produit :</b>
+            <b>{{ user.2|last }}</b>
+            <br> Email : {{ user.3|last }}
+            <br>Code postale
+            <br>Pays
+        </td>
+    </tr>
+
+</table>
+<div class="separator"></div>
+<table class="content">
+    <thead>
+    <tr>
+        <th class="text-left" style="...">Designation</th>
+        <th class="text-center" style="...">Qté</th>
+        <th class="text-center" style="...">PU</th>
+        <th class="text-left" style="...">Total</th>
+    </tr>
+    </thead>
+    <tbody>
+
+        {% for article in articles %}
+            <tr>
+                <td class="text-left">{{ article.title }}</td>
+                <td class="text-center">{{ article.count }}</td>
+                <td class="text-center">{{ article.price }}</td>
+                <td class="text-right">{{ article.count * article.price }}</td>
+                {% set total = total +(article.count * article.price) %}
+            </tr>
+        {% endfor %}
+    <tr>
+        <td colspan="3" class="text-right"><b>TOTAL</b></td>
+        <td class="text-right"><b>{{ total }} DT</b></td>
+    </tr>
+    {% set calc_remise = (total * remise) / 100 %}
+    {% set total_net = total - calc_remise %}
+        <tr>
+            <td colspan="3" class="text-right"><b>Remise</b></td>
+            <td class="text-right"><b>{{ calc_remise }} DT</b></td>
+        </tr>
+        <tr>
+            <td colspan="3" class="text-right"><b>Total Net</b></td>
+            <td class="text-right"><b>{{ total_net }} DT</b></td>
+        </tr>
+    </tbody>
+</table>

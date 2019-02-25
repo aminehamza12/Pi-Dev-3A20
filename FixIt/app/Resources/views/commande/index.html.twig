@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Commandes list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Reference</th>
+                <th>Date</th>
+                <th>Delivery</th>
+                <th>Montant</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for commande in commandes %}
+            {% if user.id == commande.user.id %}
+            <tr>
+                <td><a href="{{ path('commande_show', { 'id': commande.id }) }}" class="tg-themetag tg-banneradd">{{ commande.id }}</a></td>
+                <td>{% if commande.date %}{{ commande.date|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if commande.delivery %}Yes{% else %}No{% endif %}</td>
+                <td>{{ commande.montant }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('commande_show', { 'id': commande.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('commande_pdf', { 'id': commande.id }) }}">Génerer pdf</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+            {% endif %}
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

@@ -1,0 +1,186 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% include '@FOSComment/Thread/async.html.twig' with {'id': 'foo'} %}
+    <div style="text-align: center; padding: 30px">
+        <br>
+       {#<a href="{{ path('commande_index') }}" class="tg-themetag tg-tagjobcount">
+            <i class="fa fa-clone"><h3>VOS COMMANDES</h3></i>
+        </a>
+        #}
+    </div>
+    <h1 style="text-align: center" class="text-center">Nos produits</h1>
+    <main id="tg-main" class="tg-main tg-haslayout">
+        <div class="container">
+            <div class="row">
+                <div class="count">
+                  <h6> Totale des produits :   {{ pagination.getTotalItemCount }}</h6>
+                </div>
+                <div id="tg-content" class="tg-content">
+                    <div style="text-align: right">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <div  style="text-align: right">
+                                <div style="text-align: right">
+                                    <span>Categorie:</span>
+                                    <form method="post" action="{{ path('product_cat') }}">
+                                    <div class="tg-select">
+                                        <select name="nadim">
+                                            {% for cat in category %}
+                                                <option value="{{ cat.id }}">{{ cat.name }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                        <button type="submit" class="tg-tag tg-featuredtag">Search</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-5 col-md-4 col-lg-3 pull-left">
+                            <aside id="tg-sidebar" class="tg-sidebar">
+                                <form class="tg-themeform tg-formrefinesearch" method="post" action="{{ path('product_filter') }}">
+                                    <fieldset>
+                                        <h4>Filter By Categories</h4>
+                                        <div class="tg-checkboxgroup">
+                                            <div class="form-group">
+                                                {% for cat in category %}
+												<span>
+													<span>
+												<input type="checkbox" name="categ[]" value="{{ cat.id }}">
+											        </span>
+                                                    <label for="tg-cab">{{ cat.name }}</label>
+												</span>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                    <fieldset>
+                                        <button class="tg-btn" type="submit">apply</button>
+                                        <a class="tg-btn" href="{{ path('product_list') }}">reset</a>
+                                    </fieldset>
+                                </form>
+                            </aside>
+                        </div>
+                        {% for product in pagination %}
+                        <div class="col-xs-6 col-sm-10 col-md-4 col-lg-3">
+                            <div class="tg-category">
+                                <figure>
+                                    {% for med in media %}
+                                    {% if med.getProductid == product %}<img src="{{ med.brochure  }}" style="height:200px;width: 200px;">{% endif %}
+                                    {% endfor %}
+                                    <figcaption class="tg-automotive">
+                                        <span class=""></span>
+                                        <span class="tg-categoryname">{{ product.name }}</span>
+                                        <a href="{{ path('product_show', { 'id': product.id }) }}" class="tg-themetag tg-tagjobcount">
+
+                                            <em> $ {{ product.price }}.00 TND</em>
+                                        </a>
+                                    </figcaption>
+                                </figure>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        <div class="tg-navigation" style="text-align: center">
+                            {{ knp_pagination_render(pagination) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="container">
+                <div class="row">
+                    <div class="">
+                        <div class="ui-block responsive-flex">
+                            <div class="ui-block-title">
+                                <h1>rechercher produit selon nom :</h1>
+                                <form class="w-search">
+                                    <div class="form-group with-button is-empty">
+                                        <input class="form-control search" type="text" placeholder="Rechercher Ici...">
+                                        <button >
+                                            <svg class="olymp-magnifying-glass-icon"><use xlink:href="#olymp-magnifying-glass-icon"></use></svg>
+                                        </button>
+                                        <span class="material-input"></span></div>
+                                    {#<div class="inline-items" id="entitiesNav">#}
+
+                                    {#</div>#}
+                                </form>
+                                <a href="#" class="more"><svg class="olymp-three-dots-icon"><use xlink:href="#olymp-three-dots-icon"></use></svg></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container inline-items"  id="entitiesNav2">
+
+            </div>
+        </div>
+    </main>
+
+
+    <!-- jQuery is necessary -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <script type="text/javascript">
+        jQuery(document).ready(function() {
+            var searchRequest = null;
+            $(".search").keyup(function() {
+                var minlength = 1;
+                var that = this;
+                var value = $(this).val();
+                var entitySelector = $("#entitiesNav2").html('');
+                if (value.length >= minlength ) {
+                    if (searchRequest != null)
+                        searchRequest.abort();
+                    searchRequest = $.ajax({
+                        type: "GET",
+                        url: "{{ path('product_search') }}",
+                        data: {
+                            'q' : value
+                        },
+                        dataType: "text",
+                        success: function(msg){
+                            //we need to check if the value is the same
+                            if (value==$(that).val()) {
+                                var result = JSON.parse(msg);
+                                $.each(result, function(key, arr) {
+                                    $.each(arr, function(id, value) {
+                                        if (key == 'entities') {
+                                            if (id != 'error') {
+                                                entitySelector.append('<a href="/fixit1/web/product/' + id + '/show">' +
+                                                    '<div class="notification-event">' +
+                                                    '<span class="h6 notification-friend"><center><h1><b>' + value[0] +'</b></h1></center></span></a>' + ' ' +
+                                                    '</br>' +
+                                                    '</div>\n' +
+                                                    '<span class="notification-icon"><svg class="\' + escape(item.icon) + \'"><use xlink:href="icons/icons.svg#\' + escape(item.icon) + \'"></use></svg></span>' + '</a></li>');
+
+                                            } else {
+                                                entitySelector.append('<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><li class="errorLi" >'+value+'</li> </div>');
+                                            }
+                                        }
+                                    });
+                                });
+                            }
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

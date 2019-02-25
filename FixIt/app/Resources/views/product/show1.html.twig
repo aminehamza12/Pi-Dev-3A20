@@ -1,0 +1,57 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block body %}
+    <div style="text-align: center" >
+    <h1>Product</h1>
+    <table style="text-align: center" class="table table-dark">
+        <tbody>
+            <tr>
+                <th scope="col">Id</th>
+                <td>{{ product.id }}</td>
+            </tr>
+            <tr>
+                <th scope="col">Name</th>
+                <td>{{ product.name }}</td>
+                <td>    <div style="text-align: right">
+                        <img height="250px" width="250px" src="{{ media[0].brochure  }}"  alt="IMG-PRODUCT">
+                    </div></td>
+            </tr>
+            <tr>
+                <th scope="col">Quantity</th>
+                <td>{{ product.quantity }}</td>
+            </tr>
+            <tr>
+                <th scope="col">Price</th>
+                <td>{{ product.price }}</td>
+            </tr>
+            <tr>
+                <th scope="col">Delivery</th>
+                <td>{% if product.delivery %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th scope="col">Adress</th>
+                <td>{{ product.adress }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('productadmin_index') }}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Back to the list</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('product_edit', { 'id': product.id }) }}" class="btn btn-success">Edit</a>
+                        </li>
+                        <li>
+                            {{ form_start(delete_form) }}
+                            <input type="submit" value="Delete" class="btn btn-danger">
+                            {{ form_end(delete_form) }}
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+
+    </div>
+
+{% endblock %}

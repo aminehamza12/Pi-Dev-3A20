@@ -1,0 +1,24 @@
+notification_index:
+    path:     /
+    defaults: { _controller: "FixitBundle:notification:index" }
+    methods:  GET
+
+notification_show:
+    path:     /{id}/show
+    defaults: { _controller: "FixitBundle:notification:show" }
+    methods:  GET
+
+notification_new:
+    path:     /new
+    defaults: { _controller: "FixitBundle:notification:new" }
+    methods:  [GET, POST]
+
+notification_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "FixitBundle:notification:edit" }
+    methods:  [GET, POST]
+
+notification_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "FixitBundle:notification:delete" }
+    methods:  DELETE

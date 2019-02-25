@@ -1,0 +1,28 @@
+commande_index:
+    path:     /
+    defaults: { _controller: "FixitBundle:commande:index" }
+    methods:  GET
+
+commande_show:
+    path:     /{id}/show
+    defaults: { _controller: "FixitBundle:commande:show" }
+    methods:  GET
+
+commande_new:
+    path:     /new
+    defaults: { _controller: "FixitBundle:commande:new" }
+    methods:  [GET, POST]
+
+commande_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "FixitBundle:commande:edit" }
+    methods:  [GET, POST]
+
+commande_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "FixitBundle:commande:delete" }
+    methods:  DELETE
+commande_pdf:
+    path:     /pdf
+    defaults: { _controller: "FixitBundle:commande:pdf" }
+    methods:  DELETE

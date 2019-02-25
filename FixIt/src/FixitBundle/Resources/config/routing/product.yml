@@ -1,0 +1,127 @@
+product_index:
+    path:     /
+    defaults: { _controller: "FixitBundle:product:index" }
+    methods:  GET
+product_list:
+    path:     /list
+    defaults: { _controller: "FixitBundle:product:list" }
+    methods:  GET
+product_mesproduits:
+    path:     /mesproduits
+    defaults: { _controller: "FixitBundle:product:mesproduits" }
+    methods:  GET
+
+product_show:
+    path:     /{id}/show
+    defaults: { _controller: "FixitBundle:product:show" }
+    methods:  GET
+
+product_new:
+    path:     /new
+    defaults: { _controller: "FixitBundle:product:new" }
+    methods:  [GET, POST]
+product_cat:
+    path:     /cat
+    defaults: { _controller: "FixitBundle:product:cat" }
+    methods:  [GET, POST]
+product_filter:
+    path:     /filter
+    defaults: { _controller: "FixitBundle:product:filter" }
+    methods:  [GET, POST]
+
+product_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "FixitBundle:product:edit" }
+    methods:  [GET, POST]
+
+product_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "FixitBundle:product:delete" }
+media_index:
+    path:     /
+    defaults: { _controller: "FixitBundle:Media:index" }
+    methods:  GET
+
+media_show:
+    path:     /{id}/show
+    defaults: { _controller: "FixitBundle:Media:show" }
+    methods:  GET
+
+media_new:
+    path:     /{id}/new
+    defaults: { _controller: "FixitBundle:Media:new" }
+    methods:  [GET, POST]
+
+media_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "FixitBundle:Media:edit" }
+    methods:  [GET, POST]
+
+media_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "FixitBundle:Media:delete" }
+    methods:  DELETE
+commande_new:
+    path:     /{id}/newC
+    defaults: { _controller: "FixitBundle:commande:new" }
+    methods:  [GET, POST]
+commande_index:
+    path:     /C
+    defaults: { _controller: "FixitBundle:commande:index" }
+    methods:  GET
+
+commande_show:
+    path:     /{id}/showC
+    defaults: { _controller: "FixitBundle:commande:show" }
+    methods:  GET
+
+commande_edit:
+    path:     /{id}/editC
+    defaults: { _controller: "FixitBundle:commande:edit" }
+    methods:  [GET, POST]
+
+commande_delete:
+    path:     /{id}/deleteC
+    defaults: { _controller: "FixitBundle:commande:delete" }
+    methods:  DELETE
+commande_pdf:
+    path:     /{id}/pdf
+    defaults: { _controller: "FixitBundle:commande:pdf" }
+    methods:  [GET, POST]
+product_search:
+    path:     /search
+    defaults: { _controller: "FixitBundle:product:search" }
+notification_index:
+    path:     /N
+    defaults: { _controller: "FixitBundle:notification:index" }
+    methods:  GET
+
+notification_show:
+    path:     /{id}/showN
+    defaults: { _controller: "FixitBundle:notification:show" }
+    methods:  GET
+
+notification_new:
+    path:     /newN
+    defaults: { _controller: "FixitBundle:notification:new" }
+    methods:  [GET, POST]
+
+notification_edit:
+    path:     /{id}/editN
+    defaults: { _controller: "FixitBundle:notification:edit" }
+    methods:  [GET, POST]
+
+notification_delete:
+    path:     /{id}/deleteN
+    defaults: { _controller: "FixitBundle:notification:delete" }
+    methods:  DELETE
+notification_valider:
+    path:     /{id}/valider
+    defaults: { _controller: "FixitBundle:notification:valider" }
+    methods:  [GET, POST]
+notification_rejeter:
+    path:     /{id}/rejeter
+    defaults: { _controller: "FixitBundle:notification:rejeter" }
+    methods:  [GET, POST]
+
+

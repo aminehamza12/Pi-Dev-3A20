@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <!--************************************
+                    Inner Page Banner Start
+            *************************************-->
+    <div class="tg-innerpagebanner">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="tg-pagetitle">
+                        <h1>404 Error</h1>
+                    </div>
+                    <ol class="tg-breadcrumb">
+                        <li><a href="#">Home</a></li>
+                        <li class="tg-active">404 Error</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--************************************
+            Inner Page Banner End
+    *************************************-->
+    <!--************************************
+            Main Start
+    *************************************-->
+    <main id="tg-main" class="tg-main tg-paddingzero tg-haslayout">
+        <!--************************************
+                404 Error Start
+        *************************************-->
+        <div class="tg-main-section tg-haslayout">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-10 col-md-push-1 col-lg-10 col-lg-push-1">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-5 col-md-5 col-lg-4">
+                                <figure class="tg-404errorimg">
+                                    <img src="{{ asset('images/404-img.jpg') }}" alt="image description">
+                                </figure>
+                            </div>
+                            <div class="col-xs-12 col-sm-7 col-md-7 col-lg-8">
+                                <div class="tg-404errorcontent">
+                                    <div class="tg-bordertitle">
+                                        <h2>404 Error</h2>
+                                        <h3>Ooops! Something Went Wrong.</h3>
+                                    </div>
+                                    <div class="tg-description">
+                                        <p>Consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore et doloreagna aliqua enim adia minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip extea commodo consequat aute irure dolor.</p>
+                                    </div>
+                                    <form class="tg-themeform">
+                                        <fieldset>
+                                            <div class="form-group">
+                                                <input type="search" name="search" class="form-control" placeholder="Search Here">
+                                            </div>
+                                            <button type="submit" class="tg-btn">Search</button>
+                                        </fieldset>
+                                    </form>
+                                    <span class="tg-gobackhome">Or Go Back To <a href="{{ path('fixit_homepage') }}">Main Page</a></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--************************************
+                404 Error End
+        *************************************-->
+    </main>
+    <!--************************************
+            Main End
+    *************************************-->
+    <!--************************************
+
+{% endblock %}

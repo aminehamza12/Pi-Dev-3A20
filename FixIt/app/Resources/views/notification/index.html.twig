@@ -1,0 +1,87 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {#<h1>Notifications list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Date</th>
+                <th>Etat</th>
+                <th>Contenu</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for notification in notifications %}
+            <tr>
+                <td><a href="{{ path('notification_show', { 'id': notification.id }) }}">{{ notification.id }}</a></td>
+                <td>{% if notification.date %}{{ notification.date|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if notification.etat %}Yes{% else %}No{% endif %}</td>
+                <td>{{ notification.contenu }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('notification_show', { 'id': notification.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('notification_edit', { 'id': notification.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('notification_new') }}">Create a new notification</a>
+        </li>
+    </ul>#}
+    <div class="col-xs-12 col-sm-7 col-md-8 col-lg-9">
+        <div id="tg-content" class="tg-content">
+            <div class="tg-dashboard tg-dashboardappointmentsetting">
+                <form class="tg-themeform">
+                    <fieldset>
+                        <div class="tg-dashboardbox tg-dashboardappointments">
+                            <div class="tg-dashboardappointmentbox">
+                                <h6>nombre des demandes encore à verifier : {{ nbr }}</h6>
+                                {% for notification in notifications %}
+                                    {% if notification.product.user == user %}
+                                <div class="tg-dashboardappointment">
+                                    <div class="tg-servicetitle">
+                                        <figure>
+                                            <img src="http://localhost/fixit1/web/images/4204bf5f406ff3216997c48099cb5188.jpeg" alt="image description">
+                                        </figure>
+                                        <div class="tg-clientcontent">
+                                            <h2><a href="javascript:void(0);"> Depuis :{{ notification.user.nom }}</a></h2>
+                                            <span>à :{{ notification.product.user.nom }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="tg-serviceandservicetype">
+                                        <h3>Contenu:</h3>
+                                        <span>{{ notification.contenu }}</span>
+                                    </div>
+                                    <div class="tg-btntimeedit">
+                                        <div class="tg-appointmenttype">
+                                            <h3>Date du demande</h3>
+                                            <span>{% if notification.date %}{{ notification.date|date('Y-m-d') }}{% endif %}</span>
+                                        </div>
+                                        {% if notification.etat == 0 %}
+                                        <a href="{{ path('notification_valider', { 'id': notification.id }) }}" class="tg-btnedite" ><i class="lnr lnr-checkmark-circle">Valider</i></a>
+                                        <a href="{{ path('notification_rejeter', { 'id': notification.id }) }}" class="tg-btndel" ><i class="lnr lnr-cross-circle">Rejeter</i></a>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
