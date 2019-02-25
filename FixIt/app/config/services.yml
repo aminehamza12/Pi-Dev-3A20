@@ -4,6 +4,8 @@ parameters:
     #parameter_name: value
 
 services:
+    app.html2pdf:
+        class: FixitBundle\Service\HTML2PDF
     # default configuration for services in *this* file
     _defaults:
         # automatically injects dependencies in your services
@@ -33,3 +35,8 @@ services:
     # AppBundle\Service\ExampleService:
     #     arguments:
     #         $someArgument: 'some_value'
+
+    app.form.registration:
+            class: AppBundle\Form\RegistrationType
+            tags:
+                - { name: form.type, alias: app_user_registration }
