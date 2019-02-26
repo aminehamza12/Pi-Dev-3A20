@@ -26,3 +26,4 @@ profil_test:
     path:     /{id}/test
     defaults: { _controller: "GestionCvBundle:Profil:test" }
     methods:  GET
+

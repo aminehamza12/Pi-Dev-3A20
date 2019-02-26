@@ -129,4 +129,23 @@ class ProfilController extends Controller
             ->getForm()
         ;
     }
+
+    public function sideBarProfilAction(){
+        $em = $this->getDoctrine()->getManager();
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $profil = $em->getRepository('GestionCvBundle:Profil')->findOneByUser($user);
+        //dump($profil);die;
+        return $this->render('profil/sideBarProfil.html.twig', array(
+            'profil' => $profil,
+        ));
+    }
+    public function renderProfilPhotoAction(){
+        $em = $this->getDoctrine()->getManager();
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $profil = $em->getRepository('GestionCvBundle:Profil')->findOneByUser($user);
+        //dump($profil);die;
+        return $this->render('profil/renderProfilPhoto.html.twig', array(
+            'profil' => $profil,
+        ));
+    }
 }

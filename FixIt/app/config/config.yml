@@ -32,6 +32,8 @@ framework:
     assets: ~
     php_errors:
         log: true
+    templating:
+        engines: ['twig', 'php']
 
 # Twig Configuration
 twig:
@@ -105,3 +107,7 @@ vich_uploader:
         profilBanner_images:
             uri_prefix:         '%app.path.profilBanner_images%'
             upload_destination: "%kernel.project_dir%/web/uploads/images/profil/banner"
+fos_message:
+    db_driver: orm
+    thread_class: AppBundle\Entity\Thread
+    message_class: AppBundle\Entity\Message

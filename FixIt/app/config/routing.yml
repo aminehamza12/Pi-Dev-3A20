@@ -14,4 +14,7 @@ fos_user:
 admin:
     path:     /admin
     defaults: { _controller: FixitBundle:Default:indexAdmin }
+fos_message:
+    resource: "@FOSMessageBundle/Resources/config/routing.xml"
+    prefix: /optional_routing_prefix
 
