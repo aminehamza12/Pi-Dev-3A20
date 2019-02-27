@@ -2,9 +2,11 @@
 
 namespace GestionCvBundle\Controller;
 
+use Doctrine\ORM\Query\ResultSetMapping;
 use GestionCvBundle\Entity\Profil;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Profil controller.
@@ -26,6 +28,16 @@ class ProfilController extends Controller
             'profils' => $profils,
         ));
     }
+    public function profiladminAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $profils = $em->getRepository('GestionCvBundle:Profil')->findAll();
+
+        return $this->render('profil/admin/show.html.twig', array(
+            'profils' => $profils,
+        ));
+    }
 
     /**
      * Creates a new profil entity.
@@ -34,12 +46,16 @@ class ProfilController extends Controller
     public function newAction(Request $request)
     {
         $profil = new Profil();
+        $user = $this->get('security.token_storage')->getToken()->getUser();
         $form = $this->createForm('GestionCvBundle\Form\ProfilType', $profil);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $profil->setUser($user);
+            $user->setIsprofil(1);
             $em->persist($profil);
+            $em->persist($user);
             $em->flush();
 
             return $this->redirectToRoute('profil_show', array('id' => $profil->getId()));
@@ -147,5 +163,52 @@ class ProfilController extends Controller
         return $this->render('profil/renderProfilPhoto.html.twig', array(
             'profil' => $profil,
         ));
+    }
+    public function photobaseAction(){
+        $em = $this->getDoctrine()->getManager();
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $profil = $em->getRepository('GestionCvBundle:Profil')->findOneByUser($user);
+        //dump($profil);die;
+        return $this->render('profil/photobase.html.twig', array(
+            'profil' => $profil,
+        ));
+    }
+    public function searchAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $requestString = $request->get('q');
+        //$entities =  $em->getRepository('GestionCvBundle:Profil')->findEntitiesByString($requestString);
+        $rsm = new ResultSetMapping();
+        $em = $this->getDoctrine()->getManager();
+        $rsm->addScalarResult('Logo','logo');
+
+        $rsm->addScalarResult('Mobile','mobile');
+
+        $rsm->addScalarResult('nom','nom');
+
+        //$sql = "SELECT CAST(dateVisite AS date) FROM blog_views WHERE blog_id = 1 AND CAST(dateVisite AS date) = \"2019-02-23\" LIMIT 1";
+
+
+
+        $query = $em->createNativeQuery
+
+        ('SELECT Logo,Mobile,nom FROM profil as p , user as u WHERE u.id=p.user_id and u.nom LIKE :str',
+
+            $rsm);
+        $query->setParameter('str', '%'.$requestString.'%');
+        $entities=$query->getResult();
+
+        if(!$entities) {
+            $result['entities']['error'] = "keine Einträge gefunden";
+        } else {
+            $result['entities'] = $this->getRealEntities($entities);
+        }
+        return new Response(json_encode($result));
+    }
+    public function getRealEntities($entities){
+        foreach ($entities as $entity){
+            $realEntities[$entity['nom']] = [$entity['logo'],$entity['mobile']];
+        }
+        return $realEntities;
     }
 }

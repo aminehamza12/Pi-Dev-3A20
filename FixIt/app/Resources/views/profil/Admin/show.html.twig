@@ -1,0 +1,63 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block body %}
+    <!--Bootstrap Table [ OPTIONAL ]-->
+    <link href="{{ asset('admin/plugins/datatables/media/css/dataTables.bootstrap.css')}}" rel="stylesheet">
+    <link href="{{ asset('admin/plugins/datatables/extensions/Responsive/css/dataTables.responsive.css')}}" rel="stylesheet">
+<div id="page-content">
+    <div class="row">
+        <div class="col-md-12">
+<div class="panel">
+    <div class="panel-heading">
+        <h3 class="panel-title">Basic Data Tables with responsive plugin</h3>
+    </div>
+<div class="panel-body">
+    <table id="demo-dt-basic" class="table table-striped table-bordered">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th class="min-tablet">Phone</th>
+            <th class="min-tablet">Logo</th>
+            <th class="min-tablet">Type</th>
+            <th class="min-tablet">Banner</th>
+            <th class="min-tablet">Mobile</th>
+            <th class="min-tablet">Fax</th>
+            <th class="min-tablet">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for profil in profils %}
+            <tr>
+                <td><a href="{{ path('profil_show', { 'id': profil.id }) }}">profil {{ profil.id }}</a></td>
+                <td>{{ profil.phone }}</td>
+                <td>{{ profil.logo }}</td>
+                <td>{{ profil.type }}</td>
+                <td>{{ profil.banner }}</td>
+                <td>{{ profil.mobile }}</td>
+                <td>{{ profil.fax }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('profil_delete', { 'id': profil.id }) }}">delete</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+</div>
+        </div>
+    </div>
+</div>
+
+
+    <!--DataTables [ OPTIONAL ]-->
+    <script src="{{ asset('admin/plugins/datatables/media/js/jquery.dataTables.js')}}"></script>
+    <script src="{{ asset('admin/plugins/datatables/media/js/dataTables.bootstrap.js')}}"></script>
+    <script src="{{ asset('admin/plugins/datatables/extensions/Responsive/js/dataTables.responsive.min.js')}}"></script>
+    <!--DataTables Sample [ SAMPLE ]-->
+    <script src="{{ asset('admin/js/demo/tables-datatables.js')}}"></script>
+    
+{% endblock %}

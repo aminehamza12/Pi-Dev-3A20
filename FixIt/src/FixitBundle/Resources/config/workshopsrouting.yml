@@ -1,0 +1,3 @@
+fixit_workshops_homepage:
+     path:     /
+     defaults: { _controller: FixitBundle:Workshops:index }

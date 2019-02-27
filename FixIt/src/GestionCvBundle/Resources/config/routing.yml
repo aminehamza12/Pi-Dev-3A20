@@ -9,7 +9,6 @@ gestion_cv_appointments:
 gestion_cv_profil:
     resource: "@GestionCvBundle/Resources/config/routing/profil.yml"
     prefix:   /profil
-
-gestion_cv_homepage:
-    path:     /
-    defaults: { _controller: GestionCvBundle:Default:index }
+profiladmin_new:
+    path:     /admin/profil
+    defaults: { _controller: "GestionCvBundle:Profil:profiladmin" }

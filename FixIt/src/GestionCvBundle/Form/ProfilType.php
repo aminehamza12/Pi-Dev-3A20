@@ -29,8 +29,7 @@ class ProfilType extends AbstractType
                 'download_link' => true,
             ])
             ->add('type')
-            ->add('mobile')->add('fax')
-            ->add('user');
+            ->add('mobile')->add('fax');
     }/**
      * {@inheritdoc}
      */

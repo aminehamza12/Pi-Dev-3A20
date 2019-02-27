@@ -1,6 +1,7 @@
 <?php
 
 namespace GestionCvBundle\Repository;
+use Doctrine\ORM\Query\ResultSetMapping;
 
 /**
  * exampleRepository
@@ -10,4 +11,27 @@ namespace GestionCvBundle\Repository;
  */
 class ProfilRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findEntitiesByString($str){
+        $rsm = new ResultSetMapping();
+        $em = $this->getDoctrine()->getManager();
+        $rsm->addScalarResult('Logo','logo');
+
+        $rsm->addScalarResult('Mobile','mobile');
+
+        $rsm->addScalarResult('nom','nom');
+
+        //$sql = "SELECT CAST(dateVisite AS date) FROM blog_views WHERE blog_id = 1 AND CAST(dateVisite AS date) = \"2019-02-23\" LIMIT 1";
+
+
+
+        $query = $em->createNativeQuery
+
+        ('SELECT Logo,Mobile,nom FROM profil as p , user as u WHERE u.id=p.user_id and u.username = LIKE :str',
+
+            $rsm);
+        $query->setParameter('str', '%'.$str.'%');
+
+        return    $query->getResult();
+    }
+
 }

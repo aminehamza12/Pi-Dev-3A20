@@ -1,6 +1,6 @@
 gestion_cv:
     resource: "@GestionCvBundle/Resources/config/routing.yml"
-    prefix:   /profile
+    prefix:   /
 
 fixit:
     resource: "@FixitBundle/Resources/config/routing.yml"

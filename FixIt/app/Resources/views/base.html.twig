@@ -63,11 +63,15 @@
                         <ul class="tg-addressinfo">
                             <li>
                                 <i class="lnr lnr-envelope"></i>
-                                <a href="mailto:info@domain.com">info@domain.com</a>
+                                <a href="mailto:info@domain.com">Fixit@domain.com</a>
                             </li>
                             <li>
                                 <i class="lnr lnr-phone-handset"></i>
-                                <span>+4 1234 567890</span>
+                                <span>+216 55 263 214</span>
+                            </li>
+                            <li>
+                                <i class="lnr button"></i>
+                                <span>create</span>
                             </li>
                         </ul>
                         <div class="tg-themedropdown tg-languagesdropdown">
@@ -104,16 +108,25 @@
                             </div>
                             <div class="tg-useradminbox">
                                 <div class="tg-themedropdown tg-userdropdown">
-                                    <a href="dashboard.html" id="tg-usermenu" class="tg-btndropdown">
+
+                                        {% if app.user==null or app.user.isprofil==0 %}
+                                    <a  id="tg-usermenu" class="tg-btndropdown">
                                         <em><img src="{{ asset('images/thumbnails/img-01.jpg') }}" alt="image description"></em>
+                                        {% elseif app.user.isprofil==1 %}
+                                    <a href="dashboard.html" id="tg-usermenu" class="tg-btndropdown">
+                                        {{ render(controller('GestionCvBundle:Profil:Photobase')) }}
+                                        {% endif %}
                                         {% if app.user != null %}
                                         <span>{{ app.user.nom }}</span>
                                         {% endif %}
                                         <i class="fa fa-angle-down"></i>
                                     </a>
+
                                     <div class="tg-dropdownmenu tg-usermenu" aria-labelledby="tg-usermenu">
                                         <nav id="tg-dashboardnav" class="tg-dashboardnav">
+
                                             <ul>
+                                                {% if app.user!=null and app.user.isprofil==1 %}
                                                 <li>
                                                     <a href="dashboard.html">
                                                         <i class="lnr lnr-database"></i>
@@ -177,12 +190,7 @@
                                                                 <em class="tg-totalmessages">160</em>
                                                             </a>
                                                         </li>
-                                                        <li>
-                                                            <a href="dashboardprivatemessages.html">
-                                                                <span>spam/junk</span>
-                                                                <em class="tg-totalmessages">1260</em>
-                                                            </a>
-                                                        </li>
+
                                                     </ul>
                                                 </li>
                                                 <li>
@@ -235,10 +243,29 @@
                                                         <span>Logout</span>
                                                     </a>
                                                 </li>
+                                                {% elseif app.user!=null and app.user.isprofil==0  %}
+
+                                                <li>
+                                                    <a href="{{ path('profil_new') }}">
+                                                    <i class="lnr lnr-heart"></i>
+                                                    <span>Create profile</span>
+                                                    </a>
+
+                                    </li>
+                                                    <li>
+                                                        <a href="{{ path('fos_user_security_logout') }}">
+                                                            <i class="lnr lnr-exit"></i>
+                                                            <span>Logout</span>
+                                                        </a>
+                                                    </li>
+                                                {% endif %}
+
                                             </ul>
                                         </nav>
                                     </div>
+
                                 </div>
+
                             </div>
 
                         </div>

@@ -38,6 +38,37 @@ class User extends BaseUser implements ParticipantInterface
      */
     protected $prenom;
 
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_profil", type="boolean",)
+     */
+    protected $isprofil;
+
+    /**
+     * @return bool
+     */
+    public function isIsprofil()
+    {
+        return $this->isprofil;
+    }
+
+    /**
+     * @param bool $isprofil
+     */
+    public function setIsprofil($isprofil)
+    {
+        $this->isprofil = $isprofil;
+    }
+
+    /**
+     * User constructor.
+     */
+    public function __construct()
+    {
+        $this->isprofil = 0;
+    }
+
 
     /**
      * Get id
