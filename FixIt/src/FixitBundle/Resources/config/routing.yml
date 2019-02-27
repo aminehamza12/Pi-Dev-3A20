@@ -7,7 +7,12 @@ fixit_404:
 fixit_workshops:
     resource: "@FixitBundle/Resources/config/workshopsrouting.yml"
     prefix:   /Workshops
-admin:
-    resource: "@FixitBundle/Resources/config/adminrouting.yml"
-    prefix:   /admin
+
+#admin:
+#    resource: "@FixitBundle/Resources/config/adminrouting.yml"
+#    prefix:   /admin
+
+admin_homepage:
+    path:     /admin
+    defaults: { _controller: FixitBundle:Default:indexAdmin }
 

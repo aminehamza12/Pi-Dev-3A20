@@ -59,90 +59,91 @@
                                     </div>
                                     <div class="tg-description">
                                         <p>{{ blog.content|raw }}</p>
-                                        </div>
+                                    </div>
                                 </article>
 
                                 <div class="tg-tagsshare">
-                                        <span>Share:</span>
-                                        <ul class="tg-socialicons">
-                                            {{ socialButtons() }}
-                                        </ul>
+                                    <span>Share:</span>
+                                    <ul class="tg-socialicons">
+                                        {{ socialButtons() }}
+                                    </ul>
                                 </div>
 
                                 <div class="tg-companyfeaturebox tg-reviews">
                                     <div class="tg-companyfeaturetitle">
-                                        <h3>03 Feedback</h3>
+                                        <h3>{{ comments|length ~ " Comments" }}</h3>
                                     </div>
                                     <div class="tg-feedbacks">
                                         {% for c in comments %}
-                                        <div class="tg-feedback">
-                                            <figure><a href="javascript:void(0);"><img src="images/thumbnails/img-09.jpg" alt="image description"></a></figure>
-                                            <div class="tg-feedbackcontent">
-                                                <div class="tg-feedbackbox">
-                                                    <div class="tg-contenthead">
-                                                        <div class="tg-leftbox">
-                                                            <div class="tg-name">
-                                                                <h4><a href="#">They Are Awsome</a></h4>
+                                            <div class="tg-feedback">
+                                                <figure><a href="javascript:void(0);"><img src="images/thumbnails/img-09.jpg" alt="image description"></a></figure>
+                                                <div class="tg-feedbackcontent">
+                                                    <div class="tg-feedbackbox">
+                                                        <div class="tg-contenthead">
+                                                            <div class="tg-leftbox">
+                                                                <div class="tg-name">
+                                                                    <h4><a href="#">{{ c.user.username }}</a></h4>
+                                                                </div>
+                                                                <ul class="tg-matadata">
+                                                                    <li><a href="#">{{ c.createdAt|date('Y-m-d H:i:s') }} 10 Min Ago</a></li>
+                                                                </ul>
                                                             </div>
-                                                            <ul class="tg-matadata">
-                                                                <li><a href="#">{{ c.user.username }}</a></li>
-                                                                <li><a href="#">{{ c.createdAt|date('Y-m-d H:i:s') }} 10 Min Ago</a></li>
-                                                            </ul>
+                                                            {% if app.user.id == c.user.id %}
+                                                            <div class="tg-rightbox">
+                                                                <a href="{{ path('comment_delete', { 'id': c.id }) }}"><button type="button" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></button></a>
+                                                            </div>
+                                                            {% endif %}
                                                         </div>
-                                                        <div class="tg-rightbox">
-                                                            <a href="{{ path('comment_delete', { 'id': c.id }) }}"><button type="button" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></button></a>
+                                                        <div class="tg-description">
+                                                            <p>{{ c.text }}</p>
                                                         </div>
-                                                    </div>
-                                                    <div class="tg-description">
-                                                        <p>{{ c.text }}</p>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
                                         {% endfor %}
                                     </div>
                                     {% if app.user %}
 
-                                    <div class="tg-companyfeaturebox tg-reviewformrating">
-                                        {{ form_start(form_comment) }}
-                                        <form class="tg-themeform tg-formleavreview" method="post">
-                                            <fieldset>
-                                                <div class="tg-companyfeaturetitle">
-                                                    <h3>Leave Your Feedback</h3>
-                                                </div>
-                                                <div class="row">
-
-                                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                                        <div class="form-group">
-                                                            {{ form_widget(form_comment) }}
-
-                                                        </div>
+                                        <div class="tg-companyfeaturebox tg-reviewformrating">
+                                            {{ form_start(form_comment) }}
+                                            <form class="tg-themeform tg-formleavreview" method="post">
+                                                <fieldset>
+                                                    <div class="tg-companyfeaturetitle">
+                                                        <h3>Leave Your Feedback</h3>
                                                     </div>
-                                                </div>
-                                                <button type="submit" class="tg-btn">Submit</button>
-                                            </fieldset>
-                                        </form>
-                                        {{ form_end(form_comment) }}
-                                    </div>
-                                        {% else %}
-                                            <div class="tg-companyfeaturebox tg-reviewformrating">
+                                                    <div class="row">
 
-                                                <form class="tg-themeform tg-formleavreview" method="post">
-                                                    <fieldset>
-                                                        <div class="tg-companyfeaturetitle">
-                                                            <h3>Leave Your Feedback</h3>
-                                                        </div>
-                                                        <div class="row">
+                                                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                                            <div class="form-group">
+                                                                {{ form_widget(form_comment) }}
 
-                                                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                                                <a href="#"><button  class="tg-btn">You need to login/create an account to be able to add a comment</button></a>
                                                             </div>
                                                         </div>
+                                                    </div>
+                                                    <button type="submit" class="tg-btn">Submit</button>
+                                                </fieldset>
+                                            </form>
+                                            {{ form_end(form_comment) }}
+                                        </div>
+                                    {% else %}
+                                        <div class="tg-companyfeaturebox tg-reviewformrating">
 
-                                                    </fieldset>
-                                                </form>
+                                            <form class="tg-themeform tg-formleavreview" method="post">
+                                                <fieldset>
+                                                    <div class="tg-companyfeaturetitle">
+                                                        <h3>Leave Your Feedback</h3>
+                                                    </div>
+                                                    <div class="row">
 
-                                            </div>
+                                                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                                            <a href="#"><button  class="tg-btn">You need to login/create an account to be able to add a comment</button></a>
+                                                        </div>
+                                                    </div>
+
+                                                </fieldset>
+                                            </form>
+
+                                        </div>
                                     {% endif %}
                                 </div>
                             </div>
@@ -248,13 +249,6 @@
             Main End
     *************************************-->
 
-
-    <ul>
-        <li>
-            <a href="{{ path('blog_index') }}">Back to the list</a>
-        </li>
-
-    </ul>
 
 
 

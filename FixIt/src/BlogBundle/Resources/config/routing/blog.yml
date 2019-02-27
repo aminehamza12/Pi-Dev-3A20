@@ -29,13 +29,8 @@ blog_blogStatistics:
     methods:  GET
 
 blog_blogStatisticsComponent:
-    path:     /{id}/blogStatisticsComponent
+    path:     /{id}--{monthId}/blogStatisticsComponent
     defaults: { _controller: "BlogBundle:Blog:blogStatisticsComponent" }
-    methods:  GET
-
-blog_search:
-    path:     /search/{textToSearch}
-    defaults: { _controller: "BlogBundle:Blog:search" }
     methods:  GET
 
 ajax:
@@ -44,3 +39,17 @@ ajax:
     options:
         expose: trues
 
+blog_searchAjax:
+    path:     /search
+    defaults: { _controller: "BlogBundle:Blog:search" }
+
+blog_blogCommentsComponent:
+    path:     /{id}/BlogCommentsComponent
+    defaults: { _controller: "BlogBundle:Blog:BlogCommentsComponent" }
+    methods:  GET
+
+blog_blogCommentsComponentAjax:
+    path:     /blogCommentsComponentAjax/
+    defaults: { _controller: "BlogBundle:Blog:BlogCommentsComponentAjax" }
+    options:
+        expose: trues

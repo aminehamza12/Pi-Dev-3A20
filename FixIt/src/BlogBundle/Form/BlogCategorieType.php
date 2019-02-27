@@ -5,6 +5,7 @@ namespace BlogBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 
 class BlogCategorieType extends AbstractType
 {
@@ -13,7 +14,7 @@ class BlogCategorieType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name')->add('description');
+        $builder->add('name')->add('description',CKEditorType::class);
     }/**
      * {@inheritdoc}
      */

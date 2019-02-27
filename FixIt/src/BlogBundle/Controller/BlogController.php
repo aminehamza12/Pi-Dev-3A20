@@ -286,6 +286,23 @@ class BlogController extends Controller
         ));
     }
 
+    public function renderMostLikedBlogPostsAction(){
+        $em = $this->getDoctrine()->getManager();
+        $rsm = new ResultSetMapping();
+        $rsm->addScalarResult('title','title');
+        $rsm->addScalarResult('image','image');
+        $rsm->addScalarResult('editedAt','editedAt');
+        $rsm->addScalarResult('SUM(visites)','visites');
+        $query = $em->createNativeQuery('
+        SELECT title,image,editedAt,SUM(visites) FROM blog as b,blog_views as bv WHERE b.id = bv.blog_id GROUP BY bv.blog_id ORDER BY SUM(visites) DESC LIMIT 3
+        ',$rsm);
+        $queryResult = $query->getResult();
+        return $this->render('blog/renderMostLikedBlogPosts.html.twig', array(
+            'mostLikedBlogs' => $queryResult,
+        ));
+
+    }
+
     public function blogStatisticsAction(Blog $blog){
         $em = $this->getDoctrine()->getManager();
         $rsm = new ResultSetMapping();
@@ -335,15 +352,16 @@ class BlogController extends Controller
 
     }
 
-    public function blogStatisticsComponentAction(Blog $blog){
+    public function blogStatisticsComponentAction(Blog $blog,$monthId){
         $em = $this->getDoctrine()->getManager();
         $rsm = new ResultSetMapping();
         $rsm->addScalarResult('visites','visites');
         $rsm->addScalarResult('EXTRACT(DAY FROM dateVisite)','day');
         $query = $em->createNativeQuery
-        ('SELECT visites,EXTRACT(DAY FROM dateVisite) FROM blog_views WHERE blog_id = :blogId AND EXTRACT(MONTH FROM dateVisite)=2',
+        ('SELECT visites,EXTRACT(DAY FROM dateVisite) FROM blog_views WHERE blog_id = :blogId AND EXTRACT(MONTH FROM dateVisite)= :monthId',
             $rsm);
         $query->setParameter("blogId",$blog->getId());
+        $query->setParameter("monthId",$monthId);
         $blogMonthVisitesQuery = $query->getResult();
         $visites = array_fill(0, 28, 0);
 
@@ -381,15 +399,16 @@ class BlogController extends Controller
 
     }
 
-    public function ajaxAction(){
+    public function ajaxAction(Request $request){
 
         //$response['message'] = $this->render('BlogBundle:Blog:blogStatisticsComponent.html.twig', array('id' => $blog->getId()))->getContent();
 
+        $blogId = $request->get('blog_id');
+        $monthId = $request->get('month_id');
 
 
-
-        $blog = $this->getDoctrine()->getRepository('BlogBundle:Blog')->findOneById(2);
-        $template = $this->forward('BlogBundle:Blog:blogStatisticsComponent',array('id' => $blog->getId()))->getContent();
+        $blog = $this->getDoctrine()->getRepository('BlogBundle:Blog')->findOneById($blogId);
+        $template = $this->forward('BlogBundle:Blog:blogStatisticsComponent',array('id' => $blog->getId(),'monthId'=>$monthId))->getContent();
 
         //dump($template);die;
         $json = json_encode($template);
@@ -397,6 +416,72 @@ class BlogController extends Controller
         $response->headers->set('Content-Type', 'application/json');
         return $response;
 
+
+    }
+
+    public function searchAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $requestString = $request->get('q');
+
+        $rsm = new ResultSetMapping();
+        $em = $this->getDoctrine()->getManager();
+        $rsm->addScalarResult('id','id');
+        $rsm->addScalarResult('title','title');
+        $rsm->addScalarResult('description','description');
+        $rsm->addScalarResult('content','content');
+        $rsm->addScalarResult('editedAt','editedAt');
+        $rsm->addScalarResult('image','image');
+        $rsm->addScalarResult('blogCategorie_id','blogCategorie_id');
+        $rsm->addScalarResult('name','blogCategorieName');
+        $rsm->addScalarResult('SUM(visites)','visites');
+        $query = $em->createNativeQuery
+        ('SELECT b.id,b.title,b.description,b.content,b.editedAt,b.image,blogCategorie_id,bg.name,SUM(visites) FROM blog as b,blog_categorie as bg,blog_views as bv WHERE b.title LIKE :str AND b.blogCategorie_id = bg.id AND b.id = bv.blog_id GROUP BY bv.blog_id
+',
+            $rsm);
+        $query->setParameter('str', '%'.$requestString.'%');
+        $entities=$query->getResult();
+
+
+        if(!$entities) {
+            $result['entities']['error'] = "Failed!";
+        } else {
+            $result['entities'] = $this->getRealEntities($entities);
+        }
+        return new Response(json_encode($result));
+    }
+    public function getRealEntities($entities){
+        foreach ($entities as $entity){
+            $realEntities[$entity['id']] = [$entity['title'],[$entity['description']],[$entity['content']],[$entity['editedAt']],[$entity['image']],[$entity['blogCategorie_id']],[$entity['blogCategorieName']],[$entity['visites']]];
+        }
+        return $realEntities;
+    }
+
+    public function searchAjaxFinalAction(Request $request){
+        $requestString = $request->get('q');
+
+    }
+
+    public function BlogCommentsComponentAction(Blog $blog){
+        //$blog = $this->getDoctrine()->getRepository('BlogBundle:Blog')->findOneById($idBlog);
+        $comments = $this->getDoctrine()->getRepository('BlogBundle:Comment')->findByBlog($blog);
+
+        return $this->render('blog/BlogCommentsComponent.html.twig',array('comments'=>$comments));
+    }
+
+    public function BlogCommentsComponentAjaxAction(Request $request){
+        $blogId = $request->get('blog_id');
+        //$monthId = $request->get('month_id');
+
+
+        $blog = $this->getDoctrine()->getRepository('BlogBundle:Blog')->findOneById($blogId);
+        $template = $this->forward('BlogBundle:Blog:BlogCommentsComponent',array('id' => $blog->getId()))->getContent();
+
+        //dump($template);die;
+        $json = json_encode($template);
+        $response = new Response($json, 200);
+        $response->headers->set('Content-Type', 'application/json');
+        return $response;
 
     }
 }

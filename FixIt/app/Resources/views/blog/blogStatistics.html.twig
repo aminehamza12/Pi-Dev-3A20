@@ -25,6 +25,7 @@
     <script type="text/javascript">
         {{ chart(chart) }}
     </script>
+    <input id="blog_id" type="text" style="visibility: hidden; display: none;" value="{{ blog.id }}">
 
     <div id="linechart" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
     <div id="yyy" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
@@ -37,12 +38,14 @@
                 $('#linechart').removeData();
                 /*alert("value changed");*/
                 var month_id = $(this).val();
+                var blog_id = $('#blog_id').val();
+                console.log(blog_id);
                 console.log(month_id);
                 $.ajax({
                     url: "{{ path('ajax') }}",
                     type:"POST",
                     dataType: 'json',
-                    data:{month_id:month_id},
+                    data:{month_id:month_id,blog_id:blog_id},
                     success:function (response) {
                         template = response;
 

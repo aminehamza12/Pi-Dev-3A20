@@ -17,7 +17,10 @@ class BlogType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('title')->add('description')->add('content',CKEditorType::class)
+        $builder->add('title')->add('description')
+            ->add('content',CKEditorType::class, [
+                'attr' => ['id' => 'blogbundle_blog_content'],
+            ])
             ->add('notificationEnable',ChoiceType::class,[
                 'choices'=>[
                     'Yes'=> 'true',

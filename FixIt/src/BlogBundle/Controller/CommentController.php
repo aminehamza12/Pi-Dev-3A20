@@ -97,6 +97,7 @@ class CommentController extends Controller
      */
     public function deleteAction(Request $request, Comment $comment)
     {
+        /*
         $form = $this->createDeleteForm($comment);
         $form->handleRequest($request);
 
@@ -105,9 +106,22 @@ class CommentController extends Controller
             $em->remove($comment);
             $em->flush();
         }
+        */
+        if($comment){
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($comment);
+            $em->flush();
+        }
 
-        return $this->redirectToRoute('comment_index');
+        //return $this->redirect($request->getReferer());
+        if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')){
+
+        }else{
+            return $this->redirectToRoute('comment_index');
+        }
+
     }
+
 
     /**
      * Creates a form to delete a comment entity.

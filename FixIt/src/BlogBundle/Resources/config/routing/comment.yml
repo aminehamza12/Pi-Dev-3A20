@@ -21,4 +21,4 @@ comment_edit:
 comment_delete:
     path:     /{id}/delete
     defaults: { _controller: "BlogBundle:Comment:delete" }
-    methods:  DELETE
+    methods:  GET
