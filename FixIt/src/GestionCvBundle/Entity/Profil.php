@@ -24,44 +24,19 @@ class Profil
      */
     private $id;
 
-    /**
-     * @return string
-     */
-    public function getType()
-    {
-        return $this->type;
-    }
 
-    /**
-     * @param string $type
-     */
-    public function setType($type)
-    {
-        $this->type = $type;
-    }
 
     /**
      * @ORM\OneToOne(targetEntity="AppBundle\Entity\User")
      */
     protected $user;
     /**
-     * @var int
-     *
-     * @ORM\Column(name="Phone", type="integer")
-     */
-    private $phone;
-    /**
      * @var string
      *
      * @ORM\Column(name="Logo", type="string", length=255)
      */
     private $logo;
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="Type", type="string", length=255)
-     */
-    private $type;
+
 
     /**
      * @var string
@@ -196,21 +171,27 @@ class Profil
      * @ORM\Column(name="Fax", type="integer")
      */
     private $fax;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="location", type="string", length=255)
+     */
+    private $location;
 
     /**
-     * @return int
+     * @return string
      */
-    public function getPhone()
+    public function getLocation()
     {
-        return $this->phone;
+        return $this->location;
     }
 
     /**
-     * @param int $Phone
+     * @param string $location
      */
-    public function setPhone($phone)
+    public function setLocation($location)
     {
-        $this->phone = $phone;
+        $this->location = $location;
     }
 
     /**

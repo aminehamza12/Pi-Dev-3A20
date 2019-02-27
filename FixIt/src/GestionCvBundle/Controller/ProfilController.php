@@ -54,6 +54,7 @@ class ProfilController extends Controller
             $em = $this->getDoctrine()->getManager();
             $profil->setUser($user);
             $user->setIsprofil(1);
+            //dump($profil);die;
             $em->persist($profil);
             $em->persist($user);
             $em->flush();
