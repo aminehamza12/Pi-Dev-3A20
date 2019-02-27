@@ -32,14 +32,16 @@
     </div>
 {% endblock %}
 {% block javascripts %}
+    <script src="{{ asset("libraries/momentjs/moment2.js") }}"></script>
     <!-- Include the scheduler library -->
     <script src='{{ asset("libraries/dhtmlx/codebase/dhtmlxscheduler.js") }}' type='text/javascript' charset="utf-8"></script>
+    <!-- Include Momentjs to play with the dates -->
+    <script src="{{ asset("libraries/momentjs/moment.js") }}"></script>
 
     <!-- Include jQuery to handle AJAX Requests -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-    <!-- Include Momentjs to play with the dates -->
-    <script src="{{ asset("libraries/momentjs/moment.js") }}"></script>
+
 
     <script>
         // Expose the appointments globally by printing the JSON string with twig and the raw filter
