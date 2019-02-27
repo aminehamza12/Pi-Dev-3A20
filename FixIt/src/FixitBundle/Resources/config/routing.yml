@@ -1,0 +1,10 @@
+fixit_homepage:
+    path:     /
+    defaults: { _controller: FixitBundle:Default:index }
+fixit_404:
+    path:     /404
+    defaults: { _controller: FixitBundle:Default:wrong }
+admin:
+    resource: "@FixitBundle/Resources/config/adminrouting.yml"
+    prefix:   /admin
+
