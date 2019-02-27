@@ -114,11 +114,12 @@ class CommentController extends Controller
         }
 
         //return $this->redirect($request->getReferer());
-        if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')){
+        $request->getSession()
+            ->getFlashBag()
+            ->add('notice', 'success');
+        $referer = $request->headers->get('referer');
+        return $this->redirect($referer);
 
-        }else{
-            return $this->redirectToRoute('comment_index');
-        }
 
     }
 

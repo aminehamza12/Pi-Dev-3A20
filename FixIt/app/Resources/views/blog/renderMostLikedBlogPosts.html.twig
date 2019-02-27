@@ -3,19 +3,23 @@
         {% for blog in mostLikedBlogs %}
         <li>
             <div class="tg-serviceprovidercontent">
-                <div class="tg-companylogo"><a href="#"><img src="images/blog/img-01.jpg" alt="image description"></a></div>
+                <div class="tg-companylogo"><a href="#"><img src="/uploads/images/blog/{{ blog.image }}" alt="image description"></a></div>
                 <div class="tg-companycontent">
                     <div class="tg-title">
-                        <h3><a href="#">{{ blog.title }}</a></h3>
+                        <h3><a href="{{ path('blog_show', { 'id': blog.id }) }}">{{ blog.title }}</a></h3>
                     </div>
                     <div class="tg-adminname">
-                        <i class="lnr lnr-user"></i>
-                        <span>BY: Tamika Darbonne</span>
+                        <i class="lnr lnr-calendar-full"></i>
+                        <span>{{ blog.editedAt|date("m/d/Y") }}</span>
                     </div>
+                    <div class="tg-adminname">
+                        <i class="glyphicon glyphicon-eye-open"></i>
+                        <span>{{ blog.visites }}</span>
+                    </div>
+
                 </div>
             </div>
         </li>
         {% endfor %}
     </ul>
-    <a class="tg-btnviewall" href="javascript:void(0);">View All</a>
 </div>

@@ -47,7 +47,7 @@
                                         <ul class="tg-postmatadata">
                                             <li>
                                                 <a href="#">
-                                                    <span>{{ app.request.getSchemeAndHttpHost() }}</span>
+                                                    <span>{{ blog.user.username }}</span>
                                                 </a>
                                             </li>
                                             <li>
@@ -88,10 +88,12 @@
                                                                     <li><a href="#">{{ c.createdAt|date('Y-m-d H:i:s') }} 10 Min Ago</a></li>
                                                                 </ul>
                                                             </div>
+                                                            {% if app.user %}
                                                             {% if app.user.id == c.user.id %}
                                                             <div class="tg-rightbox">
                                                                 <a href="{{ path('comment_delete', { 'id': c.id }) }}"><button type="button" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></button></a>
                                                             </div>
+                                                            {% endif %}
                                                             {% endif %}
                                                         </div>
                                                         <div class="tg-description">
@@ -103,6 +105,7 @@
                                         {% endfor %}
                                     </div>
                                     {% if app.user %}
+                                        {% if blog.commentEnable == 'true' %}
 
                                         <div class="tg-companyfeaturebox tg-reviewformrating">
                                             {{ form_start(form_comment) }}
@@ -125,6 +128,26 @@
                                             </form>
                                             {{ form_end(form_comment) }}
                                         </div>
+                                            {% else %}
+                                                <div class="tg-companyfeaturebox tg-reviewformrating">
+
+                                                    <form class="tg-themeform tg-formleavreview" method="post">
+                                                        <fieldset>
+                                                            <div class="tg-companyfeaturetitle">
+                                                                <h3>Leave Your Feedback</h3>
+                                                            </div>
+                                                            <div class="row">
+
+                                                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                                                    <a href="#"><button  class="tg-btn btn-danger">Comments are not enabled for this blog post</button></a>
+                                                                </div>
+                                                            </div>
+
+                                                        </fieldset>
+                                                    </form>
+
+                                                </div>
+                                            {% endif %}
                                     {% else %}
                                         <div class="tg-companyfeaturebox tg-reviewformrating">
 
@@ -136,7 +159,7 @@
                                                     <div class="row">
 
                                                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                                            <a href="#"><button  class="tg-btn">You need to login/create an account to be able to add a comment</button></a>
+                                                            <a href="{{ path('fos_user_security_login') }}"><button  class="tg-btn">You need to login/create an account to be able to add a comment</button></a>
                                                         </div>
                                                     </div>
 
@@ -165,72 +188,14 @@
                                         {{ form_end(searchForm) }}
                                     </div>
                                 </div>
-                                <div class="tg-widget tg-widgetcatagories">
-                                    <div class="tg-widgettitle">
-                                        <h3>Categories</h3>
-                                    </div>
-                                    <div class="tg-widgetcontent">
-                                        <ul>
-                                            <li><a href="#">Finance<em>2145</em></a></li>
-                                            <li><a href="#">Audit<em>4235</em></a></li>
-                                            <li><a href="#">Lifestyle<em>421</em></a></li>
-                                            <li><a href="#">Business<em>556</em></a></li>
-                                            <li><a href="#">Debit<em>85</em></a></li>
-                                        </ul>
-                                        <a class="tg-btnviewall" href="javascript:void(0);" >View All</a>
-                                    </div>
-                                </div>
+
                                 <div class="tg-widget tg-widgetrelatedposts">
                                     <div class="tg-widgettitle">
-                                        <h3>Related blogs</h3>
+                                        <h3>Most Liked Blog Posts</h3>
                                     </div>
-                                    <div class="tg-widgetcontent">
-                                        <ul>
-                                            <li>
-                                                <div class="tg-serviceprovidercontent">
-                                                    <div class="tg-companylogo"><a href="#"><img src="images/blog/img-01.jpg" alt="image description"></a></div>
-                                                    <div class="tg-companycontent">
-                                                        <div class="tg-title">
-                                                            <h3><a href="#">Make A Quick Decision No...</a></h3>
-                                                        </div>
-                                                        <div class="tg-adminname">
-                                                            <i class="lnr lnr-user"></i>
-                                                            <span>BY: Tamika Darbonne</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="tg-serviceprovidercontent">
-                                                    <div class="tg-companylogo"><a href="#"><img src="images/blog/img-02.jpg" alt="image description"></a></div>
-                                                    <div class="tg-companycontent">
-                                                        <div class="tg-title">
-                                                            <h3><a href="#">Tips To Get Bonus Featu...</a></h3>
-                                                        </div>
-                                                        <div class="tg-adminname">
-                                                            <i class="lnr lnr-user"></i>
-                                                            <span>BY: Louetta Remo</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="tg-serviceprovidercontent">
-                                                    <div class="tg-companylogo"><a href="#"><img src="images/blog/img-03.jpg" alt="image description"></a></div>
-                                                    <div class="tg-companycontent">
-                                                        <div class="tg-title">
-                                                            <h3><a href="#">Ask Admin If You Dont Kn...</a></h3>
-                                                        </div>
-                                                        <div class="tg-adminname">
-                                                            <i class="lnr lnr-user"></i>
-                                                            <span>BY: Rigoberto Hogans</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                        <a class="tg-btnviewall" href="javascript:void(0);">View All</a>
-                                    </div>
+
+                                    {{ render(controller('BlogBundle:Blog:renderMostLikedBlogPosts')) }}
+
                                 </div>
                                 <div class="tg-advertisement">
                                     <a href="javascript:void(0);"><img src="images/advertisement/img-02.png" alt="image description"></a>

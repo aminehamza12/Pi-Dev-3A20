@@ -1,5 +1,5 @@
 {% extends 'adminbase.html.twig' %}
-
+{% form_theme form_comment 'bootstrap_3_layout.html.twig' %}
 {% block body %}
     <div class="container">
         <div class="row">
@@ -21,7 +21,7 @@
             </tr>
             <tr>
                 <th>Content</th>
-                <td>{{ blog.content }}</td>
+                <td>{{ blog.content|raw }}</td>
             </tr>
             <tr>
                 <th>Createdat</th>
@@ -32,11 +32,7 @@
                 <td>{% if blog.editedAt %}{{ blog.editedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
             </tr>
             <tr>
-                <th>Notificationenable</th>
-                <td>{{ blog.notificationEnable }}</td>
-            </tr>
-            <tr>
-                <th>Commentenable</th>
+                <th>Comment Enable</th>
                 <td>{{ blog.commentEnable }}</td>
             </tr>
         </tbody>
@@ -61,12 +57,9 @@
                 <td>{{ c.text }}</td>
                 <td>{% if c.createdAt %}{{ comment.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('comment_show', { 'id': c.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('comment_edit', { 'id': c.id }) }}">edit</a>
+                    <ul style="list-style-type:none ; display:flex;">
+                        <li style="padding: 0.5em;">
+                            <a href="{{ path('comment_delete', { 'id': c.id }) }}"><button type="button" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></button></a>
                         </li>
                     </ul>
                 </td>
@@ -75,11 +68,11 @@
         </tbody>
     </table>
 
-    <h1>Comment creation</h1>
+    <h1>Add your comment</h1>
 
     {{ form_start(form_comment) }}
     {{ form_widget(form_comment) }}
-    <input type="submit" value="Create" />
+    <input type="submit" value="Create" class="btn btn-primary"/>
     {{ form_end(form_comment) }}
     </div>
 </div>

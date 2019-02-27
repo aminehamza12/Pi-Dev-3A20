@@ -14,8 +14,8 @@
                 <th>Ref</th>
                 <th>Title</th>
                 <th>Editedat</th>
-                <th>Notificationenable</th>
                 <th>Commentenable</th>
+                <th>Posted By</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -25,8 +25,8 @@
                 <td><a href="{{ path('blog_show', { 'id': blog.id }) }}">{{ "#Blog" ~ blog.id }}</a></td>
                 <td>{{ blog.title }}</td>
                 <td>{% if blog.editedAt %}{{ blog.editedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{{ blog.notificationEnable }}</td>
                 <td>{{ blog.commentEnable }}</td>
+                <td>{{ blog.user.username }}</td>
                 <td>
                     <ul style="list-style-type:none ; display:flex;">
                         <li style="padding: 0.5em;">

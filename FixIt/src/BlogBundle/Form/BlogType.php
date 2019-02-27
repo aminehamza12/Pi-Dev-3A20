@@ -21,12 +21,6 @@ class BlogType extends AbstractType
             ->add('content',CKEditorType::class, [
                 'attr' => ['id' => 'blogbundle_blog_content'],
             ])
-            ->add('notificationEnable',ChoiceType::class,[
-                'choices'=>[
-                    'Yes'=> 'true',
-                    'No'=> 'false',
-                ]
-            ])
             ->add('commentEnable',ChoiceType::class,[
                 'choices'=>[
                     'Yes'=> 'true',

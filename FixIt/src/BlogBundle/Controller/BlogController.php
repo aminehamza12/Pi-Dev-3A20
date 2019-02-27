@@ -49,11 +49,13 @@ class BlogController extends Controller
     {
         $blog = new Blog();
         $form = $this->createForm('BlogBundle\Form\BlogType', $blog);
+        $user = $this->get('security.token_storage')->getToken()->getUser();
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $blog->setCreatedAt(new \DateTime());
             $blog->setEditedAt(new \DateTime());
+            $blog->setUser($user);
             $em = $this->getDoctrine()->getManager();
             $em->persist($blog);
             $em->flush();
@@ -293,8 +295,9 @@ class BlogController extends Controller
         $rsm->addScalarResult('image','image');
         $rsm->addScalarResult('editedAt','editedAt');
         $rsm->addScalarResult('SUM(visites)','visites');
+        $rsm->addScalarResult('id','id');
         $query = $em->createNativeQuery('
-        SELECT title,image,editedAt,SUM(visites) FROM blog as b,blog_views as bv WHERE b.id = bv.blog_id GROUP BY bv.blog_id ORDER BY SUM(visites) DESC LIMIT 3
+        SELECT b.id,title,image,editedAt,SUM(visites) FROM blog as b,blog_views as bv WHERE b.id = bv.blog_id GROUP BY bv.blog_id ORDER BY SUM(visites) DESC LIMIT 3
         ',$rsm);
         $queryResult = $query->getResult();
         return $this->render('blog/renderMostLikedBlogPosts.html.twig', array(

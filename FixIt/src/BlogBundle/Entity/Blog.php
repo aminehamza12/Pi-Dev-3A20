@@ -32,6 +32,27 @@ class Blog
      */
     private $reactions;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="comments")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    private $user;
+
+    /**
+     * @return mixed
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param mixed $user
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+    }
 
 
     /**
@@ -107,12 +128,6 @@ class Blog
     private $editedAt;
 
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="notificationEnable", type="string", length=255)
-     */
-    private $notificationEnable;
 
     /**
      * @var string
@@ -286,30 +301,6 @@ class Blog
     }
 
 
-
-    /**
-     * Set notificationEnable
-     *
-     * @param string $notificationEnable
-     *
-     * @return Blog
-     */
-    public function setNotificationEnable($notificationEnable)
-    {
-        $this->notificationEnable = $notificationEnable;
-
-        return $this;
-    }
-
-    /**
-     * Get notificationEnable
-     *
-     * @return string
-     */
-    public function getNotificationEnable()
-    {
-        return $this->notificationEnable;
-    }
 
     /**
      * Set commentEnable
