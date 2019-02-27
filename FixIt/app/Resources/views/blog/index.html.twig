@@ -39,6 +39,9 @@
                         <li style="padding: 0.5em;">
                             <a href="{{ path('blog_delete', { 'id': blog.id }) }}"><button type="button" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></button></a>
                         </li>
+                        <li style="padding: 0.5em;">
+                            <a href="{{ path('blog_blogStatistics', { 'id': blog.id }) }}"><button type="button" class="btn btn-primary"><i class="glyphicon glyphicon-stats"></i></button></a>
+                        </li>
                     </ul>
                 </td>
             </tr>

@@ -1,0 +1,6 @@
+{% extends 'adminbase.html.twig' %}
+{% block body %}
+    {% for blog in blogs %}
+    <h1>{{ blog.title }}</h1>
+    {% endfor %}
+{% endblock %}

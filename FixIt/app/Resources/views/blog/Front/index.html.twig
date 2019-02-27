@@ -73,10 +73,14 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="{{ path('blogcategorie_show', { 'id': blog.blogCategorie.id }) }}">
+                                            <a href="{{ path('blogcategorie_showBlogsWithBlogCategorie', { 'id': blog.blogCategorie.id }) }}">
                                                 <i class="glyphicon glyphicon-folder-open"></i>
                                                 <span > {{ blog.blogCategorie.name }} </span>
                                             </a>
+                                        </li>
+                                        <li>
+                                            <i class="glyphicon glyphicon-eye-open"></i>
+                                            <span>{{ render(controller('BlogBundle:Blog:numberVisites', { blog : blog } )) }}</span>
                                         </li>
                                     </ul>
                                 </div>

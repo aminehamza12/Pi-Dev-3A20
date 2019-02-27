@@ -1,12 +1,15 @@
 {% extends 'adminbase.html.twig' %}
 
 {% block body %}
+<div class="container">
+    <div class="row">
+
     <h1>Blogcategories list</h1>
 
-    <table class="table">
+    <table class="table table-bordered table-striped table-hover table-responsive">
         <thead>
             <tr>
-                <th>Id</th>
+                <th>Ref</th>
                 <th>Name</th>
                 <th>Description</th>
                 <th>Actions</th>
@@ -15,16 +18,19 @@
         <tbody>
         {% for blogCategorie in blogCategories %}
             <tr>
-                <td><a href="{{ path('blogcategorie_show', { 'id': blogCategorie.id }) }}">{{ blogCategorie.id }}</a></td>
+                <td><a href="{{ path('blogcategorie_show', { 'id': blogCategorie.id }) }}">{{ "#BG"~blogCategorie.id }}</a></td>
                 <td>{{ blogCategorie.name }}</td>
                 <td>{{ blogCategorie.description }}</td>
                 <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('blogcategorie_show', { 'id': blogCategorie.id }) }}">show</a>
+                    <ul style="list-style-type:none ; display:flex;">
+                        <li style="padding: 0.5em;">
+                            <a href="{{ path('blogcategorie_show', { 'id': blogCategorie.id }) }}"><button type="button" class="btn btn-success"><i class="glyphicon glyphicon-eye-open"></i></button></a>
                         </li>
-                        <li>
-                            <a href="{{ path('blogcategorie_edit', { 'id': blogCategorie.id }) }}">edit</a>
+                        <li style="padding: 0.5em;">
+                            <a href="{{ path('blogcategorie_edit', { 'id': blogCategorie.id }) }}"><button type="button" class="btn btn-warning"><i class="glyphicon glyphicon-edit"></i></button></a>
+                        </li>
+                        <li style="padding: 0.5em;">
+                            <a href="{{ path('blogcategorie_delete', { 'id': blogCategorie.id }) }}"><button type="button" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></button></a>
                         </li>
                     </ul>
                 </td>
@@ -33,9 +39,12 @@
         </tbody>
     </table>
 
-    <ul>
+    <ul style="list-style-type:none ;">
         <li>
-            <a href="{{ path('blogcategorie_new') }}">Create a new blogCategorie</a>
+            <a href="{{ path('blogcategorie_new') }}"><button type="button" class="btn btn-primary">Create a new blogCategorie</button></a>
         </li>
     </ul>
+
+    </div>
+</div>
 {% endblock %}

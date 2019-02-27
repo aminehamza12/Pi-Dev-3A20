@@ -7,15 +7,125 @@
     <h1>Partner creation</h1>
 
     {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" class="btn btn-primary" />
+        <div class="form-group">
+            <b>{{ form_label(form.name,'Name  ') }}<i id="glyphicon-name" class="glyphicon glyphicon-ok-sign" style="padding: 0.5em;color:red;" ></i></b>
+            {{ form_widget(form.name,{'attr':{'class':'form-control'}}) }}
+            <small id="name-help" class="form-text text-muted" style="">Minimum Length : 5 , Maximum Length : 50</small>
+        </div>
+        <div class="form-group">
+            <b>{{ form_label(form.link,'Link  ') }}<i id="glyphicon-link" class="glyphicon glyphicon-ok-sign" style="padding: 0.5em;color:red;" ></i></b>
+            {{ form_widget(form.link,{'attr':{'class':'form-control'}}) }}
+            <small id="link-help" class="form-text text-muted" style="">Minimum Length : 7 , Maximum Length : 255</small>
+        </div>
+        <div class="form-group">
+            <b>{{ form_label(form.description,'Description  ') }}<i id="glyphicon-description" class="glyphicon glyphicon-ok-sign" style="padding: 0.5em;color:red;" ></i></b>
+            {{ form_widget(form.description,{'attr':{'class':'form-control'}}) }}
+            <small id="description-help" class="form-text text-muted" style="">Minimum Length : 50 , Maximum Length : 300</small>
+        </div>
+        <div class="form-group">
+            <b>{{ form_label(form.type,'Type  ') }}</b>
+            {{ form_widget(form.type,{'attr':{'class':'form-control'}}) }}
+        </div>
+        <div class="form-group">
+            <b>{{ form_label(form.location,'Location  ') }}</b>
+            {{ form_widget(form.location,{'attr':{'class':'form-control'}}) }}
+        </div>
+        <div class="form-group">
+            <b>{{ form_label(form.imageFile,'Image  ') }}<i id="glyphicon-image" class="glyphicon glyphicon-ok-sign" style="padding: 0.5em;color:red;" ></i></b>
+            {{ form_widget(form.imageFile,{'attr':{'class':'form-control'}}) }}
+            <small id="image-help" class="form-text text-muted" style="">Must upload thumbnail</small>
+        </div>
+
+        <input id="btn-verif" type="submit" value="Create" class="btn btn-primary" />
     {{ form_end(form) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('partner_index') }}">Back to the list</a>
-        </li>
-    </ul>
     </div>
 </div>
+
+    <script src="{{ asset('jquery-3.3.1.js') }}"></script>
+    <script>
+        var verif_name = false;
+        var verif_link = false;
+        var verif_description = false;
+        var verif_image = false;
+        $(document).ready(function () {
+
+
+        });
+
+        $('#blogbundle_partner_name').on('keyup',function(){
+            var name_length = $(this).val().length;
+            if(name_length < 5 || name_length > 50)
+            {
+                $('#glyphicon-name').css('color', 'red');
+                $('#name-help').css('display', '');
+                verif_name = false;
+            }else{
+                $('#glyphicon-name').css('color', 'green');
+                $('#name-help').css('display', 'none');
+                verif_name = true;
+            }
+        });
+
+        $('#blogbundle_partner_link').on('keyup',function(){
+            var link_length = $(this).val().length;
+            if(link_length < 7 || link_length > 255)
+            {
+                $('#glyphicon-link').css('color', 'red');
+                $('#link-help').css('display', '');
+                verif_link = false;
+            }else{
+                $('#glyphicon-link').css('color', 'green');
+                $('#link-help').css('display', 'none');
+                verif_link = true;
+            }
+
+        });
+
+
+        for (var i in CKEDITOR.instances) {
+            CKEDITOR.instances[i].on('change', function() {
+                var desc = CKEDITOR.instances['blogbundle_partner_description'].getData();
+                var description_length = desc.length;
+                if(description_length < 50 || description_length > 300)
+                {
+                    $('#glyphicon-description').css('color', 'red');
+                    $('#description-help').css('display', '');
+                    verif_description = false;
+                }else{
+                    $('#glyphicon-description').css('color', 'green');
+                    $('#description-help').css('display', 'none');
+                    verif_description = true;
+                }
+            });
+        }
+
+        $('#blogbundle_partner_imageFile_file').on("change",function () {
+            var image_length = $('#blogbundle_partner_imageFile_file').val();
+            if(image_length == ''){
+                $('#glyphicon-image').css('color', 'red');
+                $('#image-help').css('display', '');
+                verif_image = false;
+            }else{
+                $('#glyphicon-image').css('color', 'green');
+                $('#image-help').css('display', 'none');
+                verif_image = true;
+            }
+        });
+
+        $('#btn-verif').on("click",function (event) {
+            if(verif_name != true || verif_link != true || verif_description != true || verif_image != true){
+                event.preventDefault();
+                if(verif_name == false){alert("Verify your Partner Name")}
+                else if(verif_link == false){alert("Verify your Partner Link")}
+                else if(verif_description == false){alert("Verify your Description")}
+                else if(verif_image == false){alert("Verify your thumbnail upload")}
+            }
+        });
+
+
+
+
+    </script>
+
 {% endblock %}

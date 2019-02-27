@@ -47,7 +47,7 @@
                                         <ul class="tg-postmatadata">
                                             <li>
                                                 <a href="#">
-                                                    <span>BY: Eldridge Hemenway</span>
+                                                    <span>{{ app.request.getSchemeAndHttpHost() }}</span>
                                                 </a>
                                             </li>
                                             <li>
@@ -90,7 +90,7 @@
                                                             </ul>
                                                         </div>
                                                         <div class="tg-rightbox">
-                                                            <a class="tg-btnreply" href="#"><i class="fa fa-mail-reply"></i></a>
+                                                            <a href="{{ path('comment_delete', { 'id': c.id }) }}"><button type="button" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></button></a>
                                                         </div>
                                                     </div>
                                                     <div class="tg-description">
@@ -101,6 +101,7 @@
                                         </div>
                                         {% endfor %}
                                     </div>
+                                    {% if app.user %}
 
                                     <div class="tg-companyfeaturebox tg-reviewformrating">
                                         {{ form_start(form_comment) }}
@@ -123,6 +124,26 @@
                                         </form>
                                         {{ form_end(form_comment) }}
                                     </div>
+                                        {% else %}
+                                            <div class="tg-companyfeaturebox tg-reviewformrating">
+
+                                                <form class="tg-themeform tg-formleavreview" method="post">
+                                                    <fieldset>
+                                                        <div class="tg-companyfeaturetitle">
+                                                            <h3>Leave Your Feedback</h3>
+                                                        </div>
+                                                        <div class="row">
+
+                                                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                                                <a href="#"><button  class="tg-btn">You need to login/create an account to be able to add a comment</button></a>
+                                                            </div>
+                                                        </div>
+
+                                                    </fieldset>
+                                                </form>
+
+                                            </div>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>
@@ -133,12 +154,14 @@
                                         <h3>Search</h3>
                                     </div>
                                     <div class="tg-widgetcontent">
+                                        {{ form_start(searchForm) }}
                                         <form class="tg-themeform">
                                             <div class="form-group">
-                                                <input type="search" name="search" class="form-control" placeholder="Search Here">
+                                                {{ form_widget(searchForm) }}
                                             </div>
                                             <button type="submit" class="tg-btn tg-btn-lg">Search Now</button>
                                         </form>
+                                        {{ form_end(searchForm) }}
                                     </div>
                                 </div>
                                 <div class="tg-widget tg-widgetcatagories">
