@@ -374,8 +374,8 @@ class BlogController extends Controller
 
         $year = 2019;
         $range = array();
-        $start = strtotime($year.'-02-01');
-        $end = strtotime($year.'-02-28');
+        $start = strtotime($year.'-'.$monthId.'-01');
+        $end = strtotime($year.'-'.$monthId.'-30');
 
         do {
             $range[] = date('Y-m-d',$start);
