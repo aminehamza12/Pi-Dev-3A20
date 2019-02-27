@@ -42,30 +42,10 @@
                             <span>Profile Settings</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="dashboardbusinesshours.html">
-                            <i class="lnr lnr-clock"></i>
-                            <span>Business Hours</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="dashboardmanageservice.html">
-                            <i class="lnr lnr-briefcase"></i>
-                            <span>Manage Services</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="dashboardmanageteams.html">
-                            <i class="lnr lnr-users"></i>
-                            <span>Manage Team</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="dashboardmanagejobs.html">
-                            <i class="lnr lnr-map"></i>
-                            <span>Manage Jobs</span>
-                        </a>
-                    </li>
+
+                    {%  if app.request.attributes.get('_route') == 'fos_message' %}
+                    <li class="tg-active">{% else %}
+                    <li>{% endif %}
                     <li class="tg-privatemessages tg-hasdropdown">
                         <a id="tg-btntoggle" class="tg-btntoggle" href="javascript:void(0);">
                             <i class="lnr lnr-envelope"></i>
@@ -75,78 +55,39 @@
                         </a>
                         <ul class="tg-emailmenu">
                             <li class="tg-active">
-                                <a href="dashboardprivatemessages.html">
+                                <a href="http://127.0.0.1:8000/optional_routing_prefix/">
                                     <span>inbox</span>
                                     <em class="tg-totalmessages">526</em>
                                     <em class="tg-newmessages">1</em>
                                 </a>
                             </li>
                             <li>
-                                <a href="dashboardprivatemessages.html">
+                                <a href="http://127.0.0.1:8000/optional_routing_prefix/sent">
                                     <span>sent</span>
                                     <em class="tg-totalmessages">370</em>
                                 </a>
                             </li>
                             <li>
-                                <a href="dashboardprivatemessages.html">
+                                <a href="http://127.0.0.1:8000/optional_routing_prefix/deleted">
                                     <span>trash</span>
                                     <em class="tg-totalmessages">160</em>
                                 </a>
                             </li>
-                            <li>
-                                <a href="dashboardprivatemessages.html">
-                                    <span>spam/junk</span>
-                                    <em class="tg-totalmessages">1260</em>
-                                </a>
-                            </li>
+
                         </ul>
                     </li>
                     <li>
-                        <a href="dashboardappointment.html">
+                        {%  if app.request.attributes.get('_route') == 'scheduler_index' %}
+                    <li class="tg-active">{% else %}
+                    <li>{% endif %}
+                        <a href="{{ path('scheduler_index') }}">
                             <i class="lnr lnr-calendar-full"></i>
                             <span>Appointments</span>
                         </a>
                     </li>
+
                     <li>
-                        <a href="dashboardappointmentsetting.html">
-                            <i class="lnr lnr-calendar-full"></i>
-                            <span>Appointment Settings</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="dashboardfavoritlisting.html">
-                            <i class="lnr lnr-heart"></i>
-                            <span>Favourite Listings</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="dashboardinvoices.html">
-                            <i class="lnr lnr-list"></i>
-                            <span>Invoices</span>
-                            <em class="tg-invoices">23</em>
-                        </a>
-                    </li>
-                    <li class="tg-updatepackage">
-                        <a href="dashboardupgradepackage.html">
-                            <i class="lnr lnr-layers"></i>
-                            <span>Update Package</span>
-                            <em class="lnr lnr-flag tg-taginfo"></em>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="dashboardsecuritysetting.html">
-                            <i class="lnr lnr-construction"></i>
-                            <span>Security Settings</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="dashboardprivacysetting.html">
-                            <i class="lnr lnr-lock"></i>
-                            <span>Privacy Settings</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
+                        <a href="{{ path('fos_user_security_logout') }}">
                             <i class="lnr lnr-exit"></i>
                             <span>Logout</span>
                         </a>
