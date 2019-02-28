@@ -19,16 +19,28 @@ class productController extends Controller
      * Lists all product entities.
      *
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
         $user=$this->getUser();
         $products = $em->getRepository('FixitBundle:product')->findAll();
         $media = $em->getRepository('FixitBundle:Media')->findAll();
         $category = $em->getRepository('FixitBundle:CategoryProduct')->findAll();
+        $id = 'thread_id';
+        $thread = $this->container->get('fos_comment.manager.thread')->findThreadById($id);
+        if (null === $thread) {
+            $thread = $this->container->get('fos_comment.manager.thread')->createThread();
+            $thread->setId($id);
+            $thread->setPermalink($request->getUri());
 
+            // Add the thread
+            $this->container->get('fos_comment.manager.thread')->saveThread($thread);
+        }
+
+        $comments = $this->container->get('fos_comment.manager.comment')->findCommentTreeByThread($thread);
         return $this->render('product/index.html.twig', array(
-            'products' => $products,'user'=> $user,'media' => $media,'category' => $category,
+            'products' => $products,'user'=> $user,'media' => $media,'category' => $category,'comments' => $comments,
+            'thread' => $thread,
         ));
     }
     public function indexadminAction()
@@ -40,14 +52,30 @@ class productController extends Controller
         $category = $em->getRepository('FixitBundle:CategoryProduct')->findAll();
 
         return $this->render('product/index1.html.twig', array(
-            'products' => $products,'user'=> $user,'media' => $media,'category' => $category,
+            'products' => $products,
+            'user'=> $user,
+            'media' => $media,
+            'category' => $category,
         ));
     }
     public function catAction(Request $request)
     {
 
         $em    = $this->get('doctrine.orm.entity_manager');
-        $dql   = "SELECT a FROM FixitBundle:product a WHERE a.category='".$_POST['nadim']."' ";
+        if($_POST['nadim']=='sell')
+        {
+            $dql   = "SELECT a FROM FixitBundle:product a ORDER BY a.nbcommande ";
+        }elseif ($_POST['nadim']=='view')
+        {
+            $dql   = "SELECT a FROM FixitBundle:product a ORDER BY a.view ";
+        }elseif ($_POST['nadim']=='name')
+        {
+            $dql   = "SELECT a FROM FixitBundle:product a ORDER BY a.name ";
+        }elseif ($_POST['nadim']=='price')
+        {
+            $dql   = "SELECT a FROM FixitBundle:product a ORDER BY a.price ";
+        }
+
         $query = $em->createQuery($dql);
         $user=$this->getUser();
         $category = $em->getRepository('FixitBundle:CategoryProduct')->findAll();
@@ -64,13 +92,26 @@ class productController extends Controller
             $request->query->getInt('page', 1)/*page number*/,
             10/*limit per page*/
         );
+        $id = 'thread_id';
+        $thread = $this->container->get('fos_comment.manager.thread')->findThreadById($id);
+        if (null === $thread) {
+            $thread = $this->container->get('fos_comment.manager.thread')->createThread();
+            $thread->setId($id);
+            $thread->setPermalink($request->getUri());
 
+            // Add the thread
+            $this->container->get('fos_comment.manager.thread')->saveThread($thread);
+        }
+
+        $comments = $this->container->get('fos_comment.manager.comment')->findCommentTreeByThread($thread);
         // parameters to template
         return $this->render('product/index.html.twig', array('pagination' => $pagination,
             'user' =>$user,
             'category'=> $category,
             'media'=>$media,
-            'nbr' => $nbr));
+            'nbr' => $nbr,
+            'comments' =>$comments,
+            'thread' =>$thread));
     }
     public function listadminAction(Request $request)
     {
@@ -98,7 +139,7 @@ class productController extends Controller
             'user' =>$user,
             'category'=> $category,
             'media'=>$media,
-            'nbr' =>$nbr));
+            'nbr' =>$nbr,));
     }
     public function listAction(Request $request)
     {
@@ -108,6 +149,18 @@ class productController extends Controller
         $user=$this->getUser();
         $category = $em->getRepository('FixitBundle:CategoryProduct')->findAll();
         $media = $em->getRepository('FixitBundle:Media')->findAll();
+        $id = 'thread_id';
+        $thread = $this->container->get('fos_comment.manager.thread')->findThreadById($id);
+        if (null === $thread) {
+            $thread = $this->container->get('fos_comment.manager.thread')->createThread();
+            $thread->setId($id);
+            $thread->setPermalink($request->getUri());
+
+            // Add the thread
+            $this->container->get('fos_comment.manager.thread')->saveThread($thread);
+        }
+
+        $comments = $this->container->get('fos_comment.manager.comment')->findCommentTreeByThread($thread);
         $nbr=0;
         $nbr1 = $em->getRepository('FixitBundle:notification')->findBy(array('etat' => 0 ));
         foreach ($nbr1 as $n)
@@ -126,7 +179,9 @@ class productController extends Controller
             'user' =>$user,
             'category'=> $category,
             'media'=>$media,
-            'nbr' => $nbr));
+            'nbr' => $nbr,
+            'comments' => $comments,
+            'thread' => $thread,));
     }
     public function filterAction(Request $request)
     {
@@ -153,13 +208,26 @@ class productController extends Controller
             $request->query->getInt('page', 1)/*page number*/,
             6/*limit per page*/
         );
+        $id = 'thread_id';
+        $thread = $this->container->get('fos_comment.manager.thread')->findThreadById($id);
+        if (null === $thread) {
+            $thread = $this->container->get('fos_comment.manager.thread')->createThread();
+            $thread->setId($id);
+            $thread->setPermalink($request->getUri());
 
+            // Add the thread
+            $this->container->get('fos_comment.manager.thread')->saveThread($thread);
+        }
+
+        $comments = $this->container->get('fos_comment.manager.comment')->findCommentTreeByThread($thread);
         // parameters to template
         return $this->render('product/index.html.twig', array('pagination' => $pagination,
             'user' =>$user,
             'category'=> $category,
             'media'=>$media,
-            'nbr' =>$nbr));
+            'nbr' =>$nbr,
+            'comments' =>$comments,
+            'thread'=>$thread));
     }
     public function mesproduitsAction(Request $request)
     {
@@ -211,6 +279,8 @@ class productController extends Controller
         }
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $product->setView(0);
+            $product->setNbcommande(0);
             $em->persist($product);
             $em->flush();
 
@@ -249,12 +319,14 @@ class productController extends Controller
      * Finds and displays a product entity.
      *
      */
-    public function showAction(product $product)
+    public function showAction(Request $request ,product $product)
     {
         $deleteForm = $this->createDeleteForm($product);
         $em = $this->getDoctrine()->getManager();
 
         $media = $em->getRepository('FixitBundle:Media')->findBy(array('product_id'=>$product));
+        $product->setView($product->getView()+1);
+        $em->flush();
         $nbr=0;
         $nbr1 = $em->getRepository('FixitBundle:notification')->findBy(array('etat' => 0 ));
         foreach ($nbr1 as $n)
@@ -262,12 +334,26 @@ class productController extends Controller
             $nbr ++;
         }
         $user=$this->getUser();
+        $id = 'thread_id';
+        $thread = $this->container->get('fos_comment.manager.thread')->findThreadById($id);
+        if (null === $thread) {
+            $thread = $this->container->get('fos_comment.manager.thread')->createThread();
+            $thread->setId($id);
+            $thread->setPermalink($request->getUri());
+
+            // Add the thread
+            $this->container->get('fos_comment.manager.thread')->saveThread($thread);
+        }
+
+        $comments = $this->container->get('fos_comment.manager.comment')->findCommentTreeByThread($thread);
         return $this->render('product/show.html.twig', array(
             'product' => $product,
             'media'=>$media,
             'delete_form' => $deleteForm->createView(),
             'user'=> $user,
-            'nbr' => $nbr
+            'nbr' => $nbr,
+            'comments' => $comments,
+            'thread' => $thread,
         ));
     }
     public function showadminAction(product $product)

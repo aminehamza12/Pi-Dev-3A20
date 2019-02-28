@@ -72,6 +72,20 @@ class product
     private $tel;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="view", type="integer")
+     */
+    private $view;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="nbcommande", type="integer")
+     */
+    private $nbcommande;
+
+    /**
      * @ORM\ManyToOne(targetEntity="CategoryProduct")
      * @ORM\JoinColumn(name="category",referencedColumnName="id",onDelete="CASCADE")
      */
@@ -285,5 +299,40 @@ class product
     {
         return $this->adress;
     }
+
+    /**
+     * @return int
+     */
+    public function getView()
+    {
+        return $this->view;
+    }
+
+    /**
+     * @param int $view
+     */
+    public function setView($view)
+    {
+        $this->view = $view;
+    }
+
+    /**
+     * @return int
+     */
+    public function getNbcommande()
+    {
+        return $this->nbcommande;
+    }
+
+    /**
+     * @param int $nbcommande
+     */
+    public function setNbcommande($nbcommande)
+    {
+        $this->nbcommande = $nbcommande;
+    }
+
+
+
 }
 

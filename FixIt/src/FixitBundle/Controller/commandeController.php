@@ -45,6 +45,7 @@ class commandeController extends Controller
         $notification->setContenu('le client '.$this->getUser()->getNom().' veut reserver votre produit '.$product->getName());
         $notification->setUser($this->getUser());
         $notification->setProduct($product);
+        $product->setNbcommande($product->getNbcommande()+1);
         $em->persist($notification);
         $product = $em->getRepository('FixitBundle:product')->find($product);
         $user=$this->getUser();
@@ -192,4 +193,34 @@ class commandeController extends Controller
         );
 
     }
+    public function indexadminAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $user=$this->getUser();
+        $commandes = $em->getRepository('FixitBundle:commande')->findAll();
+
+        return $this->render('commande/index1.html.twig', array(
+            'commandes' => $commandes,'user'=>$user
+        ));
+    }
+
+    public function showadminAction(commande $commande)
+    {
+        $deleteForm = $this->createDeleteForm($commande);
+        $em = $this->getDoctrine()->getManager();
+        $user=$this->getUser();
+        $nbr=0;
+        $nbr1 = $em->getRepository('FixitBundle:notification')->findBy(array('etat' => 0 ));
+        foreach ($nbr1 as $n)
+        {
+            $nbr ++;
+        }
+        return $this->render('commande/show1.html.twig', array(
+            'commande' => $commande,'user'=>$user,
+            'delete_form' => $deleteForm->createView(),
+            'nbr' =>$nbr
+        ));
+    }
+
+
 }

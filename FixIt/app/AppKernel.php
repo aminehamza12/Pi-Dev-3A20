@@ -25,7 +25,6 @@ class AppKernel extends Kernel
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new \Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
-            new FOS\MessageBundle\FOSMessageBundle(),
             new AVATOR\TurbosmsBundle\AVATORTurbosmsBundle()
             // new blackknight467\StarRatingBundle\StarRatingBundle(),
         ];

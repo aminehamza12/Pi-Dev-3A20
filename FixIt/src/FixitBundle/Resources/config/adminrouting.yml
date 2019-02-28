@@ -70,12 +70,12 @@ commandeadmin_new:
      methods:  [GET, POST]
 commandeadmin_index:
      path:     /C
-     defaults: { _controller: "FixitBundle:commande:index" }
+     defaults: { _controller: "FixitBundle:commande:indexadmin" }
      methods:  GET
 
 commandeadmin_show:
      path:     /{id}/showC
-     defaults: { _controller: "FixitBundle:commande:show" }
+     defaults: { _controller: "FixitBundle:commande:showadmin" }
      methods:  GET
 
 commandeadmin_edit:

@@ -28,6 +28,9 @@
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     <link rel="stylesheet" href="{{ asset('css/color.css') }}">
     <link rel="stylesheet" href="{{ asset('css/responsive.css') }}">
+    {% stylesheets '@FOSCommentBundle/Resources/public/css/comments.css' %}
+        <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+    {% endstylesheets %}
     <script src="{{ asset('js/vendor/modernizr-2.8.3-respond-1.4.2.min.js') }}"></script>
 </head>
 {% if user ==null %}
@@ -534,7 +537,13 @@
 <script src="{{ asset('js/readmore.js') }}"></script>
 <script src="{{ asset('js/gmap3.js') }}"></script>
 <script src="{{ asset('js/main.js') }}"></script>
+{# jQuery must be available in the page by this time, and make sure javascript block is after
+  <div id="fos_comment_thread"> in the DOM Tree, for example right before </body> tag
+#}
+{% javascripts '@FOSCommentBundle/Resources/public/js/comments.js' %}
+<script src="{{ asset_url }}"></script>
+{% endjavascripts %}
 </body>
-
+</body>
 <!-- Mirrored from mydesignhoard.com/HTML/html/service_provider/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 26 Jan 2019 13:57:25 GMT -->
 </html>

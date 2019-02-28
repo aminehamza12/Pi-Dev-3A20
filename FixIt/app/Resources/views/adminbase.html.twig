@@ -13,11 +13,6 @@
     <link href="http://fonts.googleapis.com/css?family=Roboto+Slab:400,300,100,700" rel="stylesheet">
     <link href="http://fonts.googleapis.com/css?family=Roboto:500,400italic,100,700italic,300,700,500italic,400" rel="stylesheet">
     <!--Bootstrap Stylesheet [ REQUIRED ]-->
-    <link href="{{ asset('back/dataTables.bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('back/buttons.bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('back/fixedHeader.bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('back/responsive.bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('back/scroller.bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('admin/css/bootstrap.min.css') }}" rel="stylesheet">
     <!--Jasmine Stylesheet [ REQUIRED ]-->
     <link href="{{ asset('admin/css/style.css') }}" rel="stylesheet">
@@ -42,6 +37,14 @@
     <!--=================================================-->
     <!--Page Load Progress Bar [ OPTIONAL ]-->
     <link href="{{ asset('admin/plugins/pace/pace.min.css') }}" rel="stylesheet">
+    <!--FooTable [ OPTIONAL ]-->
+    <link href="{{ asset('admin/plugins/fooTable/css/footable.core.css') }}" rel="stylesheet">
+    <!--Demo [ DEMONSTRATION ]-->
+    <link href="{{ asset('admin/css/demo/jasmine.css') }}" rel="stylesheet">
+    <!--SCRIPT-->
+    <!--=================================================-->
+    <!--Page Load Progress Bar [ OPTIONAL ]-->
+    <link href=" {{ asset('admin/plugins/pace/pace.min.css') }}" rel="stylesheet">
     <script src="{{ asset('admin/plugins/pace/pace.min.js') }}"></script>
     <script src="{{ asset('admin/js/jquery.dataTables.min.js') }}"> </script>
 </head>
@@ -656,22 +659,8 @@
 <script src="{{ asset('admin/js/jquery.dataTables.min.js') }}"> </script>
     <script src="{{ asset('admin/js/dataTables.jqueryui.min.js') }}"> </script>
     <script src="{{ asset('admin/js/dataTables.foundation.min.js') }}"> </script>
-
-    <script src="{{ asset('back/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('back/dataTables.bootstrap.min.js') }}"></script>
-    <script src="{{ asset('back/dataTables.buttons.min.js') }}"></script>
-    <script src="{{ asset('back/buttons.bootstrap.min.js') }}"></script>
-    <script src="{{ asset('back/buttons.flash.min.js') }}"></script>
-    <script src="{{ asset('back/buttons.html5.min.js') }}"></script>
-    <script src="{{ asset('back/buttons.print.min.js') }}"></script>
-    <script src="{{ asset('back/dataTables.fixedHeader.min.js') }}"></script>
-    <script src="{{ asset('back/dataTables.keyTable.min.js') }}"></script>
-    <script src="{{ asset('back/dataTables.responsive.min.js') }}"></script>
-    <script src="{{ asset('back/responsive.bootstrap.js') }}"></script>
-    <script src="{{ asset('back/dataTables.scroller.min.js') }}"></script>
-    <script src="{{ asset('back/jszip.min.js') }}"></script>
-    <script src="{{ asset('back/pdfmake.min.js') }}"></script>
-    <script src="{{ asset('back/vfs_fonts.js') }}"></script>
+    <script src="{{ asset('admin/plugins/fooTable/dist/footable.all.min.js') }}"></script>
+    <script src="{{ asset('admin/js/demo/tables-footable.js') }}"></script>
 </div>
 </body>
 </html>
