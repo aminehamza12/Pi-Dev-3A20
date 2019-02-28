@@ -1,0 +1,24 @@
+partner_index:
+    path:     /
+    defaults: { _controller: "BlogBundle:Partner:index" }
+    methods:  GET
+
+partner_show:
+    path:     /{id}/show
+    defaults: { _controller: "BlogBundle:Partner:show" }
+    methods:  GET
+
+partner_new:
+    path:     /new
+    defaults: { _controller: "BlogBundle:Partner:new" }
+    methods:  [GET, POST]
+
+partner_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "BlogBundle:Partner:edit" }
+    methods:  [GET, POST]
+
+partner_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "BlogBundle:Partner:delete" }
+    methods:  GET

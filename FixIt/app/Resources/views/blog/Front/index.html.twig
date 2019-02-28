@@ -1,0 +1,212 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <!--************************************
+                 Inner Page Banner Start
+         *************************************-->
+    <div class="tg-innerpagebanner">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="tg-pagetitle">
+                        <h1>Blog detail</h1>
+                    </div>
+                    <ol class="tg-breadcrumb">
+                        <li><a href="#">Home</a></li>
+                        <li class="tg-active">Blog detail</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--************************************
+            Inner Page Banner End
+    *************************************-->
+    <!--************************************
+            Main Start
+    *************************************-->
+    <main id="tg-main" class="tg-main tg-paddingzero tg-haslayout">
+        <!--************************************
+                Blog Grid Start
+        *************************************-->
+        <div class="tg-main-section tg-haslayout">
+            <div class="container">
+                <div class="row">
+                    <div id="tg-twocolumns" class="tg-twocolumns">
+                        <div class="col-xs-12 col-sm-7 col-md-9 col-lg-9">
+                            <div class="tg-bloggird" id="blogsAjax">
+                                {% for blog in blogs %}
+                                    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
+                                        <article class="tg-post">
+                                            <figure class="tg-featuredimg">
+                                                <a href="javascript:void(0);"><img src="{{ vich_uploader_asset(blog, 'imageFile') }}" alt="image description"></a>
+                                            </figure>
+                                            <div class="tg-postcontent">
+                                                <div class="tg-title">
+                                                    <h3><a href="{{ path('blog_show', { 'id': blog.id }) }}">{{ blog.title }}</a></h3>
+                                                </div>
+                                                <div class="dummy">
+                                                    <p>{{ blog.description }}</p>
+                                                </div>
+                                                <ul class="tg-postmatadata">
+                                                    <li>
+                                                        <a href="#">
+                                                            <i class="lnr lnr-user"></i>
+                                                            <span>BY: Tamika Darbonne</span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">
+                                                            <i class="lnr lnr-calendar-full"></i>
+                                                            <span>{{ blog.editedAt|date("m/d/Y") }}</span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="{{ path('blogcategorie_showBlogsWithBlogCategorie', { 'id': blog.blogCategorie.id }) }}">
+                                                            <i class="glyphicon glyphicon-folder-open"></i>
+                                                            <span > {{ blog.blogCategorie.name }} </span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <i class="glyphicon glyphicon-eye-open"></i>
+                                                        <span>{{ render(controller('BlogBundle:Blog:numberVisites', { blog : blog } )) }}</span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </article>
+                                    </div>
+
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-5 col-md-3 col-lg-3">
+                            <aside id="tg-sidebar" class="tg-sidebar">
+                                <div class="tg-widget tg-widgetsearch">
+                                    <div class="tg-widgettitle">
+                                        <h3>Search</h3>
+                                    </div>
+                                    <div class="tg-widgetcontent">
+                                        <form class="tg-themeform">
+                                            <div class="form-group">
+                                                <input type="search" name="search" class="form-control search" placeholder="Search Here">
+                                            </div>
+                                            <button type="submit" class="tg-btn tg-btn-lg">Search Now</button>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="tg-widget tg-widgetrelatedposts">
+                                    <div class="tg-widgettitle">
+                                        <h3>Most Liked Blog Posts</h3>
+                                    </div>
+
+                                    {{ render(controller('BlogBundle:Blog:renderMostLikedBlogPosts')) }}
+
+                                </div>
+                                <div class="tg-advertisement">
+                                    <a href="javascript:void(0);"><img src="images/advertisement/img-02.png" alt="image description"></a>
+                                </div>
+                            </aside>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--************************************
+                Blog Grid End
+        *************************************-->
+    </main>
+    <!--************************************
+            Main End
+    *************************************-->
+
+    <!-- jQuery is necessary -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <script type="text/javascript">
+        jQuery(document).ready(function() {
+            var searchRequest = null;
+            $(".search").keyup(function() {
+                var minlength = 1;
+                var that = this;
+                var value = $(this).val();
+                var entitySelector = $("#blogsAjax").html('');
+                if (value.length >= minlength ) {
+                    if (searchRequest != null)
+                        searchRequest.abort();
+                    searchRequest = $.ajax({
+                        type: "GET",
+                        url: "{{ path('blog_searchAjax') }}",
+                        data: {
+                            'q' : value
+                        },
+                        dataType: "text",
+                        success: function(msg){
+                            //we need to check if the value is the same
+                            if (value==$(that).val()) {
+                                var result = JSON.parse(msg);
+                                $.each(result, function(key, arr) {
+                                    $.each(arr, function(id, value) {
+                                        if (key == 'entities') {
+                                            if (id != 'error') {
+
+
+                                                entitySelector.append(
+                                                    '<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">'+
+                                                '<article class="tg-post">'+
+                                                '<figure class="tg-featuredimg">'+
+                                                    '<a href="javascript:void(0);"><img src=\"/uploads/images/blog/'+value[4]+'\" alt="image description"></a>'+
+                                                '</figure>'+
+                                                '<div class="tg-postcontent">'+
+                                                '<div class="tg-title">'+
+                                                '<h3><a href=\"/blog/'+id+'/show\"> '+value[0]+'</a></h3>'+
+                                                '</div>'+
+                                                    '<div class="dummy">'+
+                                                '<p>'+value[1]+'</p>'+
+                                                '</div>'+
+                                                '<ul class="tg-postmatadata">'+
+                                                '<li>'+
+                                                '<a href="#">'+
+                                                '<i class="lnr lnr-user"></i>'+
+                                                '<span>BY: Tamika Darbonne</span>'+
+                                                '</a>'+
+                                                '</li>'+
+                                                '<li>'+
+                                                '<a href="#">'+
+                                                '<i class="lnr lnr-calendar-full"></i>'+
+                                                '<span>'+value[3]+'</span>'+
+                                                '</a>'+
+                                                '</li>'+
+                                                '<li>'+
+                                                '<a href=\"/blogcategorie/'+value[5]+'/showBlogsWithBlogCategorie\">'+
+                                                '<i class="glyphicon glyphicon-folder-open"></i>'+
+                                                '<span > '+value[6]+' </span>'+
+                                                '</a>'+
+                                                '</li>'+
+                                                '<li>'+
+                                                '<i class="glyphicon glyphicon-eye-open"></i>'+
+                                                '<span>'+value[7]+'</span>'+
+                                                '</li>'+
+                                                '</ul>'+
+                                                '</div>'+
+                                                '</article>'+
+                                                '</div>'
+                                                );
+
+                                            } else {
+                                                entitySelector.append('<li class="errorLi">'+value+'</li>');
+                                            }
+                                        }
+                                    });
+                                });
+                            }
+                        }
+                    });
+                }
+            });
+        });
+
+    </script>
+
+
+
+{% endblock %}

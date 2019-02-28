@@ -1,0 +1,64 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block body %}
+
+
+    <div class="container">
+        <h1>Blogs list</h1>
+        <div class="row">
+
+
+    <table class="table table-bordered table-striped table-hover table-responsive">
+        <thead>
+            <tr>
+                <th>Ref</th>
+                <th>Title</th>
+                <th>Editedat</th>
+                <th>Commentenable</th>
+                <th>Posted By</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for blog in blogs %}
+            <tr>
+                <td><a href="{{ path('blog_show', { 'id': blog.id }) }}">{{ "#Blog" ~ blog.id }}</a></td>
+                <td>{{ blog.title }}</td>
+                <td>{% if blog.editedAt %}{{ blog.editedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ blog.commentEnable }}</td>
+                <td>{{ blog.user.username }}</td>
+                <td>
+                    <ul style="list-style-type:none ; display:flex;">
+                        <li style="padding: 0.5em;">
+
+                            <a href="{{ path('blog_show', { 'id': blog.id }) }}"><button type="button" class="btn btn-success"><i class="glyphicon glyphicon-eye-open"></i></button></a>
+                        </li>
+                        <li style="padding: 0.5em;">
+                            <a href="{{ path('blog_edit', { 'id': blog.id }) }}"><button type="button" class="btn btn-warning"><i class="glyphicon glyphicon-edit"></i></button></a>
+                        </li>
+                        <li style="padding: 0.5em;">
+                            <a href="{{ path('blog_delete', { 'id': blog.id }) }}"><button type="button" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></button></a>
+                        </li>
+                        <li style="padding: 0.5em;">
+                            <a href="{{ path('blog_blogStatistics', { 'id': blog.id }) }}"><button type="button" class="btn btn-primary"><i class="glyphicon glyphicon-stats"></i></button></a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+            <ul style="list-style-type:none ;">
+                <li>
+                    <a href="{{ path('blog_new') }}"><button type="button" class="btn btn-primary">Create a new Blog</button></a>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+
+
+
+
+
+{% endblock %}

@@ -1,0 +1,29 @@
+blogcategorie_index:
+    path:     /
+    defaults: { _controller: "BlogBundle:BlogCategorie:index" }
+    methods:  GET
+
+blogcategorie_show:
+    path:     /{id}/show
+    defaults: { _controller: "BlogBundle:BlogCategorie:show" }
+    methods:  GET
+
+blogcategorie_new:
+    path:     /new
+    defaults: { _controller: "BlogBundle:BlogCategorie:new" }
+    methods:  [GET, POST]
+
+blogcategorie_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "BlogBundle:BlogCategorie:edit" }
+    methods:  [GET, POST]
+
+blogcategorie_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "BlogBundle:BlogCategorie:delete" }
+    methods:  GET
+
+blogcategorie_showBlogsWithBlogCategorie:
+    path:     /{id}/showBlogsWithBlogCategorie
+    defaults: { _controller: "BlogBundle:BlogCategorie:showBlogsWithBlogCategorie" }
+    methods:  GET

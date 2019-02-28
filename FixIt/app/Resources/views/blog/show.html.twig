@@ -1,0 +1,79 @@
+{% extends 'adminbase.html.twig' %}
+{% form_theme form_comment 'bootstrap_3_layout.html.twig' %}
+{% block body %}
+    <div class="container">
+        <div class="row">
+    <h1>{{ blog.title }}</h1>
+
+    <table class="table table-bordered table-striped table-hover table-responsive">
+        <tbody>
+            <tr>
+                <th>Ref</th>
+                <td>{{ "#Blog" ~ blog.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ blog.title }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ blog.description |raw }}</td>
+            </tr>
+            <tr>
+                <th>Content</th>
+                <td>{{ blog.content|raw }}</td>
+            </tr>
+            <tr>
+                <th>Createdat</th>
+                <td>{% if blog.createdAt %}{{ blog.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Editedat</th>
+                <td>{% if blog.editedAt %}{{ blog.editedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Comment Enable</th>
+                <td>{{ blog.commentEnable }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    <h1>Comments list</h1>
+
+    <table class="table table-bordered table-striped table-hover table-responsive">
+        <thead>
+        <tr>
+            <th>Ref</th>
+            <th>Text</th>
+            <th>Createdat</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for c in comments %}
+            <tr>
+                <td><a href="{{ path('comment_show', { 'id': c.id }) }}">{{ "#Com" ~c.id }}</a></td>
+                <td>{{ c.text }}</td>
+                <td>{% if c.createdAt %}{{ comment.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul style="list-style-type:none ; display:flex;">
+                        <li style="padding: 0.5em;">
+                            <a href="{{ path('comment_delete', { 'id': c.id }) }}"><button type="button" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></button></a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <h1>Add your comment</h1>
+
+    {{ form_start(form_comment) }}
+    {{ form_widget(form_comment) }}
+    <input type="submit" value="Create" class="btn btn-primary"/>
+    {{ form_end(form_comment) }}
+    </div>
+</div>
+{% endblock %}

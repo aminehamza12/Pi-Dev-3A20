@@ -1,0 +1,170 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <!--************************************
+            Inner Page Banner Start
+    *************************************-->
+    <div class="tg-innerpagebanner">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="tg-pagetitle">
+                        <h1>Partner grid</h1>
+                    </div>
+                    <ol class="tg-breadcrumb">
+                        <li><a href="#">Home</a></li>
+                        <li class="tg-active">Partner grid</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--************************************
+            Inner Page Banner End
+    *************************************-->
+    <!--************************************
+            Main Start
+    *************************************-->
+    <main id="tg-main" class="tg-main tg-paddingzero tg-haslayout">
+        <!--************************************
+                Blog Grid Start
+        *************************************-->
+        <div class="tg-main-section tg-haslayout">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-10 col-md-push-1 col-lg-8 col-lg-push-2">
+                        <div class="tg-sectionhead">
+                            <div class="tg-sectiontitle">
+                                <h2>Partners</h2>
+                            </div>
+                            <div class="tg-description">
+                                <p>Dès la création de Fixit en 2019,  la coopération avec des partenaires internationaux était une priorité stratégique et absolue pour le développement de notre societé. Cette priorité représente réellement une obligation et non plus une option.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-12 col-md-10 col-md-push-1 col-lg-8 col-lg-push-2" id="regions_div" style="width: 900px; height: 500px;">>
+
+                    </div>
+
+
+                    {% if ( (academicPartners|length) != 0 or (industrielPartners|length) != 0 or (technologicPartners|length) != 0 ) %}
+
+                    {% if (academicPartners|length) != 0 %}
+                    <div class="tg-bloggird">
+                    <h3>Academic partnerships</h3>
+
+                        {% for partner in academicPartners %}
+                            <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
+                                <article class="tg-post">
+                                    <figure class="tg-featuredimg">
+                                        <a href="javascript:void(0);"><img src="{{ vich_uploader_asset(partner, 'imageFile') }}" alt="image description"></a>
+                                    </figure>
+                                    <div class="tg-postcontent">
+                                        <div class="tg-title">
+                                            <h3><a href="{{ partner.link }}">{{ partner.name }}</a></h3>
+                                        </div>
+                                        <div class="dummy">
+                                            <p>{{ partner.description|raw }}</p>
+                                        </div>
+                                    </div>
+                                </article>
+                            </div>
+
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+
+                    {% if (industrielPartners|length) != 0 %}
+                    <div class="tg-bloggird">
+                    <h3>Industrial partnerships</h3>
+
+                        {% for partner in industrielPartners %}
+                            <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
+                                <article class="tg-post">
+                                    <figure class="tg-featuredimg">
+                                        <a href="javascript:void(0);"><img src="{{ vich_uploader_asset(partner, 'imageFile') }}" alt="image description"></a>
+                                    </figure>
+                                    <div class="tg-postcontent">
+                                        <div class="tg-title">
+                                            <h3><a href="{{ partner.link }}">{{ partner.name }}</a></h3>
+                                        </div>
+                                        <div class="dummy">
+                                            <p>{{ partner.description|raw }}</p>
+                                        </div>
+                                    </div>
+                                </article>
+                            </div>
+
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+
+                    {% if (technologicPartners|length) != 0 %}
+                    <div class="tg-bloggird">
+                    <h3>Technological partnerships</h3>
+
+                        {% for partner in technologicPartners %}
+                            <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
+                                <article class="tg-post">
+                                    <figure class="tg-featuredimg">
+                                        <a href="javascript:void(0);"><img src="{{ vich_uploader_asset(partner, 'imageFile') }}" alt="image description"></a>
+                                    </figure>
+                                    <div class="tg-postcontent">
+                                        <div class="tg-title">
+                                            <h3><a href="{{ partner.link }}">{{ partner.name }}</a></h3>
+                                        </div>
+                                        <div class="dummy">
+                                            <p>{{ partner.description|raw }}</p>
+                                        </div>
+                                    </div>
+                                </article>
+                            </div>
+
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+
+                    {% endif %} <!-- endif of all conditions -->
+
+
+
+                </div>
+
+            </div>
+        </div>
+        <!--************************************
+                Blog Grid End
+        *************************************-->
+    </main>
+    <!--************************************
+            Main End
+    *************************************-->
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+
+        google.charts.load('current', {
+            'packages':['geochart'],
+            'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
+        });
+        google.charts.setOnLoadCallback(drawRegionsMap);
+
+        function drawRegionsMap() {
+
+            var data = google.visualization.arrayToDataTable({{ partnerCountries|json_encode|raw }});
+
+
+            var options = {};
+
+
+
+            var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+
+            chart.draw(data, options);
+        }
+    </script>
+
+{% endblock %}

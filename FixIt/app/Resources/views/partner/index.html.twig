@@ -1,0 +1,55 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block body %}
+
+<div class="container">
+    <div class="row">
+
+    <h1>Partners list</h1>
+
+    <table class="table table-bordered table-striped table-hover table-responsive">
+        <thead>
+            <tr>
+                <th>Ref</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Location</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for partner in partners %}
+            <tr>
+                <td><a href="{{ path('partner_show', { 'id': partner.id }) }}">{{ "#Par" ~ partner.id }}</a></td>
+                <td>{{ partner.name }}</td>
+                <td>{{ partner.type }}</td>
+                <td>{{ partner.location }}</td>
+                <td>
+                    <ul style="list-style-type:none ; display:flex;">
+                        <li style="padding: 0.5em;">
+
+                            <a href="{{ path('partner_show', { 'id': partner.id }) }}"><button type="button" class="btn btn-success"><i class="glyphicon glyphicon-eye-open"></i></button></a>
+                        </li>
+                        <li style="padding: 0.5em;">
+                            <a href="{{ path('partner_edit', { 'id': partner.id }) }}"><button type="button" class="btn btn-warning"><i class="glyphicon glyphicon-edit"></i></button></a>
+                        </li>
+                        <li style="padding: 0.5em;">
+                            <a href="{{ path('partner_delete', { 'id': partner.id }) }}"><button type="button" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></button></a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul style="list-style-type:none ;">
+        <li>
+            <a href="{{ path('partner_new') }}"><button type="button" class="btn btn-primary">Create a new Partner</button></a>
+        </li>
+    </ul>
+
+    </div>
+</div>
+
+{% endblock %}

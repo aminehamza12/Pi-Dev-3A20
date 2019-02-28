@@ -196,10 +196,10 @@ jQuery(document).on('ready', function() {
 			LOAD MORE FEEDBACK
 	-------------------------------------- */
 	function loadMoreFeedback() {
-		jQuery(".tg-feedback").slice(0, 3).show();
+		jQuery(".tg-feedback").show();
 		jQuery(".tg-btnloadmore").on('click', function (e) {
 			e.preventDefault();
-			jQuery(".tg-feedback:hidden").slice(0, 3).slideDown();
+			jQuery(".tg-feedback:hidden").slideDown();
 			if (jQuery(".tg-feedback:hidden").length == 0) {
 				jQuery(".tg-btnloadmore").fadeOut('slow');
 			}

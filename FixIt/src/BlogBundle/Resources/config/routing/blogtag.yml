@@ -1,0 +1,24 @@
+blogtag_index:
+    path:     /
+    defaults: { _controller: "BlogBundle:BlogTag:index" }
+    methods:  GET
+
+blogtag_show:
+    path:     /{id}/show
+    defaults: { _controller: "BlogBundle:BlogTag:show" }
+    methods:  GET
+
+blogtag_new:
+    path:     /new
+    defaults: { _controller: "BlogBundle:BlogTag:new" }
+    methods:  [GET, POST]
+
+blogtag_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "BlogBundle:BlogTag:edit" }
+    methods:  [GET, POST]
+
+blogtag_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "BlogBundle:BlogTag:delete" }
+    methods:  DELETE

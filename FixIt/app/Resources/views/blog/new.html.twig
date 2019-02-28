@@ -1,0 +1,132 @@
+{% extends 'adminbase.html.twig' %}
+{% form_theme form 'bootstrap_3_layout.html.twig' %}
+{% block body %}
+<div class="container">
+    <div class="row">
+    <h1>Blog creation</h1>
+
+
+
+    {{ form_start(form) }}
+        <div class="form-group">
+            <b>{{ form_label(form.title,'Title  ') }}<i id="glyphicon-title" class="glyphicon glyphicon-ok-sign" style="padding: 0.5em;color:red;" ></i></b>
+            {{ form_widget(form.title,{'attr':{'class':'form-control'}}) }}
+            <small id="title-help" class="form-text text-muted" style="">Minimum Length : 10 , Maximum Length : 50</small>
+        </div>
+        <div class="form-group">
+            <b>{{ form_label(form.description,'Description  ') }}<i id="glyphicon-description" class="glyphicon glyphicon-ok-sign" style="padding: 0.5em;color:red;" ></i></b>
+            {{ form_widget(form.description,{'attr':{'class':'form-control'}}) }}
+            <small id="description-help" class="form-text text-muted" style="">Minimum Length : 100 , Maximum Length : 255</small>
+        </div>
+
+        <div class="form-group">
+            <b>{{ form_label(form.content,'Content  ') }}<i id="glyphicon-content" class="glyphicon glyphicon-ok-sign" style="padding: 0.5em;color:red;" ></i></b>
+            {{ form_widget(form.content,{'attr':{'class':'form-control'}}) }}
+            <small id="content-help" class="form-text text-muted" style="">Minimum Length : 255 , Maximum Length : 5000</small>
+        </div>
+        <div class="form-group">
+            <b>{{ form_label(form.commentEnable,'Enable Comment  ') }}</b>
+            {{ form_widget(form.commentEnable,{'attr':{'class':'form-control'}}) }}
+        </div>
+        <div class="form-group">
+            <b>{{ form_label(form.imageFile,'Thumbnail  ') }}<i id="glyphicon-image" class="glyphicon glyphicon-ok-sign" style="padding: 0.5em;color:red;" ></i></b>
+            {{ form_widget(form.imageFile,{'attr':{'class':'form-control'}}) }}
+            <small id="image-help" class="form-text text-muted" style="">Must upload thumbnail</small>
+        </div>
+        <div class="form-group">
+            <b>{{ form_label(form.blogCategorie,'Blog Categorie  ') }}</b>
+            {{ form_widget(form.blogCategorie,{'attr':{'class':'form-control'}}) }}
+        </div>
+        <input id="btn-verif" type="submit" value="Create" class="btn btn-primary" />
+    {{ form_end(form) }}
+
+    </div>
+</div>
+    <script src="{{ asset('jquery-3.3.1.js') }}"></script>
+    <script>
+        var verif_title = false;
+        var verif_description = false;
+        var verif_content = false;
+        var verif_image = false;
+        $(document).ready(function () {
+            //alert("Jquery Wotking !");
+            //$('#btn-verif').prop("disabled",true);
+
+
+        });
+
+        $('#blogbundle_blog_title').on('keyup',function(){
+            var title_length = $(this).val().length;
+            if(title_length < 10 || title_length > 50)
+            {
+                $('#glyphicon-title').css('color', 'red');
+                $('#title-help').css('display', '');
+                verif_title = false;
+            }else{
+                $('#glyphicon-title').css('color', 'green');
+                $('#title-help').css('display', 'none');
+                verif_title = true;
+            }
+        });
+
+        $('#blogbundle_blog_description').on('keyup',function(){
+            var description_length = $(this).val().length;
+            if(description_length < 100 || description_length > 255)
+            {
+                $('#glyphicon-description').css('color', 'red');
+                $('#description-help').css('display', '');
+                verif_description = false;
+            }else{
+                $('#glyphicon-description').css('color', 'green');
+                $('#description-help').css('display', 'none');
+                verif_description = true;
+            }
+
+        });
+
+
+        for (var i in CKEDITOR.instances) {
+            CKEDITOR.instances[i].on('change', function() {
+                var desc = CKEDITOR.instances['blogbundle_blog_content'].getData();
+                var content_length = desc.length;
+                if(content_length < 255 || content_length > 5000)
+                {
+                    $('#glyphicon-content').css('color', 'red');
+                    $('#content-help').css('display', '');
+                    verif_content = false;
+                }else{
+                    $('#glyphicon-content').css('color', 'green');
+                    $('#content-help').css('display', 'none');
+                    verif_content = true;
+                }
+            });
+        }
+
+        $('#blogbundle_blog_imageFile_file').on("change",function () {
+            var image_length = $('#blogbundle_blog_imageFile_file').val();
+            if(image_length == ''){
+                $('#glyphicon-image').css('color', 'red');
+                $('#image-help').css('display', '');
+                verif_image = false;
+            }else{
+                $('#glyphicon-image').css('color', 'green');
+                $('#image-help').css('display', 'none');
+                verif_image = true;
+            }
+        });
+
+        $('#btn-verif').on("click",function (event) {
+            if(verif_title != true || verif_description != true || verif_content != true || verif_image != true){
+                event.preventDefault();
+                if(verif_title == false){alert("Verify your title")}
+                else if(verif_description == false){alert("Verify your description")}
+                else if(verif_content == false){alert("Verify your content")}
+                else if(verif_image == false){alert("Verify your thumbnail upload")}
+            }
+        });
+
+
+
+
+    </script>
+{% endblock %}

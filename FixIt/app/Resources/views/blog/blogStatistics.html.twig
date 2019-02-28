@@ -1,0 +1,69 @@
+{% extends 'adminbase.html.twig' %}
+{% block body %}
+
+
+
+
+        <select name="months" id="months" class="months" >
+            <option value="">Select a month:</option>
+            <option value="1">January</option>
+            <option value="2">February</option>
+            <option value="3">March</option>
+            <option value="4">April</option>
+            <option value="5">May</option>
+            <option value="6">June</option>
+            <option value="7">July</option>
+            <option value="8">August</option>
+            <option value="9">September</option>
+            <option value="10">October</option>
+            <option value="11">November</option>
+            <option value="12">December</option>
+        </select>
+
+
+
+    <br>
+
+
+    <!-- Load jQuery from Google's CDN if needed -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+
+    <script src="//code.highcharts.com/4.1.8/highcharts.js"></script>
+    <script src="//code.highcharts.com/4.1.8/modules/exporting.js"></script>
+    <script type="text/javascript">
+        {{ chart(chart) }}
+    </script>
+    <input id="blog_id" type="text" style="visibility: hidden; display: none;" value="{{ blog.id }}">
+
+    <div id="linechart" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+    <div id="yyy" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+
+    <script src="{{ asset('jquery-3.3.1.js') }}"></script>
+    <script>
+
+        $(document).ready(function () {
+            $("#months").change(function () {
+                $('#linechart').removeData();
+                /*alert("value changed");*/
+                var month_id = $(this).val();
+                var blog_id = $('#blog_id').val();
+                console.log(blog_id);
+                console.log(month_id);
+                $.ajax({
+                    url: "{{ path('ajax') }}",
+                    type:"POST",
+                    dataType: 'json',
+                    data:{month_id:month_id,blog_id:blog_id},
+                    success:function (response) {
+                        template = response;
+
+                        $('#linechart').html(response.trim());
+
+                    }
+                });
+            });
+
+        });
+    </script>
+
+{% endblock %}
