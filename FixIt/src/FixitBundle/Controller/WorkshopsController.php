@@ -2,6 +2,7 @@
 
 namespace FixitBundle\Controller;
 
+<<<<<<< HEAD
 use FixitBundle\Entity\categorieifixit;
 use FixitBundle\Entity\Likes;
 use FixitBundle\Entity\Particpant;
@@ -25,6 +26,13 @@ class WorkshopsController extends Controller
      *
      */
     public function indexAction(Request $request)
+=======
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+
+class WorkshopsController extends Controller
+{
+    public function indexAction()
+>>>>>>> 1cbb02caab7bb0b2d88eca07f7e88dcb96ab6a29
     {
         $user=null;
         if( $this->container->get( 'security.authorization_checker' )->isGranted( 'IS_AUTHENTICATED_FULLY' ) )
@@ -32,6 +40,7 @@ class WorkshopsController extends Controller
             $user = $this->container->get('security.token_storage')->getToken()->getUser();
         }
 
+<<<<<<< HEAD
         $em = $this->getDoctrine()->getManager();
         $workshops = $em->getRepository('FixitBundle:Workshops')->findAll();
         $Likes=$em->getRepository(Likes::class)->findBy(array('user'=>$user->getId()));
@@ -490,4 +499,10 @@ class WorkshopsController extends Controller
 
 
     
+=======
+        return $this->render('@Fixit/Evenement/index.html.twig',array(
+            'user'=> $user,
+        ));
+    }
+>>>>>>> 1cbb02caab7bb0b2d88eca07f7e88dcb96ab6a29
 }

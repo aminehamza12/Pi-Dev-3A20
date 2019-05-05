@@ -3,8 +3,11 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+<<<<<<< HEAD
 use FOS\MessageBundle\Model\ParticipantInterface;
 
+=======
+>>>>>>> 1cbb02caab7bb0b2d88eca07f7e88dcb96ab6a29
 use FOS\UserBundle\Model\User as BaseUser;
 
 /**
@@ -13,7 +16,11 @@ use FOS\UserBundle\Model\User as BaseUser;
  * @ORM\Table(name="user")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
  */
+<<<<<<< HEAD
 class User extends BaseUser implements ParticipantInterface
+=======
+class User extends BaseUser
+>>>>>>> 1cbb02caab7bb0b2d88eca07f7e88dcb96ab6a29
 {
     /**
      * @var int
@@ -38,6 +45,7 @@ class User extends BaseUser implements ParticipantInterface
      */
     protected $prenom;
 
+<<<<<<< HEAD
     /**
      * @var boolean
      *
@@ -69,6 +77,8 @@ class User extends BaseUser implements ParticipantInterface
         $this->isprofil = 0;
     }
 
+=======
+>>>>>>> 1cbb02caab7bb0b2d88eca07f7e88dcb96ab6a29
 
     /**
      * Get id
@@ -127,6 +137,7 @@ class User extends BaseUser implements ParticipantInterface
     {
         return $this->prenom;
     }
+<<<<<<< HEAD
 
     /**
      * @ORM\OneToMany(targetEntity="ForumBundle\Entity\Reclamation", mappedBy="user")
@@ -166,5 +177,7 @@ class User extends BaseUser implements ParticipantInterface
     {
         return $this->reclamations;
     }
+=======
+>>>>>>> 1cbb02caab7bb0b2d88eca07f7e88dcb96ab6a29
 }
 

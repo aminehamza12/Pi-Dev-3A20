@@ -4,7 +4,11 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
+<<<<<<< HEAD
     "content-hash": "55d0e4014cb78abbac7d231ecd61b89b",
+=======
+    "content-hash": "1508506051447e6234428da22aa5934d",
+>>>>>>> 1cbb02caab7bb0b2d88eca07f7e88dcb96ab6a29
     "packages": [
         {
             "name": "cmen/google-charts-bundle",
@@ -461,6 +465,7 @@
         },
         {
             "name": "doctrine/doctrine-bundle",
+<<<<<<< HEAD
             "version": "1.10.2",
             "source": {
                 "type": "git",
@@ -471,6 +476,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/doctrine/DoctrineBundle/zipball/1f99e6645030542079c57d4680601a4a8778a1bd",
                 "reference": "1f99e6645030542079c57d4680601a4a8778a1bd",
+=======
+            "version": "1.10.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/doctrine/DoctrineBundle.git",
+                "reference": "98551d71f515692c2278073e0d483763ac70b341"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/doctrine/DoctrineBundle/zipball/98551d71f515692c2278073e0d483763ac70b341",
+                "reference": "98551d71f515692c2278073e0d483763ac70b341",
+>>>>>>> 1cbb02caab7bb0b2d88eca07f7e88dcb96ab6a29
                 "shasum": ""
             },
             "require": {
@@ -542,7 +559,11 @@
                 "orm",
                 "persistence"
             ],
+<<<<<<< HEAD
             "time": "2019-02-06T13:18:04+00:00"
+=======
+            "time": "2019-01-07T15:31:08+00:00"
+>>>>>>> 1cbb02caab7bb0b2d88eca07f7e88dcb96ab6a29
         },
         {
             "name": "doctrine/doctrine-cache-bundle",
@@ -941,8 +962,89 @@
             "time": "2016-10-17T18:31:11+00:00"
         },
         {
+<<<<<<< HEAD
             "name": "friendsofsymfony/ckeditor-bundle",
             "version": "1.2.0",
+=======
+            "name": "friendsofsymfony/user-bundle",
+            "version": "v2.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/FriendsOfSymfony/FOSUserBundle.git",
+                "reference": "1049935edd24ec305cc6cfde1875372fa9600446"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/1049935edd24ec305cc6cfde1875372fa9600446",
+                "reference": "1049935edd24ec305cc6cfde1875372fa9600446",
+                "shasum": ""
+            },
+            "require": {
+                "paragonie/random_compat": "^1 || ^2",
+                "php": "^5.5.9 || ^7.0",
+                "symfony/form": "^2.8 || ^3.0 || ^4.0",
+                "symfony/framework-bundle": "^2.8 || ^3.0 || ^4.0",
+                "symfony/security-bundle": "^2.8 || ^3.0 || ^4.0",
+                "symfony/templating": "^2.8 || ^3.0 || ^4.0",
+                "symfony/twig-bundle": "^2.8 || ^3.0 || ^4.0",
+                "symfony/validator": "^2.8 || ^3.0 || ^4.0",
+                "twig/twig": "^1.28 || ^2.0"
+            },
+            "conflict": {
+                "doctrine/doctrine-bundle": "<1.3",
+                "symfony/doctrine-bridge": "<2.7"
+            },
+            "require-dev": {
+                "doctrine/doctrine-bundle": "^1.3",
+                "friendsofphp/php-cs-fixer": "^2.2",
+                "phpunit/phpunit": "^4.8.35|^5.7.11|^6.5",
+                "swiftmailer/swiftmailer": "^4.3 || ^5.0 || ^6.0",
+                "symfony/console": "^2.8 || ^3.0 || ^4.0",
+                "symfony/phpunit-bridge": "^2.8 || ^3.0 || ^4.0",
+                "symfony/yaml": "^2.8 || ^3.0 || ^4.0"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "FOS\\UserBundle\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Christophe Coevoet",
+                    "email": "stof@notk.org"
+                },
+                {
+                    "name": "FriendsOfSymfony Community",
+                    "homepage": "https://github.com/friendsofsymfony/FOSUserBundle/contributors"
+                },
+                {
+                    "name": "Thibault Duplessis"
+                }
+            ],
+            "description": "Symfony FOSUserBundle",
+            "homepage": "http://friendsofsymfony.github.com",
+            "keywords": [
+                "User management"
+            ],
+            "time": "2018-03-08T08:59:27+00:00"
+        },
+        {
+            "name": "incenteev/composer-parameter-handler",
+            "version": "v2.1.3",
+>>>>>>> 1cbb02caab7bb0b2d88eca07f7e88dcb96ab6a29
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSCKEditorBundle.git",
@@ -3655,6 +3757,7 @@
                 "framework"
             ],
             "time": "2019-02-03T12:23:08+00:00"
+<<<<<<< HEAD
         },
         {
             "name": "tecnickcom/tcpdf",
@@ -3717,6 +3820,8 @@
                 "qrcode"
             ],
             "time": "2018-10-16T17:24:05+00:00"
+=======
+>>>>>>> 1cbb02caab7bb0b2d88eca07f7e88dcb96ab6a29
         },
         {
             "name": "twig/twig",
@@ -3783,6 +3888,7 @@
                 "templating"
             ],
             "time": "2019-01-14T14:59:29+00:00"
+<<<<<<< HEAD
         },
         {
             "name": "vich/uploader-bundle",
@@ -4118,6 +4224,8 @@
                 "zf"
             ],
             "time": "2018-01-04T17:51:34+00:00"
+=======
+>>>>>>> 1cbb02caab7bb0b2d88eca07f7e88dcb96ab6a29
         }
     ],
     "packages-dev": [

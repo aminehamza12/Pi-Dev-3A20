@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class WorkshopsControllerTest extends WebTestCase
 {
+<<<<<<< HEAD
     /*
     public function testCompleteScenario()
     {
@@ -52,4 +53,6 @@ class WorkshopsControllerTest extends WebTestCase
     }
 
     */
+=======
+>>>>>>> 1cbb02caab7bb0b2d88eca07f7e88dcb96ab6a29
 }

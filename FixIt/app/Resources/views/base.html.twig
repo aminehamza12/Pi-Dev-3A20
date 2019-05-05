@@ -28,8 +28,12 @@
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     <link rel="stylesheet" href="{{ asset('css/color.css') }}">
     <link rel="stylesheet" href="{{ asset('css/responsive.css') }}">
+<<<<<<< HEAD
     <link rel="stylesheet" href="{{ asset('css/rating.css') }}">
     <script src="{{ asset('js/vendor/jquery-library.js') }}"></script>
+=======
+    <script src="{{ asset('js/vendor/modernizr-2.8.3-respond-1.4.2.min.js') }}"></script>
+>>>>>>> 1cbb02caab7bb0b2d88eca07f7e88dcb96ab6a29
 </head>
 {% if app.user ==null %}
 <body class="tg-home">
@@ -107,12 +111,19 @@
                                 <div class="tg-themedropdown tg-userdropdown">
                                     <a href="dashboard.html" id="tg-usermenu" class="tg-btndropdown">
                                         <em><img src="{{ asset('images/thumbnails/img-01.jpg') }}" alt="image description"></em>
+<<<<<<< HEAD
                                         <span>{{ app.user }}</span>
+=======
+                                        {% if app.user != null %}
+                                        <span>{{ app.user.nom }}</span>
+                                        {% endif %}
+>>>>>>> 1cbb02caab7bb0b2d88eca07f7e88dcb96ab6a29
                                         <i class="fa fa-angle-down"></i>
                                     </a>
                                     <div class="tg-dropdownmenu tg-usermenu" aria-labelledby="tg-usermenu">
                                         <nav id="tg-dashboardnav" class="tg-dashboardnav">
                                             <ul>
+<<<<<<< HEAD
                                                 {% if app.user!=null and app.user.isprofil==1 %}
                                                     {%  if app.request.attributes.get('_route') == 'profil_show' %}
                                                         <li class="tg-active">{% else %}
@@ -198,6 +209,103 @@
                                                     </li>
                                                 {% endif %}
 
+=======
+                                                <li>
+                                                    <a href="dashboard.html">
+                                                        <i class="lnr lnr-database"></i>
+                                                        <span>Insights</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="dashboardprofilesetting.html">
+                                                        <i class="lnr lnr-cog"></i>
+                                                        <span>Profile Settings</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="dashboardbusinesshours.html">
+                                                        <i class="lnr lnr-clock"></i>
+                                                        <span>Business Hours</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="dashboardmanageservice.html">
+                                                        <i class="lnr lnr-briefcase"></i>
+                                                        <span>Manage Services</span>
+                                                    </a>
+                                                </li>
+                                                <li class="tg-privatemessages tg-hasdropdown">
+                                                    <a id="tg-btntoggle" class="tg-btntoggle" href="javascript:void(0);">
+                                                        <i class="lnr lnr-envelope"></i>
+                                                        <span>Private Messages</span>
+                                                        <em class="tg-totalmessages">526</em>
+                                                        <em class="tg-newmessages">1</em>
+                                                    </a>
+                                                    <ul class="tg-emailmenu">
+                                                        <li class="tg-active">
+                                                            <a href="dashboardprivatemessages.html">
+                                                                <span>inbox</span>
+                                                                <em class="tg-totalmessages">526</em>
+                                                                <em class="tg-newmessages">1</em>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="dashboardprivatemessages.html">
+                                                                <span>sent</span>
+                                                                <em class="tg-totalmessages">370</em>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="dashboardprivatemessages.html">
+                                                                <span>trash</span>
+                                                                <em class="tg-totalmessages">160</em>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="dashboardprivatemessages.html">
+                                                                <span>spam/junk</span>
+                                                                <em class="tg-totalmessages">1260</em>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li>
+                                                    <a href="dashboardappointment.html">
+                                                        <i class="lnr lnr-calendar-full"></i>
+                                                        <span>Appointments</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="dashboardappointmentsetting.html">
+                                                        <i class="lnr lnr-calendar-full"></i>
+                                                        <span>Appointment Settings</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="dashboardfavoritlisting.html">
+                                                        <i class="lnr lnr-heart"></i>
+                                                        <span>Favourite Listings</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="dashboardsecuritysetting.html">
+                                                        <i class="lnr lnr-construction"></i>
+                                                        <span>Security Settings</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="dashboardprivacysetting.html">
+                                                        <i class="lnr lnr-lock"></i>
+                                                        <span>Privacy Settings</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="{{ path('fos_user_security_logout') }}">
+                                                        <i class="lnr lnr-exit"></i>
+                                                        <span>Logout</span>
+                                                    </a>
+                                                </li>
+>>>>>>> 1cbb02caab7bb0b2d88eca07f7e88dcb96ab6a29
                                             </ul>
                                         </nav>
                                     </div>
@@ -209,7 +317,68 @@
                 </div>
             </div>
         </div>
+<<<<<<< HEAD
         {{ render(controller('FixitBundle:Default:navBar')) }}
+=======
+        <div class="tg-navigationarea">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 col-xs-4">
+                        <strong class="tg-logo"><a href="{{ path('homepage') }}"><img src="{{ asset('images/logo.png') }}" alt="image description"></a></strong>
+                        <div class="tg-rightarea">
+                            <nav id="tg-nav" class="tg-nav">
+                                <div class="navbar-header">
+                                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#tg-navigation" aria-expanded="false">
+                                        <span class="sr-only">Toggle navigation</span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                    </button>
+                                </div>
+                                <div id="tg-navigation" class="collapse navbar-collapse tg-navigation">
+                                    <ul>
+                                        <li>
+                                            <a href="#">Home</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">About us</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Service Seeking</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Service Providing</a>
+                                        </li>
+                                        <li class="menu-item-has-children">
+                                            <a href="#">Events</a>
+                                            <ul class="sub-menu">
+                                                <li>
+                                                    <a href="#">IFixIt</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">Workshops</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="#">Forum</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ path('blog_index') }}">Blog</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Shop</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </nav>
+                            <a class="tg-btn tg-btnpostanewjob" href="dashboard.html">Post A New Job</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+>>>>>>> 1cbb02caab7bb0b2d88eca07f7e88dcb96ab6a29
     </header>
     <!--************************************
             Header End
@@ -420,10 +589,17 @@
 <!--************************************
         Wrapper End
 *************************************-->
+<<<<<<< HEAD
 
 <script src="{{ asset('js/vendor/bootstrap.min.js') }}"></script>
 <script src="{{ asset('js/mapclustering/data.json') }}"></script>
 <script src="https://maps.google.com/maps/api/js?key=AIzaSyCh8YZcK99-hrJbT2e6IqcX-EP4-0NFnMA"></script>
+=======
+<script src="{{ asset('js/vendor/jquery-library.js') }}"></script>
+<script src="{{ asset('js/vendor/bootstrap.min.js') }}"></script>
+<script src="{{ asset('js/mapclustering/data.json') }}"></script>
+<script src="https://maps.google.com/maps/api/js?key=AIzaSyCR-KEWAVCn52mSdeVeTqZjtqbmVJyfSus&amp;language=en"></script>
+>>>>>>> 1cbb02caab7bb0b2d88eca07f7e88dcb96ab6a29
 <script src="{{ asset('js/mapclustering/markerclusterer.min.js') }}"></script>
 <script src="{{ asset('js/mapclustering/infobox.js') }}"></script>
 <script src="{{ asset('js/mapclustering/map.js') }}"></script>
@@ -435,9 +611,12 @@
 <script src="{{ asset('js/readmore.js') }}"></script>
 <script src="{{ asset('js/gmap3.js') }}"></script>
 <script src="{{ asset('js/main.js') }}"></script>
+<<<<<<< HEAD
 <script src="{{ asset('js/axios.min.js') }}"></script>
 <script src="{{ asset('js/vendor/modernizr-2.8.3-respond-1.4.2.min.js') }}"></script>
 <script src="{{ asset('js/rating.js') }}"></script>
+=======
+>>>>>>> 1cbb02caab7bb0b2d88eca07f7e88dcb96ab6a29
 </body>
 
 <!-- Mirrored from mydesignhoard.com/HTML/html/service_provider/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 26 Jan 2019 13:57:25 GMT -->

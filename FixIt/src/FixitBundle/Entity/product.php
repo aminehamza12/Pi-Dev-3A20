@@ -24,14 +24,22 @@ class product
     /**
      * @var int
      *
+<<<<<<< HEAD
      * @ORM\Column(name="name",  type="string", length=255)
+=======
+     * @ORM\Column(name="name", type="integer")
+>>>>>>> 1cbb02caab7bb0b2d88eca07f7e88dcb96ab6a29
      */
     private $name;
 
     /**
      * @var float
      *
+<<<<<<< HEAD
      * @ORM\Column(name="quantity", type="integer")
+=======
+     * @ORM\Column(name="quantity", type="float")
+>>>>>>> 1cbb02caab7bb0b2d88eca07f7e88dcb96ab6a29
      */
     private $quantity;
 
@@ -57,6 +65,7 @@ class product
     private $adress;
 
     /**
+<<<<<<< HEAD
      * @var text
      *
      * @ORM\Column(name="description", type="text")
@@ -92,6 +101,8 @@ class product
     private $category;
 
     /**
+=======
+>>>>>>> 1cbb02caab7bb0b2d88eca07f7e88dcb96ab6a29
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
      * @ORM\JoinColumn(name="user",referencedColumnName="id",onDelete="CASCADE")
      */
@@ -100,6 +111,7 @@ class product
     /**
      * @return mixed
      */
+<<<<<<< HEAD
     public function getCategory()
     {
         return $this->category;
@@ -154,6 +166,8 @@ class product
     /**
      * @return mixed
      */
+=======
+>>>>>>> 1cbb02caab7bb0b2d88eca07f7e88dcb96ab6a29
     public function getUser()
     {
         return $this->user;
@@ -299,6 +313,7 @@ class product
     {
         return $this->adress;
     }
+<<<<<<< HEAD
 
     /**
      * @return int
@@ -334,5 +349,7 @@ class product
 
 
 
+=======
+>>>>>>> 1cbb02caab7bb0b2d88eca07f7e88dcb96ab6a29
 }
 

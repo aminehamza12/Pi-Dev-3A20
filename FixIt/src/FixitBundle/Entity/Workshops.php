@@ -3,15 +3,21 @@
 namespace FixitBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+<<<<<<< HEAD
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\HttpFoundation\File\File;
+=======
+>>>>>>> 1cbb02caab7bb0b2d88eca07f7e88dcb96ab6a29
 
 /**
  * Workshops
  *
  * @ORM\Table(name="workshops")
  * @ORM\Entity(repositoryClass="FixitBundle\Repository\WorkshopsRepository")
+<<<<<<< HEAD
  * @Vich\Uploadable
+=======
+>>>>>>> 1cbb02caab7bb0b2d88eca07f7e88dcb96ab6a29
  */
 class Workshops
 {
@@ -39,8 +45,13 @@ class Workshops
     private $description;
 
     /**
+<<<<<<< HEAD
      * @ORM\ManyToOne(targetEntity="categorieifixit")
      * @ORM\JoinColumn(name="categorie", referencedColumnName="id")
+=======
+     * @ORM\ManyToOne(targetEntity="categorieEvent")
+     * @ORM\JoinColumn(name="categorie", referencedColumnName="type")
+>>>>>>> 1cbb02caab7bb0b2d88eca07f7e88dcb96ab6a29
      */
 
     private $categorie;
@@ -53,9 +64,15 @@ class Workshops
     private $dateDebut;
 
     /**
+<<<<<<< HEAD
      *  @var \DateTime
      *
      * @ORM\Column(name="dateFin", type="date")
+=======
+     * @var string
+     *
+     * @ORM\Column(name="dateFin", type="string", length=255)
+>>>>>>> 1cbb02caab7bb0b2d88eca07f7e88dcb96ab6a29
      */
     private $dateFin;
 
@@ -67,6 +84,7 @@ class Workshops
     private $lieu;
 
     /**
+<<<<<<< HEAD
      * @var string
      *
      * @ORM\Column(name="longitude", type="string", length=255)
@@ -81,6 +99,8 @@ class Workshops
     private $lat;
 
     /**
+=======
+>>>>>>> 1cbb02caab7bb0b2d88eca07f7e88dcb96ab6a29
      * @var int
      *
      * @ORM\Column(name="vu", type="integer")
@@ -97,6 +117,7 @@ class Workshops
     /**
      * @var int
      *
+<<<<<<< HEAD
      * @ORM\Column(name="rating", type="integer")
      */
     private $rating;
@@ -104,11 +125,14 @@ class Workshops
     /**
      * @var int
      *
+=======
+>>>>>>> 1cbb02caab7bb0b2d88eca07f7e88dcb96ab6a29
      * @ORM\Column(name="nbrparticipant", type="integer")
      */
     private $nbrparticipant;
 
     /**
+<<<<<<< HEAD
      * @ORM\Column(type="string", length=255)
      * @var string
      */
@@ -180,6 +204,13 @@ class Workshops
     public function __construct()
     {
     }
+=======
+     * @var string
+     *
+     * @ORM\Column(name="imageurl", type="string", length=255)
+     */
+    private $imageurl;
+>>>>>>> 1cbb02caab7bb0b2d88eca07f7e88dcb96ab6a29
 
 
     /**
@@ -256,6 +287,7 @@ class Workshops
         $this->categorie = $categorie;
     }
 
+<<<<<<< HEAD
     /**
      * @return string
      */
@@ -288,6 +320,8 @@ class Workshops
         $this->lat = $lat;
     }
 
+=======
+>>>>>>> 1cbb02caab7bb0b2d88eca07f7e88dcb96ab6a29
 
 
     /**
@@ -317,7 +351,11 @@ class Workshops
     /**
      * Set dateFin
      *
+<<<<<<< HEAD
      * @param  \DateTime $dateFin
+=======
+     * @param string $dateFin
+>>>>>>> 1cbb02caab7bb0b2d88eca07f7e88dcb96ab6a29
      *
      * @return Workshops
      */
@@ -331,7 +369,11 @@ class Workshops
     /**
      * Get dateFin
      *
+<<<<<<< HEAD
      * @return \DateTime
+=======
+     * @return string
+>>>>>>> 1cbb02caab7bb0b2d88eca07f7e88dcb96ab6a29
      */
     public function getDateFin()
     {
@@ -434,11 +476,37 @@ class Workshops
         return $this->nbrparticipant;
     }
 
+<<<<<<< HEAD
     public function __toString()
     {
         return (string)$this->id;
     }
 
 
+=======
+    /**
+     * Set imageurl
+     *
+     * @param string $imageurl
+     *
+     * @return Workshops
+     */
+    public function setImageurl($imageurl)
+    {
+        $this->imageurl = $imageurl;
+
+        return $this;
+    }
+
+    /**
+     * Get imageurl
+     *
+     * @return string
+     */
+    public function getImageurl()
+    {
+        return $this->imageurl;
+    }
+>>>>>>> 1cbb02caab7bb0b2d88eca07f7e88dcb96ab6a29
 }
 

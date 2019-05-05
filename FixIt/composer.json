@@ -19,8 +19,11 @@
         "doctrine/doctrine-bundle": "^1.6",
         "doctrine/orm": "^2.5",
         "friendsofsymfony/user-bundle": "~2.0",
+<<<<<<< HEAD
         "friendsofsymfony/ckeditor-bundle": "^1.2",
         "friendsofsymfony/message-bundle": "^1.3",
+=======
+>>>>>>> 1cbb02caab7bb0b2d88eca07f7e88dcb96ab6a29
         "incenteev/composer-parameter-handler": "^2.0",
         "jms/serializer-bundle": "^2.4",
         "knplabs/knp-paginator-bundle": "^2.8",

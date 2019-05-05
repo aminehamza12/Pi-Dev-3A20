@@ -10,6 +10,7 @@ namespace FixitBundle\Repository;
  */
 class productRepository extends \Doctrine\ORM\EntityRepository
 {
+<<<<<<< HEAD
     public function findEntitiesByString($str){
         return $this->getEntityManager()
             ->createQuery(
@@ -22,4 +23,6 @@ class productRepository extends \Doctrine\ORM\EntityRepository
     }
 
 
+=======
+>>>>>>> 1cbb02caab7bb0b2d88eca07f7e88dcb96ab6a29
 }

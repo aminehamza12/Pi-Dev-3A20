@@ -46,6 +46,7 @@ class commande
      * @ORM\JoinColumn(name="product",referencedColumnName="id",onDelete="CASCADE")
      */
     private $product;
+<<<<<<< HEAD
     /**
      * @var float
      *
@@ -91,6 +92,8 @@ class commande
         $this->quantity = $quantity;
     }
 
+=======
+>>>>>>> 1cbb02caab7bb0b2d88eca07f7e88dcb96ab6a29
 
     /**
      * @return mixed

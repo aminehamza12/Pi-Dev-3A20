@@ -4,6 +4,7 @@ fixit_homepage:
 fixit_404:
     path:     /404
     defaults: { _controller: FixitBundle:Default:wrong }
+<<<<<<< HEAD
 admin:
     resource: "@FixitBundle/Resources/config/adminrouting.yml"
     prefix:   /admin
@@ -31,4 +32,12 @@ service_indexCategory:
     defaults: { _controller: "FixitBundle:service:indexCategory" }
     methods:  GET
 
+=======
+fixit_workshops:
+    resource: "@FixitBundle/Resources/config/workshopsrouting.yml"
+    prefix:   /Workshops
+admin:
+    resource: "@FixitBundle/Resources/config/adminrouting.yml"
+    prefix:   /admin
+>>>>>>> 1cbb02caab7bb0b2d88eca07f7e88dcb96ab6a29
 

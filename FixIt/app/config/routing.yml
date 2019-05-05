@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 forum:
     resource: "@ForumBundle/Resources/config/routing.yml"
     prefix:   /forum/
@@ -16,13 +17,23 @@ gestion_cv:
 fos_message:
     resource: "@FOSMessageBundle/Resources/config/routing.xml"
     prefix: /optional_routing_prefix
+=======
+fixit:
+    resource: "@FixitBundle/Resources/config/routing.yml"
+    prefix:   /
+
+>>>>>>> 1cbb02caab7bb0b2d88eca07f7e88dcb96ab6a29
 app:
     resource: '@AppBundle/Controller/'
     type: annotation
 fos_user:
+<<<<<<< HEAD
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
 fos_comment_api:
     type: rest
     resource: "@FOSCommentBundle/Resources/config/routing.yml"
     prefix: /api
     defaults: { _format: html }
+=======
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+>>>>>>> 1cbb02caab7bb0b2d88eca07f7e88dcb96ab6a29

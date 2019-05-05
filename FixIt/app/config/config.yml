@@ -109,6 +109,7 @@ nomaya_social:
 sensio_framework_extra:
    router:
         annotations: false
+<<<<<<< HEAD
 
 fos_message:
     db_driver: orm
@@ -144,6 +145,8 @@ vich_uploader:
                uri_prefix:         '%app.path.profilBanner_images%'
                upload_destination: "%kernel.project_dir%/web/uploads/images/profil/banner"
 
+=======
+>>>>>>> 1cbb02caab7bb0b2d88eca07f7e88dcb96ab6a29
 fos_user:
     db_driver: orm # other valid values are 'mongodb' and 'couchdb'
     firewall_name: main
@@ -166,6 +169,7 @@ fos_user:
         address: registration@example.com
         sender_name: Demo Registration
     service:
+<<<<<<< HEAD
         mailer: fos_user.mailer.twig_swift
 knp_snappy:
     pdf:
@@ -208,3 +212,6 @@ fos_comment:
             thread: FixitBundle\Entity\Thread
 assetic:
   bundles: [ "FOSCommentBundle" ]
+=======
+        mailer: fos_user.mailer.twig_swift
+>>>>>>> 1cbb02caab7bb0b2d88eca07f7e88dcb96ab6a29

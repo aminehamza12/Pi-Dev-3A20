@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 admin_homepage:
      path:     /
      defaults: { _controller: FixitBundle:Default:indexAdmin }
@@ -51,3 +52,8 @@ delete_video:
     path:     /ifixit/{id}/deletevideo
     defaults: { _controller: "FixitBundle:ifixit:deleteVideo" }
 
+=======
+#admin_homepage:
+#     path:     /
+#     defaults: { _controller: FixitBundle:Default:indexAdmin }
+>>>>>>> 1cbb02caab7bb0b2d88eca07f7e88dcb96ab6a29

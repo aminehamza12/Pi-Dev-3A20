@@ -20,6 +20,7 @@ class AppKernel extends Kernel
             new AppBundle\AppBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new FixitBundle\FixitBundle(),
+<<<<<<< HEAD
             new ForumBundle\ForumBundle(),
             new BlogBundle\BlogBundle(),
             new GestionCvBundle\GestionCvBundle(),
@@ -36,6 +37,8 @@ class AppKernel extends Kernel
             new JMS\SerializerBundle\JMSSerializerBundle($this),
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new \Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
+=======
+>>>>>>> 1cbb02caab7bb0b2d88eca07f7e88dcb96ab6a29
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

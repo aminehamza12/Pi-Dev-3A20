@@ -46,6 +46,7 @@ services:
             class: AppBundle\Form\RegistrationType
             tags:
                 - { name: form.type, alias: app_user_registration }
+<<<<<<< HEAD
 
     # Nomaya Configuration
     nomaya.socialBarHelper:
@@ -73,3 +74,5 @@ services:
         tags:
             - { name: 'twig.extension' }
         arguments: [ "@service_container" ]
+=======
+>>>>>>> 1cbb02caab7bb0b2d88eca07f7e88dcb96ab6a29
