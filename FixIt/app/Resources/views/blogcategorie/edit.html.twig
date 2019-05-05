@@ -1,0 +1,86 @@
+{% extends 'adminbase.html.twig' %}
+{% form_theme edit_form 'bootstrap_3_layout.html.twig' %}
+{% block body %}
+<div class="container">
+    <div class="row">
+    <h1>Blogcategorie edit</h1>
+
+        {{ form_start(edit_form) }}
+        <div class="form-group">
+            <b>{{ form_label(edit_form.name,'Name  ') }}<i id="glyphicon-name" class="glyphicon glyphicon-ok-sign" style="padding: 0.5em;color:red;" ></i></b>
+            {{ form_widget(edit_form.name,{'attr':{'class':'form-control'}}) }}
+            <small id="name-help" class="form-text text-muted" style="">Minimum Length : 4 , Maximum Length : 25</small>
+        </div>
+        <div class="form-group">
+            <b>{{ form_label(edit_form.description,'Description  ') }}<i id="glyphicon-description" class="glyphicon glyphicon-ok-sign" style="padding: 0.5em;color:red;" ></i></b>
+            {{ form_widget(edit_form.description,{'attr':{'class':'form-control'}}) }}
+            <small id="description-help" class="form-text text-muted" style="">Minimum Length : 100 , Maximum Length : 500</small>
+        </div>
+        <input id="btn-verif" type="submit" value="Edit" class="btn btn-warning"/>
+        {{ form_end(edit_form) }}
+
+
+    </div>
+</div>
+    <script src="{{ asset('jquery-3.3.1.js') }}"></script>
+    <script>
+        var verif_name = true;
+        var verif_description = true;
+        $(document).ready(function () {
+            $('#glyphicon-name').css('color', 'green');
+            $('#name-help').css('display', 'none');
+
+            $('#glyphicon-description').css('color', 'green');
+            $('#description-help').css('display', 'none');
+
+        });
+
+        $('#blogbundle_blogcategorie_name').on('keyup',function(){
+            var name_length = $(this).val().length;
+            if(name_length < 4 || name_length > 25)
+            {
+                $('#glyphicon-name').css('color', 'red');
+                $('#name-help').css('display', '');
+                verif_name = false;
+            }else{
+                $('#glyphicon-name').css('color', 'green');
+                $('#name-help').css('display', 'none');
+                verif_name = true;
+            }
+        });
+
+
+
+        for (var i in CKEDITOR.instances) {
+            CKEDITOR.instances[i].on('change', function() {
+                var desc = CKEDITOR.instances['blogbundle_blogcategorie_description'].getData();
+                var description_length = desc.length;
+                if(description_length < 255 || description_length > 5000)
+                {
+                    $('#glyphicon-description').css('color', 'red');
+                    $('#description-help').css('display', '');
+                    verif_description = false;
+                }else{
+                    $('#glyphicon-description').css('color', 'green');
+                    $('#description-help').css('display', 'none');
+                    verif_description = true;
+                }
+            });
+        }
+
+
+
+        $('#btn-verif').on("click",function (event) {
+            if(verif_name != true || verif_description != true ){
+                event.preventDefault();
+                if(verif_name == false){alert("Verify your Blog Categorie Name")}
+                else if(verif_description == false){alert("Verify your description")}
+
+            }
+        });
+
+
+
+
+    </script>
+{% endblock %}

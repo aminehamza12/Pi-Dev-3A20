@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="WEB_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/FixIt/tests" isTestSource="true" packagePrefix="Tests\" />
+      <sourceFolder url="file://$MODULE_DIR$/FixIt/src" isTestSource="false" />
+      <excludeFolder url="file://$MODULE_DIR$/FixIt/vendor/cmen/google-charts-bundle" />
+      <excludeFolder url="file://$MODULE_DIR$/FixIt/vendor/composer" />
+      <excludeFolder url="file://$MODULE_DIR$/FixIt/vendor/doctrine/annotations" />
+      <excludeFolder url="file://$MODULE_DIR$/FixIt/vendor/doctrine/cache" />
+      <excludeFolder url="file://$MODULE_DIR$/FixIt/vendor/doctrine/collections" />
+      <excludeFolder url="file://$MODULE_DIR$/FixIt/vendor/doctrine/common" />
+      <excludeFolder url="file://$MODULE_DIR$/FixIt/vendor/doctrine/dbal" />
+      <excludeFolder url="file://$MODULE_DIR$/FixIt/vendor/doctrine/doctrine-bundle" />
+      <excludeFolder url="file://$MODULE_DIR$/FixIt/vendor/doctrine/doctrine-cache-bundle" />
+      <excludeFolder url="file://$MODULE_DIR$/FixIt/vendor/doctrine/inflector" />
+      <excludeFolder url="file://$MODULE_DIR$/FixIt/vendor/doctrine/instantiator" />
+      <excludeFolder url="file://$MODULE_DIR$/FixIt/vendor/doctrine/lexer" />
+      <excludeFolder url="file://$MODULE_DIR$/FixIt/vendor/doctrine/orm" />
+      <excludeFolder url="file://$MODULE_DIR$/FixIt/vendor/fig/link-util" />
+      <excludeFolder url="file://$MODULE_DIR$/FixIt/vendor/friendsofsymfony/ckeditor-bundle" />
+      <excludeFolder url="file://$MODULE_DIR$/FixIt/vendor/friendsofsymfony/comment-bundle" />
+      <excludeFolder url="file://$MODULE_DIR$/FixIt/vendor/friendsofsymfony/message-bundle" />
+      <excludeFolder url="file://$MODULE_DIR$/FixIt/vendor/friendsofsymfony/rest-bundle" />
+      <excludeFolder url="file://$MODULE_DIR$/FixIt/vendor/friendsofsymfony/user-bundle" />
+      <excludeFolder url="file://$MODULE_DIR$/FixIt/vendor/incenteev/composer-parameter-handler" />
+      <excludeFolder url="file://$MODULE_DIR$/FixIt/vendor/jdorn/sql-formatter" />
+      <excludeFolder url="file://$MODULE_DIR$/FixIt/vendor/jms/metadata" />
+      <excludeFolder url="file://$MODULE_DIR$/FixIt/vendor/jms/parser-lib" />
+      <excludeFolder url="file://$MODULE_DIR$/FixIt/vendor/jms/serializer" />
+      <excludeFolder url="file://$MODULE_DIR$/FixIt/vendor/jms/serializer-bundle" />
+      <excludeFolder url="file://$MODULE_DIR$/FixIt/vendor/knplabs/knp-components" />
+      <excludeFolder url="file://$MODULE_DIR$/FixIt/vendor/knplabs/knp-paginator-bundle" />
+      <excludeFolder url="file://$MODULE_DIR$/FixIt/vendor/knplabs/knp-snappy" />
+      <excludeFolder url="file://$MODULE_DIR$/FixIt/vendor/knplabs/knp-snappy-bundle" />
+      <excludeFolder url="file://$MODULE_DIR$/FixIt/vendor/kriswallsmith/assetic" />
+      <excludeFolder url="file://$MODULE_DIR$/FixIt/vendor/monolog/monolog" />
+      <excludeFolder url="file://$MODULE_DIR$/FixIt/vendor/nomaya/social-bundle" />
+      <excludeFolder url="file://$MODULE_DIR$/FixIt/vendor/ob/highcharts-bundle" />
+      <excludeFolder url="file://$MODULE_DIR$/FixIt/vendor/paragonie/random_compat" />
+      <excludeFolder url="file://$MODULE_DIR$/FixIt/vendor/phpcollection/phpcollection" />
+      <excludeFolder url="file://$MODULE_DIR$/FixIt/vendor/phpoption/phpoption" />
+      <excludeFolder url="file://$MODULE_DIR$/FixIt/vendor/psr/cache" />
+      <excludeFolder url="file://$MODULE_DIR$/FixIt/vendor/psr/container" />
+      <excludeFolder url="file://$MODULE_DIR$/FixIt/vendor/psr/link" />
+      <excludeFolder url="file://$MODULE_DIR$/FixIt/vendor/psr/log" />
+      <excludeFolder url="file://$MODULE_DIR$/FixIt/vendor/psr/simple-cache" />
+      <excludeFolder url="file://$MODULE_DIR$/FixIt/vendor/sensio/distribution-bundle" />
+      <excludeFolder url="file://$MODULE_DIR$/FixIt/vendor/sensio/framework-extra-bundle" />
+      <excludeFolder url="file://$MODULE_DIR$/FixIt/vendor/sensio/generator-bundle" />
+      <excludeFolder url="file://$MODULE_DIR$/FixIt/vendor/sensiolabs/security-checker" />
+      <excludeFolder url="file://$MODULE_DIR$/FixIt/vendor/spipu/html2pdf" />
+      <excludeFolder url="file://$MODULE_DIR$/FixIt/vendor/swiftmailer/swiftmailer" />
+      <excludeFolder url="file://$MODULE_DIR$/FixIt/vendor/symfony/assetic-bundle" />
+      <excludeFolder url="file://$MODULE_DIR$/FixIt/vendor/symfony/monolog-bundle" />
+      <excludeFolder url="file://$MODULE_DIR$/FixIt/vendor/symfony/phpunit-bridge" />
+      <excludeFolder url="file://$MODULE_DIR$/FixIt/vendor/symfony/polyfill-apcu" />
+      <excludeFolder url="file://$MODULE_DIR$/FixIt/vendor/symfony/polyfill-ctype" />
+      <excludeFolder url="file://$MODULE_DIR$/FixIt/vendor/symfony/polyfill-intl-icu" />
+      <excludeFolder url="file://$MODULE_DIR$/FixIt/vendor/symfony/polyfill-mbstring" />
+      <excludeFolder url="file://$MODULE_DIR$/FixIt/vendor/symfony/polyfill-php56" />
+      <excludeFolder url="file://$MODULE_DIR$/FixIt/vendor/symfony/polyfill-php70" />
+      <excludeFolder url="file://$MODULE_DIR$/FixIt/vendor/symfony/polyfill-util" />
+      <excludeFolder url="file://$MODULE_DIR$/FixIt/vendor/symfony/swiftmailer-bundle" />
+      <excludeFolder url="file://$MODULE_DIR$/FixIt/vendor/symfony/symfony" />
+      <excludeFolder url="file://$MODULE_DIR$/FixIt/vendor/tecnickcom/tcpdf" />
+      <excludeFolder url="file://$MODULE_DIR$/FixIt/vendor/twig/twig" />
+      <excludeFolder url="file://$MODULE_DIR$/FixIt/vendor/vich/uploader-bundle" />
+      <excludeFolder url="file://$MODULE_DIR$/FixIt/vendor/webeweb/core-library" />
+      <excludeFolder url="file://$MODULE_DIR$/FixIt/vendor/webeweb/highcharts-bundle" />
+      <excludeFolder url="file://$MODULE_DIR$/FixIt/vendor/willdurand/jsonp-callback-validator" />
+      <excludeFolder url="file://$MODULE_DIR$/FixIt/vendor/willdurand/negotiation" />
+      <excludeFolder url="file://$MODULE_DIR$/FixIt/vendor/zendframework/zend-json" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

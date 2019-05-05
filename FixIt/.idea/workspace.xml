@@ -14,32 +14,160 @@
     <pharPath>$PROJECT_DIR$/composer.phar</pharPath>
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="composer.json" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/composer.json">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="WorkshopsController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/FixitBundle/Controller/WorkshopsController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="21" lean-forward="true" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
+            <state relative-caret-position="6766">
+              <caret line="408" column="25" selection-start-line="347" selection-start-column="8" selection-end-line="408" selection-end-column="25" />
+              <folding>
+                <element signature="e#42#81#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DefaultController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php">
-          <provider selected="true" editor-type-id="text-editor" />
+      <file leaf-file-name="index.html.twig" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/FixitBundle/Resources/views/workshops/index.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="232">
+              <caret line="393" column="51" lean-forward="true" selection-start-line="393" selection-start-column="51" selection-end-line="393" selection-end-column="51" />
+            </state>
+          </provider>
         </entry>
       </file>
-      <file leaf-file-name="AppBundle.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/AppBundle/AppBundle.php">
-          <provider selected="true" editor-type-id="text-editor" />
+      <file leaf-file-name="show.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Resources/views/profil/Admin/show.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="850">
+              <caret line="50" selection-start-line="50" selection-end-line="50" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="edit.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Resources/views/blogviews/edit.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="11" column="12" selection-start-line="11" selection-start-column="12" selection-end-line="11" selection-end-column="12" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="base.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="7429">
+              <caret line="437" selection-start-line="437" selection-end-line="437" selection-end-column="54" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="routing.yml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/GestionCvBundle/Resources/config/routing.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="204">
+              <caret line="12" column="27" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="27" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="adminbase.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Resources/views/adminbase.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="578">
+              <caret line="34" column="71" selection-start-line="34" selection-start-column="71" selection-end-line="34" selection-end-column="71" />
+            </state>
+          </provider>
         </entry>
       </file>
     </leaf>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>email.</find>
+      <find>Login</find>
+      <find>logou</find>
+      <find>Logou</find>
+      <find>Logout</find>
+      <find>user</find>
+      <find>work</find>
+      <find>ifi</find>
+      <find>doc</find>
+      <find>init_map</find>
+      <find>loader_html</find>
+      <find>center</find>
+      <find>templating</find>
+      <find>findTopic</find>
+      <find>menu</find>
+      <find>Event</find>
+      <find>id=&quot;main&quot;</find>
+      <find>map</find>
+      <find>part</find>
+    </findStrings>
+  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+        <option value="$PROJECT_DIR$/app/Resources/views/videos/show.html.twig" />
+        <option value="$PROJECT_DIR$/src/FixitBundle/Form/VideosType.php" />
+        <option value="$PROJECT_DIR$/src/FixitBundle/Resources/views/videos/new.html.twig" />
+        <option value="$PROJECT_DIR$/src/FixitBundle/Resources/views/videos/show.html.twig" />
+        <option value="$PROJECT_DIR$/src/FixitBundle/Entity/ifixit.php" />
+        <option value="$PROJECT_DIR$/web/js/playlist.js" />
+        <option value="$PROJECT_DIR$/web/css/playlist.css" />
+        <option value="$PROJECT_DIR$/src/FixitBundle/Resources/config/routing/ifixit.yml" />
+        <option value="$PROJECT_DIR$/src/FixitBundle/Resources/views/ifixit/show.html.twig" />
+        <option value="$PROJECT_DIR$/src/FixitBundle/Form/WorkshopsType.php" />
+        <option value="$PROJECT_DIR$/src/FixitBundle/Resources/config/adminrouting.yml" />
+        <option value="$PROJECT_DIR$/src/FixitBundle/Resources/views/ifixit/indexAdmin.html.twig" />
+        <option value="$PROJECT_DIR$/src/FixitBundle/Resources/views/workshops/edit.html.twig" />
+        <option value="$PROJECT_DIR$/vendor/knplabs/knp-paginator-bundle/Resources/views/Pagination/sliding.html.twig" />
+        <option value="$PROJECT_DIR$/src/FixitBundle/Controller/ifixitController.php" />
+        <option value="$PROJECT_DIR$/src/FixitBundle/Resources/views/ifixit/index.html.twig" />
+        <option value="$PROJECT_DIR$/web/css/rating.css" />
+        <option value="$PROJECT_DIR$/src/FixitBundle/Entity/Rating.php" />
+        <option value="$PROJECT_DIR$/web/js/rating.js" />
+        <option value="$PROJECT_DIR$/src/FixitBundle/Entity/Recomended.php" />
+        <option value="$PROJECT_DIR$/src/FixitBundle/Repository/RecomendedRepository.php" />
+        <option value="$PROJECT_DIR$/src/FixitBundle/Resources/views/workshops/show.html.twig" />
+        <option value="$PROJECT_DIR$/app/Resources/views/Topic/details.html.twig" />
+        <option value="$PROJECT_DIR$/src/ForumBundle/Entity/Commentaire.php" />
+        <option value="$PROJECT_DIR$/src/ForumBundle/Entity/Topic.php" />
+        <option value="$PROJECT_DIR$/src/ForumBundle/Repository/TopicRepository.php" />
+        <option value="$PROJECT_DIR$/src/ForumBundle/Controller/TopicController.php" />
+        <option value="$PROJECT_DIR$/app/Resources/views/Topic/list.html.twig" />
+        <option value="$PROJECT_DIR$/src/FixitBundle/Controller/DefaultController.php" />
+        <option value="$PROJECT_DIR$/app/Resources/views/navbarFront.html.twig" />
+        <option value="$USER_HOME$/Documents/GitHub/Pi-Dev-3A20/FixIt/src/FixitBundle/Controller/DefaultController.php" />
+        <option value="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
+        <option value="$PROJECT_DIR$/src/FixitBundle/Resources/config/routing/workshops.yml" />
+        <option value="$PROJECT_DIR$/app/config/routing.yml" />
+        <option value="$PROJECT_DIR$/app/config/services.yml" />
         <option value="$PROJECT_DIR$/composer.json" />
+        <option value="$PROJECT_DIR$/app/AppKernel.php" />
+        <option value="$PROJECT_DIR$/src/FixitBundle/Resources/config/routing.yml" />
+        <option value="$PROJECT_DIR$/app/config/parameters.yml" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Entity/ThreadMetadata.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Entity/Message.php" />
+        <option value="$PROJECT_DIR$/src/BlogBundle/Entity/Comment.php" />
+        <option value="$PROJECT_DIR$/app/config/config.yml" />
+        <option value="$PROJECT_DIR$/web/js/mapclustering/map.js" />
+        <option value="$PROJECT_DIR$/src/FixitBundle/Entity/Workshops.php" />
+        <option value="$PROJECT_DIR$/src/FixitBundle/Controller/WorkshopsController.php" />
+        <option value="$PROJECT_DIR$/src/FixitBundle/Resources/views/workshops/index.html.twig" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Entity/User.php" />
+        <option value="$PROJECT_DIR$/app/Resources/views/profil/Admin/show.html.twig" />
+        <option value="$PROJECT_DIR$/app/Resources/views/adminbase.html.twig" />
+        <option value="$PROJECT_DIR$/app/Resources/views/blogviews/edit.html.twig" />
       </list>
     </option>
   </component>
@@ -48,6 +176,15 @@
   <component name="JsGulpfileManager">
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="NodePackageJsonFileManager">
+    <packageJsonPaths>
+      <path value="$PROJECT_DIR$/web/admin/plugins/metismenu/package.json" />
+      <path value="$PROJECT_DIR$/web/admin/plugins/nanoscrollerjs/package.json" />
+      <path value="$PROJECT_DIR$/web/admin/plugins/noty-master/package.json" />
+      <path value="$PROJECT_DIR$/web/admin/plugins/rickshaw-master/examples/socket.io/package.json" />
+      <path value="$PROJECT_DIR$/web/libraries/dhtmlx/codebase/sources/less/package.json" />
+    </packageJsonPaths>
   </component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP">
     <include_path>
@@ -92,12 +229,40 @@
       <path value="$PROJECT_DIR$/vendor/composer" />
       <path value="$PROJECT_DIR$/vendor/doctrine/orm" />
       <path value="$PROJECT_DIR$/vendor/doctrine/lexer" />
+      <path value="$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle" />
+      <path value="$PROJECT_DIR$/vendor/jms/metadata" />
+      <path value="$PROJECT_DIR$/vendor/vich/uploader-bundle" />
+      <path value="$PROJECT_DIR$/vendor/knplabs/knp-components" />
+      <path value="$PROJECT_DIR$/vendor/knplabs/knp-paginator-bundle" />
+      <path value="$PROJECT_DIR$/vendor/friendsofsymfony/ckeditor-bundle" />
+      <path value="$PROJECT_DIR$/vendor/ob/highcharts-bundle" />
+      <path value="$PROJECT_DIR$/vendor/nomaya/social-bundle" />
+      <path value="$PROJECT_DIR$/vendor/webeweb/core-library" />
+      <path value="$PROJECT_DIR$/vendor/webeweb/highcharts-bundle" />
+      <path value="$PROJECT_DIR$/vendor/zendframework/zend-json" />
+      <path value="$PROJECT_DIR$/vendor/cmen/google-charts-bundle" />
+      <path value="$PROJECT_DIR$/vendor/phpoption/phpoption" />
+      <path value="$PROJECT_DIR$/vendor/phpcollection/phpcollection" />
+      <path value="$PROJECT_DIR$/vendor/knplabs/knp-snappy" />
+      <path value="$PROJECT_DIR$/vendor/jms/serializer" />
+      <path value="$PROJECT_DIR$/vendor/jms/serializer-bundle" />
+      <path value="$PROJECT_DIR$/vendor/jms/parser-lib" />
+      <path value="$PROJECT_DIR$/vendor/friendsofsymfony/message-bundle" />
+      <path value="$PROJECT_DIR$/vendor/friendsofsymfony/rest-bundle" />
+      <path value="$PROJECT_DIR$/vendor/friendsofsymfony/comment-bundle" />
+      <path value="$PROJECT_DIR$/vendor/tecnickcom/tcpdf" />
+      <path value="$PROJECT_DIR$/vendor/willdurand/jsonp-callback-validator" />
+      <path value="$PROJECT_DIR$/vendor/willdurand/negotiation" />
+      <path value="$PROJECT_DIR$/vendor/spipu/html2pdf" />
+      <path value="$PROJECT_DIR$/vendor/kriswallsmith/assetic" />
+      <path value="$PROJECT_DIR$/vendor/symfony/assetic-bundle" />
+      <path value="$PROJECT_DIR$/vendor/knplabs/knp-snappy-bundle" />
     </include_path>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-2" />
-    <option name="width" value="997" />
-    <option name="height" value="788" />
+    <option name="x" value="-7" />
+    <option name="width" value="697" />
+    <option name="height" value="735" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -108,26 +273,39 @@
         <subPane>
           <expand>
             <path>
-              <item name="emptyproject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="emptyproject" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="FixIt" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FixIt" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="emptyproject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="emptyproject" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="FixIt" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FixIt" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="emptyproject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="emptyproject" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="AppBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="FixIt" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FixIt" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="emptyproject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="emptyproject" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="AppBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Controller" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="FixIt" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FixIt" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FixIt" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FixIt" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FixIt" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FixIt" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FixIt" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="bcb0276e:PhpExternalLibrariesNodePatcher$PatchedExternalLibrariesNode" />
             </path>
           </expand>
           <select />
@@ -138,10 +316,28 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="C:/xampp/php/php.exe" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="php.override.implement.member.chooser.php.doc" value="NONE" />
     <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\wamp\www\Pi-Dev-3A20\FixIt\app\Resources\views" />
+      <recent name="C:\wamp\www\Pi-Dev-3A20\FixIt\web\images" />
+      <recent name="C:\wamp\www\Pi-Dev-3A20\FixIt\src\FixitBundle" />
+      <recent name="C:\wamp\www\Pi-Dev-3A20\FixIt\src\FixitBundle\Resources\config\routing" />
+      <recent name="C:\wamp\www\Pi-Dev-3A20\FixIt\src\FixitBundle\Repository" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\wamp\www\Pi-Dev-3A20\FixIt\src\FixitBundle\Resources\views" />
+      <recent name="C:\wamp\www\Pi-Dev-3A20\FixIt\src\FixitBundle\Resources\views\workshops" />
+      <recent name="C:\wamp\www\Pi-Dev-3A20\FixIt\src\FixitBundle\Resources\views\Evenement" />
+      <recent name="C:\wamp\www\Pi-Dev-3A20\FixIt\src\FixitBundle\Resources\config" />
+      <recent name="C:\wamp\www\Pi-Dev-3A20\FixIt\app\Resources\FOSUserBundle\views" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -166,36 +362,111 @@
       <option name="presentableId" value="Default" />
       <updated>1547663977466</updated>
       <workItem from="1547664397110" duration="142000" />
+      <workItem from="1549531544597" duration="4341000" />
+      <workItem from="1549564419476" duration="17000" />
+      <workItem from="1549723208036" duration="10537000" />
+      <workItem from="1549752595779" duration="12154000" />
+      <workItem from="1549791334398" duration="3339000" />
+      <workItem from="1549840719187" duration="5544000" />
+      <workItem from="1549896147940" duration="3213000" />
+      <workItem from="1549992840448" duration="11955000" />
+      <workItem from="1550076157065" duration="14522000" />
+      <workItem from="1550101922243" duration="6968000" />
+      <workItem from="1550112585486" duration="7194000" />
+      <workItem from="1550133023748" duration="4841000" />
+      <workItem from="1550171615129" duration="610000" />
+      <workItem from="1550238699393" duration="2335000" />
+      <workItem from="1550264765155" duration="5378000" />
+      <workItem from="1550364767561" duration="1341000" />
+      <workItem from="1550510354083" duration="1454000" />
+      <workItem from="1550518274426" duration="11105000" />
+      <workItem from="1550537972207" duration="6228000" />
+      <workItem from="1550601131635" duration="1128000" />
+      <workItem from="1550604262983" duration="17592000" />
+      <workItem from="1550630422888" duration="3025000" />
+      <workItem from="1550719504803" duration="1681000" />
+      <workItem from="1550725284094" duration="2165000" />
+      <workItem from="1550780639902" duration="6825000" />
+      <workItem from="1550790219610" duration="14000" />
+      <workItem from="1550794767609" duration="841000" />
+      <workItem from="1550870787824" duration="247000" />
+      <workItem from="1550880490190" duration="3783000" />
+      <workItem from="1550886019260" duration="1723000" />
+      <workItem from="1550889720538" duration="17272000" />
+      <workItem from="1550907999084" duration="6084000" />
+      <workItem from="1550957172355" duration="3702000" />
+      <workItem from="1550964830900" duration="18351000" />
+      <workItem from="1551052873050" duration="7602000" />
+      <workItem from="1551064027007" duration="13580000" />
+      <workItem from="1551134051690" duration="6644000" />
+      <workItem from="1551154052656" duration="2253000" />
+      <workItem from="1551230826534" duration="10744000" />
+      <workItem from="1551248479548" duration="2452000" />
+      <workItem from="1551258317350" duration="6524000" />
+      <workItem from="1551269195064" duration="15099000" />
+      <workItem from="1551292153085" duration="3780000" />
+      <workItem from="1551311964325" duration="14708000" />
+      <workItem from="1551328658204" duration="8338000" />
+      <workItem from="1551339159185" duration="7648000" />
+      <workItem from="1551422137754" duration="79000" />
+      <workItem from="1551438788424" duration="590000" />
+      <workItem from="1551607170976" duration="1136000" />
+      <workItem from="1551805009592" duration="1353000" />
+      <workItem from="1551807304161" duration="190000" />
+      <workItem from="1551954007247" duration="742000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="142000" />
+    <option name="totallyTimeSpent" value="301113000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24962178" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.12632374" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
-      <window_info anchor="right" id="Database" />
-      <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5030257" side_tool="true" weight="0.34323433" />
+      <window_info anchor="right" id="Database" order="3" />
+      <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="10" show_stripe_button="false" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Version Control" show_stripe_button="false" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" />
+      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.4969743" weight="0.34323433" />
+      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info id="Favorites" side_tool="true" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="Command Line Tools Console" order="12" weight="0.32838285" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32838285" />
     </layout>
+    <layout-to-restore>
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.23600605" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32838285" />
+      <window_info anchor="bottom" id="Command Line Tools Console" order="12" weight="0.32838285" />
+      <window_info anchor="right" id="Database" order="3" />
+      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.4969743" weight="0.34323433" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="10" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5030257" side_tool="true" weight="0.34323433" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -203,17 +474,285 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
+  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php">
+    <entry file="file://$USER_HOME$/Documents/GitHub/Pi-Dev-3A20/FixIt/src/FixitBundle/Controller/WorkshopsController.php">
       <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$USER_HOME$/Documents/GitHub/Pi-Dev-3A20/FixIt/src/FixitBundle/Controller/DefaultController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="48">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Documents/GitHub/Pi-Dev-3A20/FixIt/app/Resources/views/base.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="388">
+          <caret line="213" column="49" selection-start-line="127" selection-start-column="44" selection-end-line="213" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Documents/GitHub/Pi-Dev-3A20/FixIt/app/config/routing.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" selection-start-line="16" selection-end-line="18" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Documents/GitHub/Pi-Dev-3A20/FixIt/composer.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" column="55" lean-forward="true" selection-start-line="22" selection-start-column="55" selection-end-line="22" selection-end-column="55" />
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/AppBundle.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/composer.json">
+    <entry file="file://$USER_HOME$/Documents/GitHub/Pi-Dev-3A20/FixIt/app/config/config.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="103" selection-start-line="103" selection-end-line="108" selection-end-column="87" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Documents/GitHub/Pi-Dev-3A20/FixIt/app/config/services.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" selection-start-line="3" selection-end-line="4" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Documents/GitHub/Pi-Dev-3A20/FixIt/src/AppBundle/Controller/DefaultController.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$USER_HOME$/Documents/GitHub/Pi-Dev-3A20/FixIt/src/AppBundle/Entity/User.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1261" />
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Documents/GitHub/Pi-Dev-3A20/FixIt/app/AppKernel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="23" column="12" selection-start-line="23" selection-start-column="12" selection-end-line="23" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/FixitBundle/Controller/categorieifixitController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="439">
+          <caret line="123" column="1" lean-forward="true" selection-start-line="123" selection-start-column="1" selection-end-line="123" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/js/gmap3.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-11309" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/FixitBundle/Resources/config/routing/workshops.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="19" selection-start-line="19" selection-end-line="19" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/FixitBundle/Controller/commandeController.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/FixitBundle/Entity/address.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/FixitBundle/Form/categoryType.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/FixitBundle/Resources/config/routing/addressRepository.php" />
+    <entry file="file://$PROJECT_DIR$/src/FixitBundle/Repository/addressRepository.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/FixitBundle/Resources/config/routing/category.yml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/FixitBundle/Service/HTML2PDF.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/routing.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="27" column="31" selection-start-line="27" selection-start-column="31" selection-end-line="27" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/security.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-147" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/services.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-621">
+          <caret line="13" column="55" selection-start-line="13" selection-start-column="55" selection-end-line="13" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Thread.php" />
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/MessageMetadata.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="4" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/BlogBundle/Entity/Comment.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="28" selection-start-line="2" selection-start-column="28" selection-end-line="2" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Message.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
-          <caret line="11" column="21" lean-forward="true" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
+          <caret line="23" column="34" selection-start-line="23" selection-start-column="34" selection-end-line="23" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/parameters.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="26" selection-start-line="12" selection-start-column="26" selection-end-line="12" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/category/new.html.twig">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/FixitBundle/Resources/config/routing.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="31" column="17" selection-start-line="31" selection-start-column="17" selection-end-line="31" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/AppKernel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="30" column="55" selection-start-line="30" selection-start-column="55" selection-end-line="30" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/composer.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="40" column="44" selection-start-line="40" selection-start-column="44" selection-end-line="40" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/ThreadMetadata.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="24" column="8" selection-start-line="24" selection-start-column="8" selection-end-line="24" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/config.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="24" column="20" selection-start-line="24" selection-start-column="20" selection-end-line="24" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/js/mapclustering/map.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="310">
+          <caret line="107" column="10" selection-start-line="107" selection-start-column="10" selection-end-line="107" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/FixitBundle/Controller/serviceController.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$USER_HOME$/Desktop/FIXIT/src/AppBundle/Entity/User.php" />
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/User.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="779">
+          <caret line="165" column="5" selection-start-line="165" selection-start-column="5" selection-end-line="165" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/FixitBundle/FixitBundle.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/FixitBundle/Entity/Workshops.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="303">
+          <caret line="131" column="31" lean-forward="true" selection-start-line="131" selection-start-column="31" selection-end-line="131" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/adminbase.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="578">
+          <caret line="34" column="71" selection-start-line="34" selection-start-column="71" selection-end-line="34" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GestionCvBundle/Resources/config/routing.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="27" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/profil/Admin/show.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="850">
+          <caret line="50" selection-start-line="50" selection-end-line="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/blogviews/edit.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="12" selection-start-line="11" selection-start-column="12" selection-end-line="11" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7429">
+          <caret line="437" selection-start-line="437" selection-end-line="437" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/FOSUserBundle/views/layout.html.twig">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/FOSUserBundle/views/Security/login_content.html.twig">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/FOSUserBundle/views/Security/login.html.twig">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/FixitBundle/Controller/WorkshopsController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6766">
+          <caret line="408" column="25" selection-start-line="347" selection-start-column="8" selection-end-line="408" selection-end-column="25" />
+          <folding>
+            <element signature="e#42#81#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/FixitBundle/Resources/views/workshops/index.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="232">
+          <caret line="393" column="51" lean-forward="true" selection-start-line="393" selection-start-column="51" selection-end-line="393" selection-end-column="51" />
         </state>
       </provider>
     </entry>

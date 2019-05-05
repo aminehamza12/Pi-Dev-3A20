@@ -1,0 +1,49 @@
+{% extends 'profil/sidebar.html.twig' %}
+
+{% block content %}
+    <h1>Profil</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ profil.id }}</td>
+            </tr>
+            <tr>
+                <th>Logo</th>
+                <td><figure>
+                        <img src="{{ vich_uploader_asset(profil, 'logoFile') }}" alt="image description">
+                    </figure></td>
+            </tr>
+            <tr>
+                <th>Banner</th>
+                <td><figure>
+                        <img src="{{ vich_uploader_asset(profil, 'bannerFile') }}" alt="image description">
+                    </figure></td>
+            </tr>
+            <tr>
+                <th>Mobile</th>
+                <td>{{ profil.mobile }}</td>
+            </tr>
+            <tr>
+                <th>Fax</th>
+                <td>{{ profil.fax }}</td>
+            </tr>
+            <tr>
+                <th>Location</th>
+                <td>{{ profil.location }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('profil_edit', { 'id': profil.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

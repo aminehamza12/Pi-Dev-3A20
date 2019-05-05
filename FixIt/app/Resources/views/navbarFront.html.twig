@@ -1,0 +1,72 @@
+<div class="tg-navigationarea">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-xs-4">
+                <strong class="tg-logo"><a href="{{ path('homepage') }}"><img src="{{ asset('images/logo.png') }}" alt="image description"></a></strong>
+                <div class="tg-rightarea">
+                    <nav id="tg-nav" class="tg-nav">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#tg-navigation" aria-expanded="false">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                        </div>
+                        <div id="tg-navigation" class="collapse navbar-collapse tg-navigation">
+                            <ul>
+                                <li>
+                                    <a href="#">Home</a>
+                                </li>
+                                <li>
+                                    <a href="#">About us</a>
+                                </li>
+                                <li>
+                                    <a href="#">Service Seeking</a>
+                                </li>
+                                <li>
+                                    <a href="#">Service Providing</a>
+                                </li>
+                                <li class="menu-item-has-children">
+                                    <a href="#">Events</a>
+                                    <ul class="sub-menu">
+                                        <li>
+                                            <a href="{{ path('ifixit_index') }}">IFixIt</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ path('workshops_index') }}">Workshops</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="{{ path('afficher_topics') }}">Forum</a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('ajouter_reclamation') }}">Réclamtion</a>
+                                </li>
+                                <li class="menu-item-has-children">
+                                    <a href="{{ path('blog_index') }}">Blog</a>
+                                    <ul class="sub-menu">
+
+                                        {% for blogCategorie in blogCategories %}
+                                            <li>
+                                                <a href="{{ path('blogcategorie_showBlogsWithBlogCategorie', { 'id': blogCategorie.id }) }}">{{ blogCategorie.name }}</a>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#">Shop</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                    <a class="tg-btn tg-btnpostanewjob" href="dashboard.html">Post A New Job</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

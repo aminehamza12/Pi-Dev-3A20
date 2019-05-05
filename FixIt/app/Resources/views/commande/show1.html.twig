@@ -1,0 +1,54 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block body %}
+    <h1 style="text-align: center ; ">Commande</h1>
+
+    <div class="boxed">
+        <div class="content-container">
+            <div class="page-content">
+                <div class="panel">
+                    <!-- Foo Table - Add & Remove Rows -->
+                    <!--===================================================-->
+                    <div class="panel-body">
+    <table id="demo-foo-addrow" class="table table-bordered table-hover toggle-circle" data-page-size="7">
+        <tbody>
+            <tr>
+                <th data-sort-initial="true" data-toggle="true">Reference:</th>
+                <td style="text-align: center">com{{ commande.id }}</td>
+            </tr>
+            <tr>
+                <th data-sort-initial="true" data-toggle="true">Date</th>
+                <td style="text-align: center">{% if commande.date %}{{ commande.date|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th data-sort-initial="true" data-toggle="true">Delivery</th>
+                <td style="text-align: center">{% if commande.delivery %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th data-sort-initial="true" data-toggle="true">Product</th>
+                <td style="text-align: center"> {{ commande.product.name }}</td>
+            </tr>
+            <tr>
+                <th data-sort-initial="true" data-toggle="true">N° du propriétaire</th>
+                <td style="text-align: center">{{ commande.product.tel }} </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul style="text-align: center">
+
+            <a href="{{ path('commande_index') }}" class="btn btn-info">Back to the list</a>
+            <a href="{{ path('commande_pdf', { 'id': commande.id }) }}" class="btn btn-warning">Génerer pdf</a>
+
+         {# {{ form_start(delete_form) }}
+                <input type="submit" value="Delete" class="btn btn-danger">
+            {{ form_end(delete_form) }}#}
+    </ul>
+                </div>
+                <!--===================================================-->
+                <!-- End Foo Table - Add & Remove Rows -->
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

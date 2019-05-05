@@ -1,0 +1,24 @@
+videos_index:
+    path:     /
+    defaults: { _controller: "FixitBundle:Videos:index" }
+    methods:  GET
+
+videos_show:
+    path:     /{id}/show
+    defaults: { _controller: "FixitBundle:Videos:show" }
+    methods:  GET
+
+videos_new:
+    path:     /new
+    defaults: { _controller: "FixitBundle:Videos:new" }
+    methods:  [GET, POST]
+
+videos_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "FixitBundle:Videos:edit" }
+    methods:  [GET, POST]
+
+videos_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "FixitBundle:Videos:delete" }
+    methods:  DELETE

@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<!--************************************
+        Main Start
+*************************************-->
+<main id="tg-main" class="tg-main tg-paddingzero tg-haslayout">
+    <!--************************************
+            Login Register Start
+    *************************************-->
+    <div class="tg-main-section tg-haslayout">
+        <div class="container">
+                <div class="row">
+                    <div id="tg-content" class="tg-content">
+                        {% block fos_user_content %}
+                        {% endblock fos_user_content %}
+                    </div>
+                </div>
+        </div>
+    </div>
+    <!--************************************
+            Login Register End
+    *************************************-->
+</main>
+<!--************************************
+        Main End
+*************************************-->
+{% endblock %}
+

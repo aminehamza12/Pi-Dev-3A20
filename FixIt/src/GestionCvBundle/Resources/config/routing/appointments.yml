@@ -1,0 +1,19 @@
+scheduler_index:
+    path:      /
+    defaults:  { _controller: GestionCvBundle:Appointments:index }
+    methods:  [GET]
+
+scheduler_create:
+    path:      /appointment-create
+    defaults:  { _controller: GestionCvBundle:Appointments:create }
+    methods:  [POST]
+
+scheduler_update:
+    path:      /appointment-update
+    defaults:  { _controller: GestionCvBundle:Appointments:update }
+    methods:  [POST]
+
+scheduler_delete:
+    path:      /appointment-delete
+    defaults:  { _controller: GestionCvBundle:Appointments:delete }
+    methods:  [DELETE]

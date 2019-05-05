@@ -1,0 +1,522 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="tg-mapinnerbanner">
+        <div class="tg-searchbox">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-10 col-md-push-1 col-lg-10 col-lg-push-1">
+                        <form class="tg-themeform tg-formsearch">
+                            <fieldset>
+                                <div class="form-group">
+                                    <input type="text" name="keyword" class="form-control" placeholder="Keyword">
+                                </div>
+                                <div class="form-group tg-inputwithicon">
+                                    <div class="locate-me-wrap">
+                                        <div id="location-pickr-map" class="elm-display-none"></div>
+                                        <input type="text"  autocomplete="on" id="location-address" value="" name="geo_location" placeholder="Geo location" class="form-control">
+                                        <a href="javascript:;" class="geolocate"><i class="fa fa-crosshairs"></i></a>
+                                        <a href="javascript:;" class="geodistance"><i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                                        <div class="geodistance_range elm-display-none">
+                                            <div class="distance-ml">Distance in&nbsp;( Miles )<span> 50</span></div>
+                                            <input type="hidden" name="geo_distance" value="50" class="geo_distance" />
+                                            <div class="geo_distance" id="geo_distance"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+										<span class="tg-select">
+											<select>
+												<option value="Not Selected">Category</option>
+												<option value="Automotive">Automotive</option>
+												<option value="Beauty &amp; Personal Care">Beauty &amp; Personal Care</option>
+												<option value="Business">Business</option>
+												<option value="Child Care">Child Care</option>
+												<option value="Cleaning">Cleaning</option>
+												<option value="Computer &amp; Mobile Service">Computer &amp; Mobile Service</option>
+												<option value="Food &amp; Drinks">Food &amp; Drinks</option>
+												<option value="General Labor">General Labor</option>
+												<option value="Construction &amp; Renovation">Construction &amp; Renovation</option>
+												<option value="Health &amp; Fitness">Health &amp; Fitness</option>
+												<option value="Pet Care">Pet Care</option>
+												<option value="Traning &amp; Education">Traning &amp; Education</option>
+												<option value="Transportation &amp; Travel">Transportation &amp; Travel</option>
+											</select>
+										</span>
+                                </div>
+                                <button class="tg-btn" type="submit"><i class="lnr lnr-magnifier"></i></button>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="tg-map" class="tg-map"></div>
+        <div class="tg-mapcontrols">
+            <span id="doc-mapplus"><i class="fa fa-plus"></i></span>
+            <span id="doc-mapminus"><i class="fa fa-minus"></i></span>
+            <span id="doc-lock"><i class="fa fa-lock"></i></span>
+            <span id="tg-geolocation"><i class="fa fa-crosshairs"></i></span>
+        </div>
+        <a id="tg-btnmapview" class="tg-btn tg-btnmapview" href="{{ path('workshops_data') }}">
+            <span>Map View</span>
+            <i class="lnr lnr-chevron-down"></i>
+        </a>
+    </div>
+    <!--************************************
+            Inner Page Banner End
+    *************************************-->
+    <!--************************************
+            Main Start
+    *************************************-->
+    <main id="tg-main" class="tg-main tg-haslayout">
+        <div class="container">
+            <div class="row">
+                <div id="tg-twocolumns" class="tg-twocolumns">
+                    <div class="col-xs-12 col-sm-7 col-md-8 col-lg-9 pull-right">
+                        <div class="row">
+                            <div id="tg-content" class="tg-content">
+                                <div class="tg-listing">
+                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                        <span class="tg-totallistingfound">Recomended to you</span>
+                                        <div class="tg-serviceproviders">
+                                            {% for workshop in recomended %}
+                                                <div class="col-xs-6 col-sm-12 col-md-6 col-lg-4">
+                                                    <div class="tg-serviceprovider">
+                                                        <figure class="tg-featuredimg">
+                                                            <img  src="{{ vich_uploader_asset(workshop, 'imageFile') }}" alt="image description" width="50px" height="50px">
+                                                            <figcaption>
+                                                                <a class="tg-themetag tg-categorytag" href="javascript:void(0);">{{ workshop.categorie }}</a>
+                                                                <a id="like_{{ workshop.id }}" class="tg-heart
+                                                        {% if workshop.id in liked %}
+                                                        tg-liked
+                                                        {% endif %}
+                                                        " href="{{ path('workshops_like',{'id':workshop.id}) }}"><i class="fa fa-heart"></i></a>
+                                                                    {% if workshop.id in participation%}
+                                                                        <a href="{{ path('workshops_participer',{'id':workshop.id}) }}" class="tg-themetag tg-tagjobcount btn btn-danger participate" id="participate_{{ workshop.id }}">Cancel</a>
+                                                                    {% else %}
+                                                                        <a href="{{ path('workshops_participer',{'id':workshop.id}) }}" class="tg-themetag tg-tagjobcount btn btn-success participate" id="participate_{{ workshop.id }}">Participate</a>
+                                                                    {% endif %}
+                                                                </a>
+                                                            </figcaption>
+                                                        </figure>
+                                                        <div class="tg-companycontent">
+                                                            <ul class="tg-tags">
+                                                                <li><a class="tg-tag tg-featuredtag" href="#">{{ workshop.dateDebut |date('Y-m-d') }}</a></li>
+                                                                <li><a class="tg-tag tg-verifiedtag" href="#">{{ workshop.dateFin |date('Y-m-d') }}</a></li>
+                                                            </ul>
+                                                            <div class="tg-title">
+                                                                <h3><a href="{{ path('workshops_show',{'id':workshop.id}) }}">{{ workshop.nom }}</a></h3>
+                                                            </div>
+                                                            <section class='rating-widget pull-left'>
+
+                                                                <!-- Rating Stars Box -->
+                                                                <div class='rating-stars text-center'>
+                                                                    <ul id='stars'>
+                                                                        <li  class='star {% if workshop.rating>=1 %}selected{% endif %}' title='Poor' data-value='1'>
+                                                                            <i class='fa fa-star fa-fw'></i>
+                                                                            <input type="hidden" class="{{ path('workshops_rating',{'id':workshop.id}) }}">
+                                                                        </li>
+                                                                        <li class='star {% if workshop.rating>=2 %}selected{% endif %}' title='Fair' data-value='2'>
+                                                                            <i class='fa fa-star fa-fw'></i>
+                                                                            <input type="hidden" class="{{ path('workshops_rating',{'id':workshop.id}) }}">
+                                                                        </li>
+                                                                        <li class='star {% if workshop.rating>=3 %}selected{% endif %}' title='Good' data-value='3'>
+                                                                            <i class='fa fa-star fa-fw'></i>
+                                                                            <input type="hidden" class="{{ path('workshops_rating',{'id':workshop.id}) }}">
+                                                                        </li>
+                                                                        <li class='star {% if workshop.rating>=4 %}selected{% endif %}' title='Excellent' data-value='4'>
+                                                                            <i class='fa fa-star fa-fw'></i>
+                                                                            <input type="hidden" class="{{ path('workshops_rating',{'id':workshop.id}) }}">
+                                                                        </li>
+                                                                        <li class='star {% if workshop.rating==5 %}selected{% endif %}' title='WOW!!!' data-value='5'>
+                                                                            <i class='fa fa-star fa-fw'></i>
+                                                                            <input type="hidden" class="{{ path('workshops_rating',{'id':workshop.id}) }}">
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </section>
+
+
+                                                            <ul class="tg-matadata">
+                                                                <li>
+                                                                    <i class="fa fa-thumbs-o-up"></i>
+                                                                    <em id="{{ workshop.id }}">{{ workshop.nbrjaime }}</em>
+                                                                </li>
+                                                                <li>
+                                                                    <i class="fa fa-eye"></i>
+                                                                    <em>{{ workshop.vu }}</em>
+                                                                </li>
+                                                                <li>
+                                                                    <em id="nb{{ workshop.id }}">{{ workshop.nbrparticipant }}</em>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                        <span class="tg-totallistingfound">{{ workshops.getTotalItemCount }} Results Found</span>
+                                        <div class="tg-sortfilters">
+                                            <div class="tg-sortfilter tg-sortby">
+                                                <span>Sort By:</span>
+                                                <div class="tg-select">
+                                                    <select>
+                                                        <option>Name</option>
+                                                        <option>Type</option>
+                                                        <option>date</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="tg-sortfilter tg-arrange">
+                                                <span>Arrange:</span>
+                                                <div class="tg-select">
+                                                    <select>
+                                                        <option>des</option>
+                                                        <option>Asc</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="tg-sortfilter tg-show">
+                                                <span>Show:</span>
+                                                <div class="tg-select">
+                                                    <select>
+                                                        <option>12</option>
+                                                        <option>24</option>
+                                                        <option>all</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tg-serviceproviders">
+                                        {% for workshop in workshops %}
+                                        <div class="col-xs-6 col-sm-12 col-md-6 col-lg-4">
+                                            <div class="tg-serviceprovider">
+                                                <figure class="tg-featuredimg">
+                                                    <img  src="{{ vich_uploader_asset(workshop, 'imageFile') }}" alt="image description" width="50px" height="50px">
+                                                    <figcaption>
+                                                        <a class="tg-themetag tg-categorytag" href="javascript:void(0);">{{ workshop.categorie }}</a>
+                                                        <a id="like_{{ workshop.id }}" class="tg-heart
+                                                        {% if workshop.id in liked %}
+                                                        tg-liked
+                                                        {% endif %}
+                                                        " href="{{ path('workshops_like',{'id':workshop.id}) }}"><i class="fa fa-heart"></i></a>
+                                                        {% if workshop.id in participation%}
+                                                            <a href="{{ path('workshops_participer',{'id':workshop.id}) }}" class="tg-themetag tg-tagjobcount btn btn-danger participate" id="participate_{{ workshop.id }}">Cancel</a>
+                                                        {% else %}
+                                                            <a href="{{ path('workshops_participer',{'id':workshop.id}) }}" class="tg-themetag tg-tagjobcount btn btn-success participate" id="participate_{{ workshop.id }}">Participate</a>
+                                                        {% endif %}
+                                                    </figcaption>
+                                                </figure>
+                                                <div class="tg-companycontent">
+                                                    <ul class="tg-tags">
+                                                        <li><a class="tg-tag tg-featuredtag" href="#">{{ workshop.dateDebut |date('Y-m-d') }}</a></li>
+                                                        <li><a class="tg-tag tg-verifiedtag" href="#">{{ workshop.dateFin |date('Y-m-d') }}</a></li>
+                                                    </ul>
+                                                    <div class="tg-title">
+                                                        <h3><a href="{{ path('workshops_show',{'id':workshop.id}) }}">{{ workshop.nom }}</a></h3>
+                                                    </div>
+                                                        <section class='rating-widget pull-left'>
+
+                                                            <!-- Rating Stars Box -->
+                                                            <div class='rating-stars text-center'>
+                                                                <ul id='stars'>
+                                                                    <li  class='star {% if workshop.rating>=1 %}selected{% endif %}' title='Poor' data-value='1'>
+                                                                        <i class='fa fa-star fa-fw'></i>
+                                                                        <input type="hidden" class="{{ path('workshops_rating',{'id':workshop.id}) }}">
+                                                                    </li>
+                                                                    <li class='star {% if workshop.rating>=2 %}selected{% endif %}' title='Fair' data-value='2'>
+                                                                        <i class='fa fa-star fa-fw'></i>
+                                                                        <input type="hidden" class="{{ path('workshops_rating',{'id':workshop.id}) }}">
+                                                                    </li>
+                                                                    <li class='star {% if workshop.rating>=3 %}selected{% endif %}' title='Good' data-value='3'>
+                                                                        <i class='fa fa-star fa-fw'></i>
+                                                                        <input type="hidden" class="{{ path('workshops_rating',{'id':workshop.id}) }}">
+                                                                    </li>
+                                                                    <li class='star {% if workshop.rating>=4 %}selected{% endif %}' title='Excellent' data-value='4'>
+                                                                        <i class='fa fa-star fa-fw'></i>
+                                                                        <input type="hidden" class="{{ path('workshops_rating',{'id':workshop.id}) }}">
+                                                                    </li>
+                                                                    <li class='star {% if workshop.rating==5 %}selected{% endif %}' title='WOW!!!' data-value='5'>
+                                                                        <i class='fa fa-star fa-fw'></i>
+                                                                        <input type="hidden" class="{{ path('workshops_rating',{'id':workshop.id}) }}">
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </section>
+
+
+                                                    <ul class="tg-matadata">
+                                                        <li>
+                                                            <i class="fa fa-thumbs-o-up"></i>
+                                                            <em id="{{ workshop.id }}">{{ workshop.nbrjaime }}</em>
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-eye"></i>
+                                                            <em>{{ workshop.vu }}</em>
+                                                        </li>
+                                                        <li>
+                                                            <em id="nb{{ workshop.id }}">{{ workshop.nbrparticipant }}</em>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                    </div><div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+                                    {{ knp_pagination_render(workshops) }}
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-5 col-md-4 col-lg-3 pull-left">
+                        <aside id="tg-sidebar" class="tg-sidebar">
+                            <form class="tg-themeform tg-formrefinesearch">
+                                <fieldset>
+                                    <h4>Sub Categories</h4>
+                                    <div class="tg-checkboxgroup">
+											<span class="tg-checkbox">
+												<input type="checkbox" id="tg-cabservice" name="subcategories" value="Any" checked>
+												<label for="tg-cabservice">Cab Service</label>
+											</span>
+                                        <span class="tg-checkbox">
+												<input type="checkbox" id="tg-carcareservicing" name="subcategories" value="Car Care &amp; Servicing">
+												<label for="tg-carcareservicing">Car Care &amp; Servicing</label>
+											</span>
+                                        <span class="tg-checkbox">
+												<input type="checkbox" id="tg-cardealer" name="subcategories" value="Car Dealer">
+												<label for="tg-cardealer">Car Dealer</label>
+											</span>
+                                        <span class="tg-checkbox">
+												<input type="checkbox" id="tg-rebtacar" name="subcategories" value="Rent A Car">
+												<label for="tg-rebtacar">Rent A Car</label>
+											</span>
+                                        <a href="javascript:void(0);" data-toggle="modal" data-target=".tg-categoryModal">View All</a>
+                                    </div>
+                                </fieldset>
+                                <fieldset>
+                                    <h4>Filter By Rating</h4>
+                                    <div class="tg-checkboxgroup tg-ratingcheckbox">
+											<span class="tg-checkbox">
+												<input type="checkbox" id="nostar" name="ratingfilter" value="nostar">
+												<label for="nostar"><span class="tg-stars"><span></span></span></label>
+											</span>
+                                        <span class="tg-checkbox">
+												<input type="checkbox" id="onestar" name="ratingfilter" value="onestar">
+												<label for="onestar"><span class="tg-stars"><span></span></span></label>
+											</span>
+                                        <span class="tg-checkbox">
+												<input type="checkbox" id="twostar" name="ratingfilter" value="twostar">
+												<label for="twostar"><span class="tg-stars"><span></span></span></label>
+											</span>
+                                        <span class="tg-checkbox">
+												<input type="checkbox" id="threestar" name="ratingfilter" value="threestar">
+												<label for="threestar"><span class="tg-stars"><span></span></span></label>
+											</span>
+                                        <span class="tg-checkbox">
+												<input type="checkbox" id="fourstar" name="ratingfilter" value="fourstar">
+												<label for="fourstar"><span class="tg-stars"><span></span></span></label>
+											</span>
+                                        <span class="tg-checkbox">
+												<input type="checkbox" id="fivestar" name="ratingfilter" value="fivestar">
+												<label for="fivestar"><span class="tg-stars"><span></span></span></label>
+											</span>
+                                    </div>
+                                </fieldset>
+                                <fieldset>
+                                    <button class="tg-btn" type="submit">apply</button>
+                                    <button class="tg-btn" type="reset">reset</button>
+                                </fieldset>
+                            </form>
+                        </aside>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+            {#<div class='success-box'>#}
+                {#<div class='clearfix'></div>#}
+                {#<img alt='tick image' width='32' src='data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeD0iMHB4IiB5PSIwcHgiIHZpZXdCb3g9IjAgMCA0MjYuNjY3IDQyNi42NjciIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDQyNi42NjcgNDI2LjY2NzsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSI1MTJweCIgaGVpZ2h0PSI1MTJweCI+CjxwYXRoIHN0eWxlPSJmaWxsOiM2QUMyNTk7IiBkPSJNMjEzLjMzMywwQzk1LjUxOCwwLDAsOTUuNTE0LDAsMjEzLjMzM3M5NS41MTgsMjEzLjMzMywyMTMuMzMzLDIxMy4zMzMgIGMxMTcuODI4LDAsMjEzLjMzMy05NS41MTQsMjEzLjMzMy0yMTMuMzMzUzMzMS4xNTcsMCwyMTMuMzMzLDB6IE0xNzQuMTk5LDMyMi45MThsLTkzLjkzNS05My45MzFsMzEuMzA5LTMxLjMwOWw2Mi42MjYsNjIuNjIyICBsMTQwLjg5NC0xNDAuODk4bDMxLjMwOSwzMS4zMDlMMTc0LjE5OSwzMjIuOTE4eiIvPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K'/>#}
+                {#<div class='text-message'></div>#}
+                {#<div class='clearfix'></div>#}
+            {#</div>#}
+
+
+    </main>
+    <script>
+
+        //Like Ajax
+        function OnClickBtnLike(event)
+        {
+            event.preventDefault();
+            const url= this.href;
+            var fullid=this.id;
+            var id=fullid.split("_");
+            const heart=document.getElementById(fullid);
+            console.log(id);
+            const likes=document.getElementById(id[1]);
+            axios.get(url).then(function (response) {
+                const likenbr=response.data.data.nbr;
+                const type=response.data.data.type;
+                likes.innerHTML=likenbr;
+                if(type==0)
+                {
+                    heart.classList.remove("tg-liked");
+                }
+                else
+                {
+                    heart.classList.add("tg-liked");
+                }
+            });
+        }
+        document.querySelectorAll('a.tg-heart').forEach(function (link) {
+            link.addEventListener('click',OnClickBtnLike);
+
+        });
+
+        //Participate Ajax
+        function OnClickParticipate(event)
+        {
+            event.preventDefault();
+
+            const url=this.href;
+            var fullid=this.id;
+            var id=fullid.split("_");
+            const button=document.getElementById(fullid);
+            var str='nb';
+            const nbrp=document.getElementById(str.concat(id[1]));
+            axios.get(url).then(function (response) {
+                const type=response.data.data.type;
+                const number=response.data.data.nbr
+                if(type==0)
+                {
+                    button.classList.remove('btn-danger');
+                    button.classList.add('btn-success');
+                    button.innerHTML='Participate';
+                }
+                else
+                {
+                    button.classList.add('btn-danger');
+                    button.classList.remove('btn-success');
+                    button.innerHTML='Cancel';
+                }
+                nbrp.innerHTML=number;
+            })
+        }
+
+        document.querySelectorAll('a.participate').forEach(function (link) {
+           link.addEventListener('click',OnClickParticipate);
+        });
+
+        function OnClickMapView(event)
+        {
+            event.preventDefault();
+
+            const url=this.href;
+            axios.get(url).then(function (response) {
+                sp_init_map_script('tg-map',response.data);
+            });
+        }
+
+        document.getElementById('tg-btnmapview').addEventListener('click',OnClickMapView);
+
+
+
+
+
+
+//Rating Ajax
+        $(document).ready(function(){
+
+            /* 1. Visualizing things on Hover - See next part for action on click */
+            $('#stars li').on('mouseover', function(){
+                var onStar = parseInt($(this).data('value'), 10); // The star currently mouse on
+
+                // Now highlight all the stars that's not after the current hovered star
+                $(this).parent().children('li.star').each(function(e){
+                    if (e < onStar) {
+                        $(this).addClass('hover');
+                    }
+                    else {
+                        $(this).removeClass('hover');
+                    }
+                });
+
+            }).on('mouseout', function(){
+                $(this).parent().children('li.star').each(function(e){
+                    $(this).removeClass('hover');
+                });
+            });
+
+
+            /* 2. Action to perform on click */
+            $('#stars li').on('click', function(){
+                var onStar = parseInt($(this).data('value'), 10); // The star currently selected
+                var stars = $(this).parent().children('li.star');
+
+                for (i = 0; i < stars.length; i++) {
+                    $(stars[i]).removeClass('selected');
+                }
+
+                for (i = 0; i < onStar; i++) {
+                    $(stars[i]).addClass('selected');
+                }
+                var url=$(this).children('input').attr('class');
+                console.log(url);
+                var ratingValue = parseInt($('#stars li.selected').last().data('value'), 10);
+                var body={
+                    value:ratingValue,
+                };
+                axios({
+                    method: 'post',
+                    url: url,
+                    data: body
+                }).then(function (response) {
+                    console.log(response);
+                    var type=response.data.data.type;
+                    var rating=response.data.data.nbr;
+                    var msg = "";
+                    console.log(type);
+                    for (i = 0; i < stars.length; i++) {
+                        $(stars[i]).removeClass('selected');
+                    }
+
+                    for (i = 0; i < rating; i++) {
+                        $(stars[i]).addClass('selected');
+                    }
+                    if(type==0)
+                    {
+                        if (ratingValue > 1) {
+                            msg = "Thanks! You rated this " + ratingValue + " stars.";
+                        }
+                        else {
+                            msg = "We will improve ourselves. You rated this " + ratingValue + " stars.";
+                        }
+                    }
+                    else if(type==1)
+                    {
+                        msg="Thank! Your Rating has been improved";
+                    }
+                    else
+                    {
+                        msg="You Down Rated us We Will improve next time";
+                    }
+                    alert(msg);
+                })
+
+            });
+
+
+        });
+
+
+        function responseMessage(msg) {
+            $('.success-box').fadeIn(200);
+            $('.success-box div.text-message').html("<span>" + msg + "</span>");
+        }
+    </script>
+{% endblock %}

@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <main id="tg-main" class="tg-main tg-haslayout">
+        <div class="container">
+            <div class="row">
+                <div id="tg-content" class="tg-content">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="tg-sortfilters">
+                            <div class="tg-sortfilter tg-sortby">
+                                <span>Sort By:</span>
+                                <div class="tg-select">
+                                    <select>
+                                        <option>Name</option>
+                                        <option>Type</option>
+                                        <option>date</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="tg-sortfilter tg-arrange">
+                                <span>Arrange:</span>
+                                <div class="tg-select">
+                                    <select>
+                                        <option>des</option>
+                                        <option>Asc</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="tg-sortfilter tg-show">
+                                <span>Show:</span>
+                                <div class="tg-select">
+                                    <select>
+                                        <option>12</option>
+                                        <option>24</option>
+                                        <option>all</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tg-categories tg-categoriesgrid">
+                        {% for ifixit in ifixits %}
+                            <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
+                                <div class="tg-category">
+                                    <figure>
+                                        <img src="{{ asset('images/categories/img-09.jpg') }}" alt="image description">
+                                        <figcaption class="tg-automotive">
+                                            <span class="tg-categoryname">{{ ifixit.nom }}</span>
+                                            <a href="{{ path('ifixit_show',{'id':ifixit.id}) }}" class="tg-themetag tg-tagjobcount">
+                                                <i class="fa fa-clone"></i>
+                                                <em>{{ ifixit.nbr }}</em>
+                                            </a>
+                                        </figcaption>
+                                    </figure>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    {{ knp_pagination_render(ifixits) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}
+
+

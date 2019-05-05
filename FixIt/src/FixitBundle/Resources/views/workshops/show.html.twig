@@ -1,0 +1,281 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <!--************************************
+            Main Start
+    *************************************-->
+    <main id="tg-main" class="tg-main tg-paddingzero tg-haslayout">
+        <!--************************************
+                Blog Grid Start
+        *************************************-->
+        <div class="tg-main-section tg-haslayout">
+            <div class="container">
+                <div class="row">
+                    <div id="tg-twocolumns" class="tg-twocolumns">
+                        <div class="col-xs-12 col-sm-7 col-md-8 col-lg-8">
+                            <div id="tg-content" class="tg-content">
+                                <article class="tg-post tg-detailpage tg-postdetail">
+                                    <figure>
+                                        <img src="{{ vich_uploader_asset(workshop, 'imageFile') }}" alt="image description">
+                                    </figure>
+                                    <div class="tg-postcontent">
+                                        <div class="tg-title">
+                                            <h3>{{ workshop.nom }}</h3>
+                                        </div>
+                                        <ul class="tg-postmatadata">
+                                            <li>
+                                                <a href="#">
+                                                    <span>Place: {{ workshop.lieu }}</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span>From: {{ workshop.dateDebut |date('Y-m-d') }}</span>
+                                                    <span>To: {{ workshop.dateFin |date('Y-m-d') }}</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <i class="fa fa-thumbs-o-up"></i>
+                                                <em id="{{ workshop.id }}">{{ workshop.nbrjaime }}</em>
+                                            </li>
+                                            <li>
+                                                <i class="fa fa-eye"></i>
+                                                <em id="{{ workshop.id }}">{{ workshop.vu }}</em>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="tg-description">
+                                        {{ workshop.description }}
+                                    </div>
+                                </article>
+                                <div class="tg-tagsshare">
+                                    <div class="tg-posttags">
+                                        <span>Tags:</span>
+                                        <a class="tg-tag" href="#">Nail</a>
+                                        <a class="tg-tag" href="#">Hammer</a>
+                                        <a class="tg-tag" href="#">Fun Time</a>
+                                        <a class="tg-tag" href="#">PSD Template</a>
+                                    </div>
+                                    <div class="tg-postshare">
+                                        <span>Share:</span>
+                                        <ul class="tg-socialicons">
+                                            <li class="tg-facebook"><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                            <li class="tg-twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                            <li class="tg-linkedin"><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                            <li class="tg-googleplus"><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                            <li class="tg-rss"><a href="#"><i class="fa fa-rss"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            {% if feedbacks !=null %}
+                            <div id="feedbacks" class="tg-companyfeaturebox tg-reviews">
+                                <div class="tg-companyfeaturetitle">
+                                    <h3 ><div id="feedbacknbr">{{ feedbacks|length }}</div> Feedback</h3>
+                                </div>
+
+                                {% for feedback in feedbacks %}
+                            <div  class="tg-feedback">
+                                <figure><a href="javascript:void(0);"><img src="" alt="image description"></a></figure>
+                                <div class="tg-feedbackcontent">
+                                    <div class="tg-feedbackbox">
+                                        <div class="tg-contenthead">
+                                            <div class="tg-leftbox">
+                                                <div class="tg-name">
+                                                    <h4><a href="#">{{ feedback.subject }}</a></h4>
+                                                </div>
+                                                <ul class="tg-matadata">
+                                                    <li><a href="#">{{ feedback.user.nom }} {{ feedback.user.prenom }}</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="tg-description">
+                                            <p>{{ feedback.description }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                            </div>
+                            {% endif %}
+                            <br>
+                            <br>
+                            <button id="viewmore" class="tg-btn">View All</button>
+
+                            <div class="tg-companyfeaturebox tg-reviewformrating">
+                                <form class="tg-themeform tg-formleavreview">
+                                    <fieldset>
+                                        <div class="tg-companyfeaturetitle">
+                                            <h3>Leave Your Feedback</h3>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                                <div class="form-group">
+                                                    <input type="text" name="subject" class="form-control" placeholder="Subject">
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                                <div class="form-group">
+                                                    <textarea name="description" class="form-control" placeholder="Description"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="tg-btn">Submit</button>
+                                    </fieldset>
+                                </form>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-xs-12 col-sm-5 col-md-4 col-lg-4">
+                            <aside id="tg-sidebar" class="tg-sidebar">
+
+                                <div class="tg-widget tg-widgetcatagories">
+                                    <div class="tg-widgettitle">
+                                        <h3>Category</h3>
+                                    </div>
+                                    <div class="tg-widgetcontent">
+                                        <ul>
+                                            <li><a href="#">{{ workshop.categorie }}</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="tg-widget tg-widgetrelatedposts">
+                                    <div class="tg-widgettitle">
+                                        <h3>Related Workshops</h3>
+                                    </div>
+                                    <div class="tg-widgetcontent">
+                                        <ul>
+                                            {% if related==null %}
+                                                <li>No Related Workshops</li>
+                                            {% else %}
+                                                {% for rel in related %}
+                                            <li>
+                                                <div class="tg-serviceprovidercontent">
+                                                    <div class="tg-companylogo"><a href="#"><img src="{{ vich_uploader_asset(rel, 'imageFile') }}" alt="image description"></a></div>
+                                                    <div class="tg-companycontent">
+                                                        <div class="tg-title">
+                                                            <h3><a href="{{ path('workshops_show',{'id':rel.id}) }}">{{ rel.nom }}</a></h3>
+                                                        </div>
+                                                        <div class="tg-adminname">
+                                                            <i class="fa fa-map-marker"></i>
+                                                            <span>Place: {{ rel.lieu }}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                                {% endfor %}
+                                            {% endif %}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </aside>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--************************************
+                Blog Grid End
+        *************************************-->
+    </main>
+    <!--************************************
+            Main End
+    *************************************-->
+    <script>
+
+
+        //feedback with ajax
+        function OnClickBtnSubmit(event)
+        {
+            event.preventDefault();
+            const feedbacknbr=document.getElementById('feedbacknbr');
+            const feedbackcontent=document.getElementById('feedback');
+            var body = {
+                subject: $('input[name=subject]').val(),
+                description: $('textarea[name=description]').val()
+            }
+            const url= '{{ path('workshops_comment',{'id':workshop.id}) }}';
+            axios({
+                method: 'post',
+                url: url,
+                data: body
+            }).then(function (response) {
+                const username=response.data.data.username;
+                const userlastname=response.data.data.userlastname;
+                const feedbacknbr=response.data.data.nbr;
+                const subject=response.data.data.subject;
+                const descriptiontext=response.data.data.description;
+                console.log(username);
+                console.log(userlastname);
+                var master=document.createElement("DIV");
+                var second=document.createElement("DIV");
+                var third=document.createElement("DIV");
+                var fourth=document.createElement("DIV");
+                var fifith=document.createElement("DIV");
+                var sixth=document.createElement("DIV");
+                var subjetct=document.createElement("H4");
+                var seven=document.createElement("UL");
+                var name=document.createElement("LI");
+                var description=document.createElement("DIV");
+                var text=document.createElement("P");
+                master.classList.add("tg-feedback");
+                second.classList.add("tg-feedbackcontent");
+                third.classList.add("tg-feedbackbox");
+                fourth.classList.add("tg-contenthead");
+                fifith.classList.add("tg-leftbox");
+                sixth.classList.add("tg-name");
+                seven.classList.add("tg-matadata");
+                description.classList.add("tg-description");
+                subjetct.innerHTML=subject;
+                text.innerHTML=descriptiontext;
+                name.innerHTML=username.concat(" ",userlastname);
+
+                master.appendChild(second);
+                second.appendChild(third);
+                third.appendChild(fourth);
+                fourth.appendChild(fifith);
+                fifith.appendChild(sixth);
+                fifith.appendChild(seven);
+                sixth.appendChild(subjetct);
+                seven.appendChild(name);
+                third.appendChild(description);
+                description.appendChild(text);
+                document.getElementById("feedbacks").appendChild(master);
+                document.querySelector('div#feedbacknbr').innerHTML=feedbacknbr;
+
+            })
+        }
+        document.querySelector('form').addEventListener('submit',OnClickBtnSubmit);
+
+        // hide and show feedbacks
+
+
+        function OnClickViewMore()
+        {
+            if(document.getElementById('viewmore').innerHTML === 'Hide')
+            {
+                document.querySelectorAll('div.tg-feedback').forEach(function (link) {
+
+                        link.style.display="none";
+
+                })
+                document.getElementById('viewmore').innerHTML='View All';
+            }
+            else
+            {
+                document.querySelectorAll('div.tg-feedback').forEach(function (link) {
+                        link.style.display="block";
+
+                })
+                document.getElementById('viewmore').innerHTML='Hide';
+            }
+        }
+        document.getElementById('viewmore').addEventListener('click',OnClickViewMore);
+
+    </script>
+
+{% endblock %}

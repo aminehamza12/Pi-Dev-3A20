@@ -1,0 +1,23 @@
+workshops_index:
+    path:     /
+    defaults: { _controller: "FixitBundle:Workshops:index" }
+
+workshops_show:
+    path:     /{id}/show
+    defaults: { _controller: "FixitBundle:Workshops:show" }
+workshops_like:
+    path:     /like/{id}
+    defaults: { _controller: "FixitBundle:Workshops:Like" }
+workshops_comment:
+    path:     /comment/{id}
+    defaults: { _controller: "FixitBundle:Workshops:Comment" }
+workshops_participer:
+    path:     /participer/{id}
+    defaults: { _controller: "FixitBundle:Workshops:Participation" }
+workshops_rating:
+    path:     /rate/{id}
+    defaults: { _controller: "FixitBundle:Workshops:Rating" }
+workshops_data:
+    path:     /data
+    defaults: { _controller: "FixitBundle:Workshops:GetData" }
+

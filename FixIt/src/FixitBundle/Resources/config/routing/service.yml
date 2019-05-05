@@ -1,0 +1,44 @@
+service_index:
+    path:     /
+    defaults: { _controller: "FixitBundle:service:index" }
+    methods:  GET
+
+service_show:
+    path:     /{id}/show
+    defaults: { _controller: "FixitBundle:service:show" }
+    methods:  GET
+
+service_new:
+    path:     /new
+    defaults: { _controller: "FixitBundle:service:new" }
+    methods:  [GET, POST]
+
+service_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "FixitBundle:service:edit" }
+    methods:  [GET, POST]
+
+service_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "FixitBundle:service:delete" }
+service_indexSeeking:
+    path:     /seeking
+    defaults: { _controller: "FixitBundle:service:indexSeeking" }
+    methods:  GET
+service_by_category_indexProviding:
+    path:     /providingByCategory/{id}
+    defaults: { _controller: "FixitBundle:service:indexByCategoryProviding" }
+    methods:  GET
+service_by_category_indexSeeking:
+    path:     /seekingByCategory/{id}
+    defaults: { _controller: "FixitBundle:service:indexByCategorySeeking" }
+    methods:  GET
+service_indexProviding:
+    path:     /providing
+    defaults: { _controller: "FixitBundle:service:indexProviding" }
+    methods:  GET
+service_indexUser:
+    path:     /indexUser
+    defaults: { _controller: "FixitBundle:service:indexUser" }
+    methods:  GET
+

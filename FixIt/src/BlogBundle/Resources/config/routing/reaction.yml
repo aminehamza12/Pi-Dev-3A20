@@ -1,0 +1,24 @@
+reaction_index:
+    path:     /
+    defaults: { _controller: "BlogBundle:Reaction:index" }
+    methods:  GET
+
+reaction_show:
+    path:     /{id}/show
+    defaults: { _controller: "BlogBundle:Reaction:show" }
+    methods:  GET
+
+reaction_new:
+    path:     /new
+    defaults: { _controller: "BlogBundle:Reaction:new" }
+    methods:  [GET, POST]
+
+reaction_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "BlogBundle:Reaction:edit" }
+    methods:  [GET, POST]
+
+reaction_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "BlogBundle:Reaction:delete" }
+    methods:  DELETE

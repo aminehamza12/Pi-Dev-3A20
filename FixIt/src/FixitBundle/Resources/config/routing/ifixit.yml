@@ -1,0 +1,9 @@
+ifixit_index:
+    path:     /
+    defaults: { _controller: "FixitBundle:ifixit:index" }
+    methods:  GET
+
+ifixit_show:
+    path:     /{id}/show
+    defaults: { _controller: "FixitBundle:ifixit:show" }
+    methods:  GET

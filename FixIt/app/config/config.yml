@@ -2,15 +2,17 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
+    - { resource: "@FixitBundle/Resources/config/services.yml" }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: en
-
+    Brochure_dir: '%kernel.root_dir%/../web/images'
+    Service_dir: '%kernel.root_dir%/../web/images'
 framework:
     #esi: ~
-    #translator: { fallbacks: ['%locale%'] }
+    translator: ~
     secret: '%secret%'
     router:
         resource: '%kernel.project_dir%/app/config/routing.yml'
@@ -30,9 +32,13 @@ framework:
     assets: ~
     php_errors:
         log: true
+    templating:
+            engines: ['twig', 'php']
 
 # Twig Configuration
 twig:
+    form_themes:
+        - 'bootstrap_3_layout.html.twig'
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
 
@@ -60,12 +66,145 @@ doctrine:
 
 # Swiftmailer Configuration
 swiftmailer:
+    encryption: '%mailer_encryption%'
     transport: '%mailer_transport%'
     host: '%mailer_host%'
     username: '%mailer_user%'
     password: '%mailer_password%'
     spool: { type: memory }
 
+nomaya_social:
+    buttons:
+        facebook:
+            url:            null
+            locale:         "fr_FR"
+            send:           false
+            width:          300
+            showFaces:      true
+            layout:         "button_count"
+        twitter:
+            url:            null
+            locale:         "fr"
+            message:        "Je veux partager cet annonce de covoiturage avec vous"
+            text:           "Tweet"
+            via:            "L'Equipe espritentraide.tn"
+            tag:            "espritentraide"
+        googleplus:
+            url:            null
+            locale :        "fr"
+            size :          "medium"
+            annotation :    "bubble"
+            width :         300
+        linkedin:
+            url:            null
+            locale:         "fr_FR"
+            counter:        "right"
+        pinterest:
+            url:            null
+    links:
+        facebook:           "http://www.facebook.com/yann.chauvel"
+        googleplus:         "https://plus.google.com/105931415830389032796"
+    theme:                  'default' # optional
+
 sensio_framework_extra:
    router:
         annotations: false
+
+fos_message:
+    db_driver: orm
+    thread_class: AppBundle\Entity\Thread
+    message_class: AppBundle\Entity\Message
+
+vich_uploader:
+    db_driver: orm
+    mappings:
+           workshop_images:
+               uri_prefix:         '%app.path.product_images%'
+               upload_destination: '%kernel.project_dir%/web%app.path.product_images%'
+           videos:
+               uri_prefix: '%app.path.videos%'
+               upload_destination: '%kernel.project_dir%/web%app.path.videos%'
+           event_affiche:
+               uri_prefix: /web/affiches
+               upload_destination: '%kernel.project_dir%/web/affiches'
+
+               inject_on_load: false
+               delete_on_update: true
+               delete_on_remove: true
+           blog_images:
+               uri_prefix:         '%app.path.blog_images%'
+               upload_destination: "%kernel.project_dir%/web/uploads/images/blog"
+           partner_images:
+               uri_prefix:         '%app.path.partner_images%'
+               upload_destination: "%kernel.project_dir%/web/uploads/images/partner"
+           profilLogo_images:
+               uri_prefix:         '%app.path.profilLogo_images%'
+               upload_destination: "%kernel.project_dir%/web/uploads/images/profil/logo"
+           profilBanner_images:
+               uri_prefix:         '%app.path.profilBanner_images%'
+               upload_destination: "%kernel.project_dir%/web/uploads/images/profil/banner"
+
+fos_user:
+    db_driver: orm # other valid values are 'mongodb' and 'couchdb'
+    firewall_name: main
+    user_class: AppBundle\Entity\User
+    resetting:
+        email:
+            template:  Resetting/email.txt.twig
+            from_email:
+                address: resetting@example.com
+                sender_name: Demo Resetting
+    registration:
+        form:
+            type: AppBundle\Form\RegistrationType
+        confirmation:
+            from_email:
+                address:        no-reply@fixit.com
+                sender_name:    Fixit
+            enabled: true
+    from_email:
+        address: registration@example.com
+        sender_name: Demo Registration
+    service:
+        mailer: fos_user.mailer.twig_swift
+knp_snappy:
+    pdf:
+        enabled:    true
+        # If you have wkhtmltopdf as an environment variable you don't need to provide the
+        # full path to the executable, use it in the same way as you use in the console
+        #binary:  "wkhtmltopdf"
+        binary:     "\"C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe\""
+        options:
+            no-outline: true
+            page-size: LETTER
+            # Recommended to set UTF-8 as default encoding :)
+            encoding: UTF-8
+    image:
+        enabled:    true
+        binary:     "\"C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltoimage.exe\""
+        options:    []
+knp_paginator:
+    page_range: 5                       # number of links showed in the pagination menu (e.g: you have 10 pages, a page_range of 3, on the 5th page you'll see links to page 4, 5, 6)
+    default_options:
+        page_name: page                 # page query parameter name
+        sort_field_name: sort           # sort field query parameter name
+        sort_direction_name: direction  # sort direction query parameter name
+        distinct: true                  # ensure distinct results, useful when ORM queries are using GROUP BY statements
+        filter_field_name: filterField  # filter field query parameter name
+        filter_value_name: filterValue  # filter value query parameter name
+    template:
+        pagination: '@KnpPaginator/Pagination/sliding.html.twig'     # sliding pagination controls template
+        sortable: '@KnpPaginator/Pagination/sortable_link.html.twig' # sort link template
+        filtration: '@KnpPaginator/Pagination/filtration.html.twig'  # filters template
+fos_ck_editor:
+    # ...
+    base_path: "build/ckeditor"
+    js_path:   "build/ckeditor/ckeditor.js"
+fos_comment:
+    db_driver: orm
+    class:
+        model:
+            comment: FixitBundle\Entity\Comment
+            thread: FixitBundle\Entity\Thread
+assetic:
+  bundles: [ "FOSCommentBundle" ]

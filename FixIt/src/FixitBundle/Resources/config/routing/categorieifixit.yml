@@ -1,0 +1,24 @@
+categorieifixit_index:
+    path:     /
+    defaults: { _controller: "FixitBundle:categorieifixit:index" }
+    methods:  GET
+
+categorieifixit_show:
+    path:     /{id}/show
+    defaults: { _controller: "FixitBundle:categorieifixit:show" }
+    methods:  GET
+
+categorieifixit_new:
+    path:     /new
+    defaults: { _controller: "FixitBundle:categorieifixit:new" }
+    methods:  [GET, POST]
+
+categorieifixit_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "FixitBundle:categorieifixit:edit" }
+    methods:  [GET, POST]
+
+categorieifixit_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "FixitBundle:categorieifixit:delete" }
+    methods:  DELETE

@@ -1,0 +1,58 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block body %}
+    <h1 style="text-align: center">Commandes list</h1>
+    <div class="boxed">
+    <div class="content-container">
+    <div class="page-content">
+    <div class="panel">
+        <!-- Foo Table - Add & Remove Rows -->
+        <!--===================================================-->
+        <div class="panel-body">
+            <table id="demo-foo-addrow" class="table table-bordered table-hover toggle-circle" data-page-size="7">
+                <thead>
+                <tr>
+                    <th data-sort-initial="true" data-toggle="true">Reference</th>
+                    <th data-sort-initial="true" data-toggle="true">User</th>
+                    <th>date</th>
+                    <th data-hide="phone, tablet">Delivery </th>
+                    <th data-hide="phone, tablet">Montant</th>
+                    <th data-hide="phone, tablet">Show</th>
+                    <th data-sort-ignore="true" class="min-width">PDF</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for commande in commandes %}
+                <tr>
+                    <td style="text-align: center"><a href="{{ path('commande_show', { 'id': commande.id }) }}" class="tg-themetag tg-banneradd">{{ commande.id }}</a></td>
+                    <td style="text-align: center">{{ commande.user.prenom }} {{ commande.user.nom }}</td>
+                    <td style="text-align: center"><input type="date" value="{% if commande.date %}{{ commande.date|date('Y-m-d') }}{% endif %}" disabled></td>
+                    <td style="text-align: center">{% if commande.delivery %} <span class="label label-table label-success"> YES </span>{% else %}<span class="label label-table label-danger"> NO</span>{% endif %}</td>
+                    <td style="text-align: center">{{ commande.montant }}.00 TND</td>
+                    <td style="text-align: center">
+                        <a href="{{ path('commandeadmin_show', { 'id': commande.id }) }}" class="btn btn-primary"><i class="fa fa-eye"></i> show</a>
+                    </td>
+                    <td style="text-align: center">
+                        <a href="{{ path('commande_pdf', { 'id': commande.id }) }}" class="btn btn-warning"><i class="fa fa-file-pdf-o"></i> Génerer pdf</a>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+                <tfoot>
+                <tr>
+                    <td colspan="6">
+                        <div class="text-right">
+                            <ul class="pagination"></ul>
+                        </div>
+                    </td>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+        <!--===================================================-->
+        <!-- End Foo Table - Add & Remove Rows -->
+    </div>
+    </div>
+    </div>
+    </div>
+{% endblock %}

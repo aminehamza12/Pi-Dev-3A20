@@ -1,0 +1,106 @@
+<div class="col-xs-12 col-sm-5 col-md-4 col-lg-3">
+    <aside id="tg-sidebar" class="tg-sidebar">
+        <div class="tg-widgetprofile">
+            <figure class="tg-profilebannerimg">
+                <img src="{{ vich_uploader_asset(profil, 'bannerFile') }}" alt="image description">
+            </figure>
+            <div class="tg-widgetcontent">
+                <figure>
+                    <img src="{{ vich_uploader_asset(profil, 'logoFile') }}" alt="image description">
+                    <a class="tg-btnedite" href="javascript:void(0);"><i class="lnr lnr-pencil"></i></a>
+                </figure>
+                <div class="tg-admininfo">
+                    <h3>Kena Maresca</h3>
+                    <h4>Bright Future Group &amp; Company</h4>
+                    <ul class="tg-matadata">
+                        <li><span class="tg-stars"><span></span></span></li>
+                        <li>
+                            <i class="fa fa-thumbs-o-up"></i>
+                            <em>99% (1009 votes)</em>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="tg-widgetdashboard">
+            <nav id="tg-dashboardnav" class="tg-dashboardnav">
+                <ul>
+                    {%  if app.request.attributes.get('_route') == 'profil_show' %}
+                    <li class="tg-active">{% else %}
+                    <li>{% endif %}
+                        <a href="{{ path('profil_show', { 'id': profil.id }) }}">
+                            <i class="lnr lnr-database"></i>
+                            <span>Insights</span>
+                        </a>
+                    </li>
+
+                    {%  if app.request.attributes.get('_route') == 'profil_test' %}
+                    <li class="tg-active">{% else %}
+                    <li>{% endif %}
+                        <a href="{{ path('profil_test', { 'id': profil.id }) }}">
+                            <i class="lnr lnr-cog"></i>
+                            <span>Profile Settings</span>
+                        </a>
+                    </li>
+
+                    {%  if app.request.attributes.get('_route') == 'fos_message' %}
+                    <li class="tg-active">{% else %}
+                    <li>{% endif %}
+                    <li class="tg-privatemessages tg-hasdropdown">
+                        <a id="tg-btntoggle" class="tg-btntoggle" href="javascript:void(0);">
+                            <i class="lnr lnr-envelope"></i>
+                            <span>Private Messages</span>
+                            <em class="tg-totalmessages">526</em>
+                            <em class="tg-newmessages">1</em>
+                        </a>
+                        <ul class="tg-emailmenu">
+                            <li class="tg-active">
+                                <a href="http://127.0.0.1:8000/optional_routing_prefix/">
+                                    <span>inbox</span>
+                                    <em class="tg-totalmessages">526</em>
+                                    <em class="tg-newmessages">1</em>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://127.0.0.1:8000/optional_routing_prefix/sent">
+                                    <span>sent</span>
+                                    <em class="tg-totalmessages">370</em>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://127.0.0.1:8000/optional_routing_prefix/deleted">
+                                    <span>trash</span>
+                                    <em class="tg-totalmessages">160</em>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <li>
+                        {%  if app.request.attributes.get('_route') == 'scheduler_index' %}
+                    <li class="tg-active">{% else %}
+                    <li>{% endif %}
+                        <a href="{{ path('scheduler_index') }}">
+                            <i class="lnr lnr-calendar-full"></i>
+                            <span>Appointments</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ path('fos_user_security_logout') }}">
+                            <i class="lnr lnr-exit"></i>
+                            <span>Logout</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="tg-widgetdashboard hidden-xs">
+            <div class="tg-banneradd">
+                <figure>
+                    <a href="#"><img src="images/add-01.png" alt="image description"></a>
+                </figure>
+            </div>
+        </div>
+    </aside>
+</div>

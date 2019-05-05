@@ -1,0 +1,55 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block body %}
+    <h1 style="text-align: center">Products list</h1>
+
+    <div class="count" style="text-align: right">
+        <h6> Totale des produits :   {{ pagination.getTotalItemCount }}</h6>
+    </div>
+    <table id="nadim" class="table table-bordered table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Reference</th>
+                <th>Name</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Category</th>
+                <th>description</th>
+                <th>Delivery</th>
+                <th>Adress</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for product in pagination %}
+            <tr>
+                <td>Prod: <a href="{{ path('product_show', { 'id': product.id }) }}">{{ product.id }}</a></td>
+                <td>{{ product.name }}</td>
+                <td>{{ product.quantity }}</td>
+                <td>{{ product.price }}</td>
+                <td>{{ product.category.name }}</td>
+                <td>{{ product.description }}</td>
+                <td>{% if product.delivery %}Yes{% else %}No{% endif %}</td>
+                <td>{{ product.adress }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('productadmin_show', { 'id': product.id }) }}" class="btn btn-primary">show</a>
+                        </li>
+                        <br>
+                        <li>
+                            <a href="{{ path('productadmin_delete', { 'id': product.id }) }}" class="btn btn-danger">delete</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div class="tg-navigation" style="text-align: center">
+        {{ knp_pagination_render(pagination) }}<h6>pages</h6>
+    </div>
+    <script src="../../../../web/admin/js/jquery.dataTables.js"></script>
+    <script src="../../../../web/admin/js/dataTables.bootstrap.js"></script>
+    <script src="../../../../web/admin/js/dataTables.bootstrap.min.js"></script>
+{% endblock %}

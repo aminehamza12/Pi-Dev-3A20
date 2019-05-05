@@ -1,0 +1,55 @@
+blog_index:
+    path:     /
+    defaults: { _controller: "BlogBundle:Blog:index" }
+    methods:  GET
+
+blog_show:
+    path:     /{id}/show
+    defaults: { _controller: "BlogBundle:Blog:show" }
+    methods:  [GET, POST]
+
+blog_new:
+    path:     /new
+    defaults: { _controller: "BlogBundle:Blog:new" }
+    methods:  [GET, POST]
+
+blog_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "BlogBundle:Blog:edit" }
+    methods:  [GET, POST]
+
+blog_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "BlogBundle:Blog:delete" }
+    methods:  GET
+
+blog_blogStatistics:
+    path:     /{id}/blogStatistics
+    defaults: { _controller: "BlogBundle:Blog:blogStatistics" }
+    methods:  GET
+
+blog_blogStatisticsComponent:
+    path:     /{id}--{monthId}/blogStatisticsComponent
+    defaults: { _controller: "BlogBundle:Blog:blogStatisticsComponent" }
+    methods:  GET
+
+ajax:
+    path:     /ajax/
+    defaults: { _controller: "BlogBundle:Blog:ajax" }
+    options:
+        expose: trues
+
+blog_searchAjax:
+    path:     /search
+    defaults: { _controller: "BlogBundle:Blog:search" }
+
+blog_blogCommentsComponent:
+    path:     /{id}/BlogCommentsComponent
+    defaults: { _controller: "BlogBundle:Blog:BlogCommentsComponent" }
+    methods:  GET
+
+blog_blogCommentsComponentAjax:
+    path:     /blogCommentsComponentAjax/
+    defaults: { _controller: "BlogBundle:Blog:BlogCommentsComponentAjax" }
+    options:
+        expose: trues

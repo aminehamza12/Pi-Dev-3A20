@@ -1,0 +1,53 @@
+admin_homepage:
+     path:     /
+     defaults: { _controller: FixitBundle:Default:indexAdmin }
+workshops_indexAdmin:
+    path:     /workshops
+    defaults: { _controller: "FixitBundle:Workshops:indexAdmin" }
+
+fileuploadhandler:
+    path:     /workshops/fileuploadhandler
+    defaults: { _controller: "FixitBundle:Workshops:fileUploadHandler" }
+
+workshops_new:
+    path:     /workshops/new
+    defaults: { _controller: "FixitBundle:Workshops:new" }
+
+workshops_edit:
+    path:     /workshops/{id}/edit
+    defaults: { _controller: "FixitBundle:Workshops:edit" }
+
+workshops_delete:
+    path:     /workshops/{id}/delete
+    defaults: { _controller: "FixitBundle:Workshops:delete" }
+
+categorie:
+    resource: "@FixitBundle/Resources/config/routing/categorieifixit.yml"
+    prefix:   /categorie
+
+ifixit_indexAdmin:
+    path:     /ifixit
+    defaults: { _controller: "FixitBundle:ifixit:indexAdmin" }
+    methods:  GET
+
+ifixit_new:
+    path:     /ifixit/new
+    defaults: { _controller: "FixitBundle:ifixit:new" }
+    methods:  [GET, POST]
+
+ifixit_edit:
+    path:     /ifixit/{id}/edit
+    defaults: { _controller: "FixitBundle:ifixit:edit" }
+    methods:  [GET, POST]
+
+ifixit_delete:
+    path:     /ifixit/{id}/delete
+    defaults: { _controller: "FixitBundle:ifixit:delete" }
+    methods:  DELETE
+Add_video:
+    path:     /ifixit/{id}/addvideo
+    defaults: { _controller: "FixitBundle:ifixit:addVideo" }
+delete_video:
+    path:     /ifixit/{id}/deletevideo
+    defaults: { _controller: "FixitBundle:ifixit:deleteVideo" }
+

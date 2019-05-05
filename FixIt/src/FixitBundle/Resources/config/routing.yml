@@ -1,0 +1,34 @@
+fixit_homepage:
+    path:     /
+    defaults: { _controller: FixitBundle:Default:index }
+fixit_404:
+    path:     /404
+    defaults: { _controller: FixitBundle:Default:wrong }
+admin:
+    resource: "@FixitBundle/Resources/config/adminrouting.yml"
+    prefix:   /admin
+workshops:
+    resource: "@FixitBundle/Resources/config/routing/workshops.yml"
+    prefix:   /workshops
+ifixit:
+    resource: "@FixitBundle/Resources/config/routing/ifixit.yml"
+    prefix:   /ifixit
+Videos:
+    resource: "@FixitBundle/Resources/config/routing/videos.yml"
+    prefix:   /Videos
+prodcut:
+    resource: "@FixitBundle/Resources/config/routing/product.yml"
+    prefix:   /product
+service_path:
+    resource:  "@FixitBundle/Resources/config/routing/service.yml"
+    prefix:   /service
+category_index:
+    path:     /category
+    defaults: { _controller: "FixitBundle:category:indexUser" }
+    methods:  GET
+service_indexCategory:
+    path:     /category/{id}/showservice
+    defaults: { _controller: "FixitBundle:service:indexCategory" }
+    methods:  GET
+
+

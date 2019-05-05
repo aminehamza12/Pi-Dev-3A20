@@ -1,0 +1,83 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block body %}
+    <div id="page-content">
+        <div class="row">
+
+            <div class="col-md-12">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Workshops List</h3>
+                    </div>
+                    <!-- Foo Table - Add & Remove Rows -->
+                    <!--===================================================-->
+                    <div class="panel-body">
+                        <div class="pad-btm form-inline">
+                            <div class="row">
+                                <div class="col-sm-6 text-xs-center">
+                                    <div class="form-group">
+                                        <a href="{{ path('workshops_new') }}" id="demo-btn-addrow" class="btn btn-danger">Create new Workshop</a>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 text-xs-center text-right">
+                                    <div class="form-group">
+                                        <input id="demo-input-search2" type="text" placeholder="Search" class="form-control" autocomplete="off">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <table id="demo-foo-addrow" class="table table-bordered table-hover toggle-circle" data-page-size="7">
+                            <thead>
+                            <th>Id</th>
+                            <th>Nom</th>
+                            <th>Description</th>
+                            <th>Datedebut</th>
+                            <th>Datefin</th>
+                            <th>Lieu</th>
+                            <th>Vu</th>
+                            <th>Nbrjaime</th>
+                            <th>Nbrparticipant</th>
+                            <th>categorie</th>
+                            <th>Imageurl</th>
+                            <th>Actions</th>
+
+                            </thead>
+                            <tbody>
+                            {% for workshop in workshops %}
+                                <tr>
+                                    <td>{{ workshop.id }}</td>
+                                    <td>{{ workshop.nom }}</td>
+                                    <td>{{ workshop.description }}</td>
+                                    <td>{% if workshop.dateDebut %}{{ workshop.dateDebut|date('Y-m-d') }}{% endif %}</td>
+                                    <td>{% if workshop.dateFin %}{{ workshop.dateFin|date('Y-m-d') }}{% endif %}</td>
+                                    <td>{{ workshop.lieu }}</td>
+                                    <td>{{ workshop.vu }}</td>
+                                    <td>{{ workshop.nbrjaime }}</td>
+                                    <td>{{ workshop.nbrparticipant }}</td>
+                                    <td>{{ workshop.categorie }}</td>
+                                    <td><img src="{{ vich_uploader_asset(workshop, 'imageFile') }}" height="200px" width="200px"></td>
+                                    <td>
+                                          <a class="btn btn-warning" href="{{ path('workshops_edit', { 'id': workshop.id }) }}">edit</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                <td colspan="6">
+                                    <div class="text-right">
+                                        <ul class="pagination"></ul>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,85 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block body %}
+    <div id="page-content">
+        <div class="row">
+            <div class="eq-height">
+                <div class="col-sm-6 eq-box-sm">
+                    <div class="panel">
+                        <div class="panel-heading">
+                            <div class="panel-control">
+                                <a class="btn btn-success" href="{{ path('workshops_indexAdmin') }}">Back to the list</a>
+                            </div>
+                            <h3 class="panel-title">Edit Workshop</h3>
+                        </div>
+
+                        {{ form_start(edit_form, {'attr':{'class':'form-horizontal' }}) }}
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label" for="demo-hor-inputemail">{{ form_label(edit_form.nom) }}</label>
+                                <div class="col-sm-9">
+                                    {{ form_widget(edit_form.nom,{'attr':{'class':'form-control' }}) }}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label" for="demo-hor-inputemail">{{ form_label(edit_form.description) }}</label>
+                                <div class="col-sm-9">
+                                    {{ form_widget(edit_form.description,{'attr':{'class':'form-control' }}) }}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label" for="demo-hor-inputemail">{{ form_label(edit_form.dateDebut) }}</label>
+                                <div class="col-sm-9">
+                                    <div id="demo-dp-component">
+                                        <div class="input-group date">
+                                            {{ form_widget(edit_form.dateDebut,{'attr':{'class':'form-control' }}) }}
+                                            <span class="input-group-addon"><i class="fa fa-calendar fa-lg"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label" for="demo-hor-inputemail">{{ form_label(edit_form.dateFin) }}</label>
+                                <div class="col-sm-9">
+                                    <div id="demo-dp-component">
+                                        <div class="input-group date">
+                                            {{ form_widget(edit_form.dateFin,{'attr':{'class':'form-control' }}) }}
+                                            <span class="input-group-addon"><i class="fa fa-calendar fa-lg"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label" for="demo-hor-inputemail">{{ form_label(edit_form.lieu) }}</label>
+                                <div class="col-sm-9">
+                                    {{ form_widget(edit_form.lieu,{'attr':{'class':'form-control' }}) }}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label" for="demo-hor-inputemail">{{ form_label(edit_form.imageFile) }}</label>
+                                <div class="col-sm-9">
+                                    {{ form_widget(edit_form.imageFile,{'attr':{'class':'form-control' }}) }}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label" for="demo-hor-inputemail">{{ form_label(edit_form.categorie) }}</label>
+                                <div class="col-sm-9">
+                                    {{ form_widget(edit_form.categorie,{'attr':{'class':'form-control' }}) }}
+                                </div>
+                            </div>
+                            <div class="panel-footer text-right">
+                                <input id="btn" class="btn btn-info" type="submit" value="Create" />
+                            </div>
+
+
+                            {{ form_end(edit_form) }}
+                            {{ form_start(delete_form) }}
+                            <input class="btn btn-danger pull-right" type="submit" value="Delete">
+                            {{ form_end(delete_form) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

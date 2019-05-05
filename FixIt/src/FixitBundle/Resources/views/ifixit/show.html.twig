@@ -1,0 +1,119 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <!--************************************
+        Main Start
+*************************************-->
+    <main id="tg-main" class="tg-main tg-paddingzero tg-haslayout">
+        <!--************************************
+                Blog Grid Start
+        *************************************-->
+        <div class="tg-main-section tg-haslayout">
+            <div class="container">
+                <div class="row">
+                    <div id="tg-twocolumns" class="tg-twocolumns">
+                        <div class="col-xs-12 col-sm-7 col-md-8 col-lg-8">
+                            <div id="tg-content" class="tg-content">
+                                <article class="tg-post tg-detailpage tg-postdetail">
+                                    <video id="videoclip" controls width="720" height="480"   title="Video title">
+                                        <source id="mp4video" src="{{ vich_uploader_asset(fvideo, 'videoFile') }}" type="video/mp4"  />
+                                    </video>
+                                    <div class="tg-postcontent">
+                                        <div class="tg-title">
+                                            <h3 id="firstvideoname">{{ fvideo.name }}</h3>
+                                        </div>
+                                    </div>
+                                </article>
+                                <div class="tg-tagsshare">
+                                    <div class="tg-posttags">
+                                        <span>Tags:</span>
+                                        <a class="tg-tag" href="#">Nail</a>
+                                        <a class="tg-tag" href="#">Hammer</a>
+                                        <a class="tg-tag" href="#">Fun Time</a>
+                                        <a class="tg-tag" href="#">PSD Template</a>
+                                    </div>
+                                    <div class="tg-postshare">
+                                        <span>Share:</span>
+                                        <ul class="tg-socialicons">
+                                            <li class="tg-facebook"><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                            <li class="tg-twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                            <li class="tg-linkedin"><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                            <li class="tg-googleplus"><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                            <li class="tg-rss"><a href="#"><i class="fa fa-rss"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-5 col-md-4 col-lg-4">
+                            <aside id="tg-sidebar" class="tg-sidebar">
+
+                                <div class="tg-widget tg-widgetcatagories">
+                                    <div class="tg-widgettitle">
+                                        <h3>Next Videos</h3>
+                                    </div>
+                                    <div class="tg-widgetcontent">
+                                        <ul>
+                                            {% for video in videos %}
+                                                {% if video.id != fvideo.id %}
+                                            <li><video id="videocontainer{{ video.id }}" width="250" height="180" controls>
+                                                        <source id="{{ video.id }}" src="{{ vich_uploader_asset(video, 'videoFile') }}" type="video/mp4">
+                                                    </video>
+                                                    <div class="tg-title">
+                                                        <a class="video" id="video_{{ video.id }}" href="#"> <h3 id="videoname{{ video.id }}">{{ video.name }}</h3> </a>
+                                                    </div>
+                                               </li>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </aside>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--************************************
+                Blog Grid End
+        *************************************-->
+    </main>
+    <script>
+
+        function OnClickVideo(event)
+        {
+            event.preventDefault();
+            var firstvideoname=document.getElementById('firstvideoname');
+            var firstname=firstvideoname.innerHTML;
+            var videocontainer = document.getElementById('videoclip');
+            var videosource = document.getElementById('mp4video');
+            var fullid=this.id;
+            var id=fullid.split("_");
+            var str="videocontainer";
+            var strname="videoname";
+            var videocontainertochange=document.getElementById(str.concat(id[1]));
+            var videotochangename=document.getElementById(strname.concat(id[1])).innerHTML;
+            var videosourcetochange=document.getElementById(id[1]);
+            var newmp4=document.getElementById(id[1]).src;
+            var mp4tochange=videosource.src;
+            firstvideoname.innerHTML=videotochangename;
+            document.getElementById(strname.concat(id[1])).innerHTML=firstname;
+            videocontainer.pause();
+            videocontainertochange.pause();
+            videosource.setAttribute('src', newmp4);
+            videosourcetochange.setAttribute('src',mp4tochange);
+            videocontainertochange.load();
+            videocontainer.load();
+            videocontainer.play();
+
+        }
+
+
+        document.querySelectorAll('a.video').forEach(function (link) {
+           link.addEventListener('click',OnClickVideo);
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block body %}
+    <div id="page-content">
+        <div class="row">
+            <div class="eq-height">
+                <div class="col-sm-6 eq-box-sm">
+                    <div class="panel">
+                        <div class="panel-heading">
+                            <div class="panel-control">
+                                <a class="btn btn-success" href="{{ path('ifixit_indexAdmin') }}">Back to the list</a>
+                            </div>
+                            <h3 class="panel-title">Add Video to playlist {{ ifixit.nom }}</h3>
+                        </div>
+
+                        {{ form_start(form, {'attr':{'class':'form-horizontal' }}) }}
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label" for="demo-hor-inputemail">{{ form_label(form.name) }}</label>
+                                <div class="col-sm-9">
+                                    {{ form_widget(form.name,{'attr':{'class':'form-control' }}) }}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label" for="demo-hor-inputemail">{{ form_label(form.videoFile) }}</label>
+                                <div class="col-sm-9">
+                                    {{ form_widget(form.videoFile,{'attr':{'class':'form-control' }}) }}
+                                </div>
+                            </div>
+                            <div class="panel-footer text-right">
+                                <input class="btn btn-info" type="submit" value="Add" />
+                            </div>
+                            {{ form_end(form) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

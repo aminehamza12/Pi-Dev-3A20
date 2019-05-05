@@ -1,0 +1,220 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <!--************************************
+        Inner Page Banner Start
+*************************************-->
+    <div class="tg-innerpagebanner">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="tg-pagetitle">
+                        <h1>Blog detail</h1>
+                    </div>
+                    <ol class="tg-breadcrumb">
+                        <li><a href="#">Home</a></li>
+                        <li class="tg-active">Blog detail</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--************************************
+            Inner Page Banner End
+    *************************************-->
+    <!--************************************
+            Main Start
+    *************************************-->
+    <main id="tg-main" class="tg-main tg-paddingzero tg-haslayout">
+        <!--************************************
+                Blog Grid Start
+        *************************************-->
+        <div class="tg-main-section tg-haslayout">
+            <div class="container">
+                <div class="row">
+                    <div id="tg-twocolumns" class="tg-twocolumns">
+                        <div class="col-xs-12 col-sm-7 col-md-8 col-lg-8">
+                            <div id="tg-content" class="tg-content">
+                                <article class="tg-post tg-detailpage tg-postdetail">
+                                    <figure>
+                                        <img src="{{ vich_uploader_asset(blog, 'imageFile') }}" alt="image description">
+                                    </figure>
+                                    <div class="tg-postcontent">
+                                        <div class="tg-title">
+                                            <h3>{{ blog.title }}</h3>
+                                        </div>
+                                        <ul class="tg-postmatadata">
+                                            <li>
+                                                <a href="#">
+                                                    <span>{{ blog.user.username }}</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span>{{ blog.editedAt|date("m/d/Y") }}</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="tg-description">
+                                        <p>{{ blog.content|raw }}</p>
+                                    </div>
+                                </article>
+
+                                <div class="tg-tagsshare">
+                                    <span>Share:</span>
+                                    <ul class="tg-socialicons">
+                                        {{ socialButtons() }}
+                                    </ul>
+                                </div>
+
+                                <div class="tg-companyfeaturebox tg-reviews">
+                                    <div class="tg-companyfeaturetitle">
+                                        <h3>{{ comments|length ~ " Comments" }}</h3>
+                                    </div>
+                                    <div class="tg-feedbacks">
+                                        {% for c in comments %}
+                                            <div class="tg-feedback">
+                                                <figure><a href="javascript:void(0);"><img src="images/thumbnails/img-09.jpg" alt="image description"></a></figure>
+                                                <div class="tg-feedbackcontent">
+                                                    <div class="tg-feedbackbox">
+                                                        <div class="tg-contenthead">
+                                                            <div class="tg-leftbox">
+                                                                <div class="tg-name">
+                                                                    <h4><a href="#">{{ c.user.username }}</a></h4>
+                                                                </div>
+                                                                <ul class="tg-matadata">
+                                                                    <li><a href="#">{{ c.createdAt|date('Y-m-d H:i:s') }} 10 Min Ago</a></li>
+                                                                </ul>
+                                                            </div>
+                                                            {% if app.user %}
+                                                            {% if app.user.id == c.user.id %}
+                                                            <div class="tg-rightbox">
+                                                                <a href="{{ path('comment_delete', { 'id': c.id }) }}"><button type="button" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></button></a>
+                                                            </div>
+                                                            {% endif %}
+                                                            {% endif %}
+                                                        </div>
+                                                        <div class="tg-description">
+                                                            <p>{{ c.text }}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                    {% if app.user %}
+                                        {% if blog.commentEnable == 'true' %}
+
+                                        <div class="tg-companyfeaturebox tg-reviewformrating">
+                                            {{ form_start(form_comment) }}
+                                            <form class="tg-themeform tg-formleavreview" method="post">
+                                                <fieldset>
+                                                    <div class="tg-companyfeaturetitle">
+                                                        <h3>Leave Your Feedback</h3>
+                                                    </div>
+                                                    <div class="row">
+
+                                                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                                            <div class="form-group">
+                                                                {{ form_widget(form_comment) }}
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <button type="submit" class="tg-btn">Submit</button>
+                                                </fieldset>
+                                            </form>
+                                            {{ form_end(form_comment) }}
+                                        </div>
+                                            {% else %}
+                                                <div class="tg-companyfeaturebox tg-reviewformrating">
+
+                                                    <form class="tg-themeform tg-formleavreview" method="post">
+                                                        <fieldset>
+                                                            <div class="tg-companyfeaturetitle">
+                                                                <h3>Leave Your Feedback</h3>
+                                                            </div>
+                                                            <div class="row">
+
+                                                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                                                    <a href="#"><button  class="tg-btn btn-danger">Comments are not enabled for this blog post</button></a>
+                                                                </div>
+                                                            </div>
+
+                                                        </fieldset>
+                                                    </form>
+
+                                                </div>
+                                            {% endif %}
+                                    {% else %}
+                                        <div class="tg-companyfeaturebox tg-reviewformrating">
+
+                                            <form class="tg-themeform tg-formleavreview" method="post">
+                                                <fieldset>
+                                                    <div class="tg-companyfeaturetitle">
+                                                        <h3>Leave Your Feedback</h3>
+                                                    </div>
+                                                    <div class="row">
+
+                                                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                                            <a href="{{ path('fos_user_security_login') }}"><button  class="tg-btn">You need to login/create an account to be able to add a comment</button></a>
+                                                        </div>
+                                                    </div>
+
+                                                </fieldset>
+                                            </form>
+
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-5 col-md-4 col-lg-4">
+                            <aside id="tg-sidebar" class="tg-sidebar">
+                                <div class="tg-widget tg-widgetsearch">
+                                    <div class="tg-widgettitle">
+                                        <h3>Search</h3>
+                                    </div>
+                                    <div class="tg-widgetcontent">
+                                        {{ form_start(searchForm) }}
+                                        <form class="tg-themeform">
+                                            <div class="form-group">
+                                                {{ form_widget(searchForm) }}
+                                            </div>
+                                            <button type="submit" class="tg-btn tg-btn-lg">Search Now</button>
+                                        </form>
+                                        {{ form_end(searchForm) }}
+                                    </div>
+                                </div>
+
+                                <div class="tg-widget tg-widgetrelatedposts">
+                                    <div class="tg-widgettitle">
+                                        <h3>Most Liked Blog Posts</h3>
+                                    </div>
+
+                                    {{ render(controller('BlogBundle:Blog:renderMostLikedBlogPosts')) }}
+
+                                </div>
+                                <div class="tg-advertisement">
+                                    <a href="javascript:void(0);"><img src="images/advertisement/img-02.png" alt="image description"></a>
+                                </div>
+                            </aside>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--************************************
+                Blog Grid End
+        *************************************-->
+    </main>
+    <!--************************************
+            Main End
+    *************************************-->
+
+
+
+
+{% endblock %}

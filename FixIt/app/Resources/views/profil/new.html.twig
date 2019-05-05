@@ -1,0 +1,121 @@
+{% extends 'base.html.twig' %}
+{% form_theme form 'bootstrap_3_layout.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+    <h1>Profil creation</h1>
+
+    {{ form_start(form) }}
+            <div class="form-group">
+                <b>{{ form_label(form.location,'Location  ') }}</b>
+                {{ form_widget(form.location,{'attr':{'class':'form-control'}}) }}
+            </div>
+            <div class="form-group">
+                <b>{{ form_label(form.logoFile,'Logo  ') }}<i id="glyphicon-logo" class="glyphicon glyphicon-ok-sign" style="padding: 0.5em;color:red;" ></i></b>
+                {{ form_widget(form.logoFile,{'attr':{'class':'form-control'}}) }}
+                <small id="logo-help" class="form-text text-muted" style="">Must upload logo</small>
+            </div>
+            <div class="form-group">
+                <b>{{ form_label(form.bannerFile,'Banner  ') }}<i id="glyphicon-banner" class="glyphicon glyphicon-ok-sign" style="padding: 0.5em;color:red;" ></i></b>
+                {{ form_widget(form.bannerFile,{'attr':{'class':'form-control'}}) }}
+                <small id="banner-help" class="form-text text-muted" style="">Must upload banner</small>
+            </div>
+            <div class="form-group">
+                <b>{{ form_label(form.mobile,'Mobile  ') }}<i id="glyphicon-mobile" class="glyphicon glyphicon-ok-sign" style="padding: 0.5em;color:red;" ></i></b>
+                {{ form_widget(form.mobile,{'attr':{'class':'form-control'}}) }}
+                <small id="mobile-help" class="form-text text-muted" style="">Minimum Length : 8 , Maximum Length : 12</small>
+            </div>
+            <div class="form-group">
+                <b>{{ form_label(form.fax,'Fax  ') }}<i id="glyphicon-fax" class="glyphicon glyphicon-ok-sign" style="padding: 0.5em;color:red;" ></i></b>
+                {{ form_widget(form.fax,{'attr':{'class':'form-control'}}) }}
+                <small id="fax-help" class="form-text text-muted" style="">Minimum Length : 8 , Maximum Length : 12</small>
+            </div>
+
+        <input id="btn-verif" type="submit" value="Create" class="btn btn-primary" />
+    {{ form_end(form) }}
+        </div>
+    </div>
+    <script src="{{ asset('jquery-3.3.1.js') }}"></script>
+    <script>
+        var verif_logo = false;
+        var verif_banner = false;
+        var verif_mobile = false;
+        var verif_fax = false;
+        $(document).ready(function () {
+
+
+
+        });
+
+        $('#gestioncvbundle_profil_logoFile_file').on("change",function () {
+            var logo_length = $('#gestioncvbundle_profil_logoFile_file').val();
+            if(logo_length == ''){
+                $('#glyphicon-logo').css('color', 'red');
+                $('#logo-help').css('display', '');
+                verif_logo = false;
+            }else{
+                $('#glyphicon-logo').css('color', 'green');
+                $('#logo-help').css('display', 'none');
+                verif_logo = true;
+            }
+        });
+
+        $('#gestioncvbundle_profil_bannerFile_file').on("change",function () {
+            var banner_length = $('#gestioncvbundle_profil_bannerFile_file').val();
+            if(banner_length == ''){
+                $('#glyphicon-banner').css('color', 'red');
+                $('#banner-help').css('display', '');
+                verif_banner = false;
+            }else{
+                $('#glyphicon-banner').css('color', 'green');
+                $('#banner-help').css('display', 'none');
+                verif_banner = true;
+            }
+        });
+
+        $('#gestioncvbundle_profil_mobile').on('keyup',function(){
+            var mobile_length = $(this).val().length;
+            if(mobile_length < 8 || mobile_length > 12)
+            {
+                $('#glyphicon-mobile').css('color', 'red');
+                $('#mobile-help').css('display', '');
+                verif_mobile = false;
+            }else{
+                $('#glyphicon-mobile').css('color', 'green');
+                $('#mobile-help').css('display', 'none');
+                verif_mobile = true;
+            }
+        });
+
+        $('#gestioncvbundle_profil_fax').on('keyup',function(){
+            var fax_length = $(this).val().length;
+            if(fax_length < 8 || fax_length > 12)
+            {
+                $('#glyphicon-fax').css('color', 'red');
+                $('#fax-help').css('display', '');
+                verif_fax = false;
+            }else{
+                $('#glyphicon-fax').css('color', 'green');
+                $('#fax-help').css('display', 'none');
+                verif_fax = true;
+            }
+
+        });
+
+
+        $('#btn-verif').on("click",function (event) {
+            if(verif_logo != true || verif_banner != true || verif_mobile != true || verif_fax != true){
+                event.preventDefault();
+                if(verif_logo == false){alert("Must upload logo")}
+                else if(verif_banner == false){alert("Must upload thumbnail")}
+                else if(verif_mobile == false){alert("Verify your mobile number")}
+                else if(verif_fax == false){alert("Verify your fax number")}
+            }
+        });
+
+
+
+
+    </script>
+{% endblock %}

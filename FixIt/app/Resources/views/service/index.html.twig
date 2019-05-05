@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Services list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Type</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Paymenttype</th>
+                <th>Price</th>
+                <th>Picture</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for service in services %}
+            <tr>
+                <td><a href="{{ path('service_show', { 'id': service.id }) }}">{{ service.id }}</a></td>
+                <td>{{ service.type }}</td>
+                <td>{{ service.title }}</td>
+                <td>{{ service.description }}</td>
+                <td>{{ service.paymentType }}</td>
+                <td>{{ service.price }}</td>
+                <td><img width="50px" height="50px" src="{{ service.picture }}"></td>
+                <td>
+                    <ul>
+                        <li>
+                            <a class="tg-btn tg-btnpostanewjob" href="{{ path('service_show', { 'id': service.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a class="tg-btn tg-btnpostanewjob" href="{{ path('service_edit', { 'id': service.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a class="tg-btn tg-btnpostanewjob" href="{{ path('service_new') }}">Create a new service</a>
+        </li>
+    </ul>
+{% endblock %}

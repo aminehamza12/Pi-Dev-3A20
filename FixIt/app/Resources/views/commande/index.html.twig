@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<h1 style="text-align: center">Commandes list</h1>
+<div class="boxed">
+    <div class="content-container">
+        <div class="page-content">
+            <div class="panel">
+                <!-- Foo Table - Add & Remove Rows -->
+                <!--===================================================-->
+                <div class="panel-body">
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Reference</th>
+                <th>Date</th>
+                <th>Delivery</th>
+                <th>Montant</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for commande in commandes %}
+            {% if user.id == commande.user.id %}
+            <tr>
+                <td><a href="{{ path('commande_show', { 'id': commande.id }) }}" class="" style="text-align: center">{{ commande.id }}</a></td>
+                <td>{% if commande.date %}{{ commande.date|date("F jS , Y") }}{% endif %}</td>
+                <td>{% if commande.delivery %}<i class="glyphicon glyphicon-ok" style="color: green"/>{% else %}<i class="glyphicon glyphicon-remove" style="color: red"/>{% endif %}</td>
+                <td>{{ commande.montant }} TND</td>
+                <td>
+
+                            <a href="{{ path('commande_show', { 'id': commande.id }) }}" style="width: 120px" class="btn btn-primary">show</a>
+
+                            <a href="{{ path('commande_pdf', { 'id': commande.id }) }}" style="width: 120px" class="btn btn-success">Génerer pdf</a>
+                </td>
+            </tr>
+            {% endif %}
+        {% endfor %}
+        </tbody>
+    </table>
+                </div>
+                <!--===================================================-->
+                <!-- End Foo Table - Add & Remove Rows -->
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,84 @@
+{% extends 'profil/sidebar.html.twig' %}
+
+{% block content %}
+    <!-- jQuery is necessary -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <script type="text/javascript">
+        jQuery(document).ready(function() {
+            var searchRequest = null;
+            $(".search").keyup(function() {
+                var minlength = 1;
+                var that = this;
+                var value = $(this).val();
+                var entitySelector = $("#entitiesNav2").html('');
+                if (value.length >= minlength ) {
+                    if (searchRequest != null)
+                        searchRequest.abort();
+                    searchRequest = $.ajax({
+                        type: "GET",
+                        url: "{{ path('profil_search') }}",
+                        data: {
+                            'q' : value
+                        },
+                        dataType: "text",
+                        success: function(msg){
+                            //we need to check if the value is the same
+                            if (value==$(that).val()) {
+                                var result = JSON.parse(msg);
+                                $.each(result, function(key, arr) {
+                                    $.each(arr, function(id, value) {
+                                        if (key == 'entities') {
+                                            if (id != 'error') {
+                                                entitySelector.append('<a href="/Pi-Dev-Web/web/app_dev.php/profil/' + id + '/show">' +
+                                                    ' <div class="autho"><center><img src="{{ asset('images/') }}' + value[1] + '" alt="avatar" style="width:120px; height: 120px"></center></div>' +
+                                                    '<div class="notification-event">' +
+                                                    '<span class="h6 notification-friend"><center><h1><b>' + value[0] +'</b></h1></center></span></a>' + ' ' +
+                                                    '</br>' +
+                                                    '</div>\n' +
+                                                    '<span class="notification-icon"><svg class="\' + escape(item.icon) + \'"><use xlink:href="icons/icons.svg#\' + escape(item.icon) + \'"></use></svg></span>' + '</a></li>');
+
+                                            } else {
+                                                entitySelector.append('<li class="errorLi">'+value+'</li>');
+                                            }
+                                        }
+                                    });
+                                });
+                            }
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+
+    <div class="container">
+        <div class="row">
+            <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="ui-block responsive-flex">
+                    <div class="ui-block-title">
+                        <div class="h6 title">Rechercher un Profile</div>
+
+
+                        <form class="w-search">
+                            <div class="form-group with-button is-empty">
+                                <input class="form-control search" type="text" placeholder="Rechercher Ici...">
+                                <button >
+                                    <svg class="olymp-magnifying-glass-icon"><use xlink:href="#olymp-magnifying-glass-icon"></use></svg>
+                                </button>
+                                <span class="material-input"></span></div>
+                            {#<div class="inline-items" id="entitiesNav">#}
+
+                            {#</div>#}
+                        </form>
+                        <a href="#" class="more"><svg class="olymp-three-dots-icon"><use xlink:href="#olymp-three-dots-icon"></use></svg></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container inline-items"  id="entitiesNav2">
+
+    </div>
+
+{% endblock %}

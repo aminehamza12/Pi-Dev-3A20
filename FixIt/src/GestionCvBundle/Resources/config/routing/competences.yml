@@ -1,0 +1,24 @@
+competences_index:
+    path:     /
+    defaults: { _controller: "GestionCvBundle:Competences:index" }
+    methods:  GET
+
+competences_show:
+    path:     /{id}/show
+    defaults: { _controller: "GestionCvBundle:Competences:show" }
+    methods:  GET
+
+competences_new:
+    path:     /new
+    defaults: { _controller: "GestionCvBundle:Competences:new" }
+    methods:  [GET, POST]
+
+competences_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "GestionCvBundle:Competences:edit" }
+    methods:  [GET, POST]
+
+competences_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "GestionCvBundle:Competences:delete" }
+    methods:  DELETE

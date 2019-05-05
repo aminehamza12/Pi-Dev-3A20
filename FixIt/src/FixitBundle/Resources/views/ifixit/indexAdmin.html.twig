@@ -1,0 +1,178 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block body %}
+    <div id="page-content">
+        <div class="row">
+
+            <div class="col-md-12">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">IFixit List</h3>
+                    </div>
+                    <!-- Foo Table - Add & Remove Rows -->
+                    <!--===================================================-->
+                    <div class="panel-body">
+                        <div class="pad-btm form-inline">
+                            <div class="row">
+                                <div class="col-sm-6 text-xs-center">
+                                    <div class="form-group">
+                                        <a href="{{ path('ifixit_new') }}" id="demo-btn-addrow" class="btn btn-danger">Add new IFixit</a>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 text-xs-center text-right">
+                                    <div class="form-group">
+                                        <input id="demo-input-search2" type="text" placeholder="Search" class="form-control" autocomplete="off">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <table id="demo-foo-addrow" class="table table-bordered table-hover toggle-circle" data-page-size="7">
+                            <thead>
+                            <th>Id</th>
+                            <th>nom</th>
+                            <th>Category</th>
+                            <th>Videos</th>
+                            <th>Actions</th>
+                            </thead>
+                            <tbody>
+                            {% for ifixit in ifixits %}
+                                <tr>
+                                    <td><a href="{{ path('ifixit_show', { 'id': ifixit.id }) }}">{{ ifixit.id }}</a></td>
+                                    <td>{{ ifixit.nom }}</td>
+                                    <td>{{ ifixit.categorie }}</td>
+                                    <td>
+                                        <ul class="list-group" id="videos">
+                                            {% for video in videos %}
+                                                {% if video.ifixit.id == ifixit.id %}
+                                                    <li class="list-group-item" id="video_{{ video.id }}">
+                                                        {{ video.name }}
+                                                        <a id="delete_{{ video.id }}" class="btn btn-danger tg-delete pull-right" href="{{ path('delete_video',{'id':video.id}) }}">Delete</a>
+                                                        <button id="myBtn_{{ video.id }}" class="btn btn-info pull-right show">Show</button>
+                                                    </li>
+                                                {% endif %}
+                                            {% endfor %}
+                                            <br>
+                                            <a class="btn btn-info" href="{{ path('Add_video',{'id':ifixit.id}) }}">Add Video</a>
+                                        </ul>
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-warning" href="{{ path('ifixit_edit', { 'id': ifixit.id }) }}">edit</a>
+                                        <a class="btn btn-danger" href="#">Delete</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                <td colspan="6">
+                                    <div class="text-right">
+                                        <ul class="pagination"></ul>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                    {% for video in videos %}
+                        <div id="myModal{{ video.id }}" class="modal">
+
+                            <!-- Modal content -->
+                            <div class="modal-content">
+                                <video width="320" height="240" controls>
+                                    <source src="{{ vich_uploader_asset(video, 'videoFile') }}" type="video/mp4">
+                                </video>
+                                <p>{{ video.name }}</p>
+                            </div>
+
+                        </div>
+                    {% endfor %}
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        //delete video
+        function OnClickDeleteVideo(event)
+        {
+            event.preventDefault();
+            const url=this.href;
+            var fullid=this.id;
+            const id=fullid.split("_");
+            var str="video_";
+            const balisevideo=document.getElementById(str.concat(id[1]));
+            const parent=document.getElementById("videos");
+            axios.get(url).then(function (response) {
+                balisevideo.remove();
+            })
+        }
+
+        document.querySelectorAll('a.tg-delete').forEach(function (link) {
+            link.addEventListener('click',OnClickDeleteVideo);
+        });
+
+        //show video
+
+        function OnClickShowVideo()
+        {
+            var fullid=this.id;
+            const id=fullid.split("_");
+            const str="myModal";
+            var modal = document.getElementById(str.concat(id[1]));
+
+            modal.style.display = "block";
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            };
+        }
+        document.querySelectorAll('button.show').forEach(function (link) {
+            link.addEventListener('click',OnClickShowVideo);
+        });
+
+    </script>
+    <style>
+        /* The Modal (background) */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+
+        /* Modal Content/Box */
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; /* Could be more or less, depending on screen size */
+        }
+
+        /* The Close Button */
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+{% endblock %}
+

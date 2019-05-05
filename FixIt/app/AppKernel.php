@@ -3,6 +3,7 @@
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Config\Loader\LoaderInterface;
+use Vich\UploaderBundle\VichUploaderBundle;
 
 class AppKernel extends Kernel
 {
@@ -17,6 +18,24 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new AppBundle\AppBundle(),
+            new FOS\UserBundle\FOSUserBundle(),
+            new FixitBundle\FixitBundle(),
+            new ForumBundle\ForumBundle(),
+            new BlogBundle\BlogBundle(),
+            new GestionCvBundle\GestionCvBundle(),
+            new VichUploaderBundle(),
+            new Ob\HighchartsBundle\ObHighchartsBundle(),
+            new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
+            new Nomaya\SocialBundle\NomayaSocialBundle(),
+            new CMEN\GoogleChartsBundle\CMENGoogleChartsBundle(),
+            new FOS\CKEditorBundle\FOSCKEditorBundle(),
+            new WBW\Bundle\HighchartsBundle\HighchartsBundle(),
+            new FOS\MessageBundle\FOSMessageBundle(),
+            new FOS\CommentBundle\FOSCommentBundle(),
+            new FOS\RestBundle\FOSRestBundle(),
+            new JMS\SerializerBundle\JMSSerializerBundle($this),
+            new Symfony\Bundle\AsseticBundle\AsseticBundle(),
+            new \Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
